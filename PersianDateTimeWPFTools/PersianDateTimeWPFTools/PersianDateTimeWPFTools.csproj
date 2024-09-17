@@ -10,5 +10,9 @@
     <!-- Properties for .NET Framework -->
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Tools\" />
+  </ItemGroup>
 
 </Project>
