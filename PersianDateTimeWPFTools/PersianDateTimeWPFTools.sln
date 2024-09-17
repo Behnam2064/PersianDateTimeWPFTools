@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA498EE7-A3AC-4BD5-99E8-C0F1ABF7DB0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A8ED2C3C-6517-4B67-A619-D8DDFBA831FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{577878AC-7354-4E2F-8BA5-AA2DEC49EEED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianDateTimeWPFTools", "PersianDateTimeWPFTools\PersianDateTimeWPFTools.csproj", "{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D} = {CA498EE7-A3AC-4BD5-99E8-C0F1ABF7DB0A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DFF3188-CF2B-4D28-8B73-894F8196516D}
+	EndGlobalSection
+EndGlobal
