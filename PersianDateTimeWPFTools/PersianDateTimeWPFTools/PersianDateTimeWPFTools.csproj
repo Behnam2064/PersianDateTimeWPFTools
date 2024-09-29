@@ -11,8 +11,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Tools\" />
+    <Compile Remove="Windows\Automation\DatePickerAutomationPeer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Controls\PersianCalenderStyle.xaml" />
+    <Page Remove="Resources\highcontrast.xaml" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,87 @@
-﻿<Window x:Class="TestPersianCalendar.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestPersianCalendar"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="TestPersianCalendar.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TestPersianCalendar"
+    xmlns:dtt="clr-namespace:PersianDateTimeWPFTools.Controls;assembly=PersianDateTimeWPFTools"
+    xmlns:dtt2="clr-namespace:PersianDateTimeWPFTools.Windows.Controls.Primitives;assembly=PersianDateTimeWPFTools"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:pc="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    mc:Ignorable="d"
+    Title="MainWindow"
+    Height="450"
+    Width="800">
+    <Grid
+        ShowGridLines="True">
+        <Grid.Background>
+            <LinearGradientBrush
+                EndPoint="0.5,1"
+                StartPoint="0.5,0">
+                <GradientStop
+                    Color="#FFE2E2E2" />
+                <GradientStop
+                    Color="#FFCAA2A2"
+                    Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <DockPanel>
+            <Calendar
+                DockPanel.Dock="Top" />
+            <CalendarItem
+                Visibility="Collapsed"
+                DockPanel.Dock="Top" />
+            <DatePicker />
+        </DockPanel>
+     
+        <Grid
+            ShowGridLines="False"
+            Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <pc:PersianDatePicker
+                CustomCultureName="fa-IR"
+                Height="50"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                x:Name="pdp"
+                DockPanel.Dock="Top" />
+            <TextBlock
+                Grid.Row="1"
+                FontFamily="{DynamicResource SymbolThemeFontFamily}"
+                Text="&#xE702;" />
+
+
+            <pc:PersianCalendar
+                Grid.Row="1"
+                CustomCultureName="fa-IR"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Stretch"
+                DockPanel.Dock="Top" />
+
+        </Grid>
+        <DockPanel
+            Visibility="Collapsed"
+            Grid.Column="1">
+
+            <dtt:PersianCalendar
+                Visibility="Collapsed"
+                CustomCultureName="fa-IR"
+                x:Name="pc1"
+                SelectionMode="MultipleRange"
+                AllowSelectBlackedOutDay="True"
+                DockPanel.Dock="Top" />
+
+        </DockPanel>
+
 
     </Grid>
 </Window>

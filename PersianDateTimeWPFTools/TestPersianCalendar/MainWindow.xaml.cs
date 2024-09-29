@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,6 +20,12 @@ namespace TestPersianCalendar
         public MainWindow()
         {
             InitializeComponent();
+            pdp.SelectedDate = DateTime.Now;
+            //new Test01(pc1);
+
+            //pc1.BlackoutDates.Add(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(DateTime.Now.AddDays(+5), DateTime.Now.AddDays(+10)));
+            //pc1.BlackoutDates.Add(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(DateTime.Now));
+
         }
     }
 }
