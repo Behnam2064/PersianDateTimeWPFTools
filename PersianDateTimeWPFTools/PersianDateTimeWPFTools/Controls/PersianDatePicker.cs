@@ -896,7 +896,7 @@ namespace PersianDateTimeWPFTools.Controls
             if (this._textBox == null)
                 return;
             var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
-            DateTimeFormatInfo dateFormat = PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(CustomCulture);
+            DateTimeFormatInfo dateFormat = PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
             this.SetTextInternal(string.Empty);
             this._defaultText = string.Empty;
             switch (this.SelectedDateFormat)
