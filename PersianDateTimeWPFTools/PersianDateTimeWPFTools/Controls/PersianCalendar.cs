@@ -427,10 +427,7 @@ namespace PersianDateTimeWPFTools.Controls
         {
             get
             {
-
-                return this.MonthControl._calendar.MaxSupportedDateTime;
-
-                //return this.DisplayDateEnd.GetValueOrDefault(PersianCalendarHelper.GetCurrentCalendar().MaxSupportedDateTime);
+                return this.DisplayDateEnd.GetValueOrDefault(PersianCalendarHelper.GetCurrentCalendar().MaxSupportedDateTime);
             }
         }
 
@@ -438,8 +435,7 @@ namespace PersianDateTimeWPFTools.Controls
         {
             get
             {
-                //return this.DisplayDateStart.GetValueOrDefault(PersianCalendarHelper.GetCurrentCalendar().MinSupportedDateTime);
-                return this.MonthControl._calendar.MinSupportedDateTime;
+                return this.DisplayDateStart.GetValueOrDefault(PersianCalendarHelper.GetCurrentCalendar().MinSupportedDateTime);
             }
         }
 
