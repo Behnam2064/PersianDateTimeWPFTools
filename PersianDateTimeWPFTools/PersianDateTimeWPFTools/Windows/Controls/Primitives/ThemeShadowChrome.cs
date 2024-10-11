@@ -382,9 +382,20 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
               break;
             }
             break;
-          /*default:
-            parent = control.Parent as Popup;
-            goto label_6;*/
+          default:
+                        //parent = control.Parent as Popup;
+                        //goto label_6;
+                        var parent1 = control.Parent as Popup;
+
+
+                        Popup popup1 = parent1;
+                        if (popup1 != null && PopupPositioner.IsSupported)
+                        {
+                            this._popupPositioner = new PopupPositioner(popup1);
+                            break;
+                        }
+
+                        break;
         }
       }
       if (this._popupPositioner != null)
