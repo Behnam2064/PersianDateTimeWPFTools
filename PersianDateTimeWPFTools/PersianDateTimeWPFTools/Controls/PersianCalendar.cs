@@ -477,8 +477,8 @@ namespace PersianDateTimeWPFTools.Controls
             _monthControl.CustomCulture = CustomCulture;
             this.CurrentDate = this.DisplayDate;
             this.UpdateCellItems();
-
-            if (CustomCulture != null)
+            var cc = CustomCulture ??  DateTimeHelper.GetCulture((FrameworkElement)this);
+            if (cc != null)
             {
                 DisplayDate = DateTime.Today;
                 OnDayClick(DateTime.Today);

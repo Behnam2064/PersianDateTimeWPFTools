@@ -60,7 +60,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 if (value != null)
                     _calendar = value.Calendar;
                 else
-                    _calendar = DateTimeHelper.GetCultureInfo(this).Calendar;
+                    _calendar = DateTimeHelper.GetCulture(this).Calendar;
 
                 dateTimeHelper = new DateTimeHelper(_calendar);
             }
@@ -78,7 +78,8 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         public CalendarItem()
         {
-            _calendar = DateTimeHelper.GetCultureInfo(this).Calendar;
+            //_calendar = DateTimeHelper.GetCultureInfo((FrameworkElement)this).Calendar;
+            this._calendar = DateTimeHelper.GetCulture((FrameworkElement)this).Calendar;
             dateTimeHelper = new DateTimeHelper(_calendar);
         }
 
