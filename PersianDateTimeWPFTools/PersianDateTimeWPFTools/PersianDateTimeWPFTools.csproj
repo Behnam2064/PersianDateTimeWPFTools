@@ -42,9 +42,9 @@ xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"</Description>
     <Copyright>MIT License</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
-    <Version>1.0.0.3</Version>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <FileVersion>1.0.0.4</FileVersion>
+    <Version>1.0.0.4</Version>
   </PropertyGroup>
   <!-- Only enable nullable feature for the supported frameworks -->
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net7.0' Or '$(TargetFramework)' == 'net6.0'">
