@@ -953,8 +953,12 @@
                             Value="True">
                             <Setter
                                 TargetName="HighlightBorder"
-                                Value="{DynamicResource CalendarViewHoverBorderBrush}"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushMouseOver}"
                                 Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOver}"
+                                Property="Border.Background" />
                         </Trigger>
                         <Trigger
                             Property="ButtonBase.IsPressed"
@@ -970,12 +974,12 @@
                             <!--Selected months-->
                             <Setter
                                 TargetName="Background"
-                                Value="{DynamicResource SystemControlHighlightAccentBrush}"
+                                Value="{DynamicResource DayButtonHighlightBackgroundPressed}"
                                 Property="Border.Background" />
-                            <Setter
+                            <!--<Setter
                                 TargetName="NormalText"
                                 Value="{DynamicResource ForegroundSelectedMonth}"
-                                Property="TextBlock.Foreground" />
+                                Property="TextBlock.Foreground" />-->
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
