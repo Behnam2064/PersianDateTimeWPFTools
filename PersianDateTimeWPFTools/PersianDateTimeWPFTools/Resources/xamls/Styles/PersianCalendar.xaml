@@ -949,13 +949,14 @@
                         <Trigger
                             Property="primitives:CalendarButton.HasSelectedDays"
                             Value="True">
+                            <!--Selected months-->
                             <Setter
                                 TargetName="Background"
                                 Value="{DynamicResource SystemControlHighlightAccentBrush}"
                                 Property="Border.Background" />
                             <Setter
                                 TargetName="NormalText"
-                                Value="{DynamicResource CalendarViewTodayForeground}"
+                                Value="{DynamicResource ForegroundSelectedMonth}"
                                 Property="TextBlock.Foreground" />
                         </Trigger>
                         <MultiTrigger>

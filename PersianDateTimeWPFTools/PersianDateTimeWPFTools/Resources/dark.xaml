@@ -9,6 +9,8 @@
         x:Key="ControlCornerRadius">2,2,2,2</CornerRadius>
     <CornerRadius
         x:Key="OverlayCornerRadius">4,4,4,4</CornerRadius>
+    <SolidColorBrush 
+    x:Key="ForegroundSelectedMonth">Blue</SolidColorBrush>
     <SolidColorBrush
         x:Key="SystemAccentColorDark1Brush"
         Color="{m:DynamicColor SystemAccentColorDark1}" />

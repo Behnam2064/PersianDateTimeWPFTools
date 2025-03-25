@@ -7,9 +7,11 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
   <CornerRadius
       x:Key="ControlCornerRadius">2,2,2,2</CornerRadius>
-  <CornerRadius
+    <CornerRadius
       x:Key="OverlayCornerRadius">4,4,4,4</CornerRadius>
-  <SolidColorBrush
+    <SolidColorBrush 
+        x:Key="ForegroundSelectedMonth">Blue</SolidColorBrush>
+    <SolidColorBrush
       x:Key="SystemAccentColorDark1Brush"
       Color="{m:DynamicColor SystemAccentColorDark1}" />
   <SolidColorBrush
