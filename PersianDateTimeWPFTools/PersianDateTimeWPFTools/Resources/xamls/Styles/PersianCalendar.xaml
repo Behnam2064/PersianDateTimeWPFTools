@@ -493,10 +493,10 @@
                                 TargetName="PART_YearView"
                                 Property="UIElement.Visibility"
                                 Value="Visible" />
-                            <Setter
+                            <!--<Setter
                                 TargetName="BackgroundLayer"
                                 Property="FrameworkElement.Margin"
-                                Value="0" />
+                                Value="0" />-->
                         </DataTrigger>
                         <DataTrigger
                             Value="Decade"
@@ -509,10 +509,10 @@
                                 TargetName="PART_YearView"
                                 Property="UIElement.Visibility"
                                 Value="Visible" />
-                            <Setter
+                            <!--<Setter
                                 TargetName="BackgroundLayer"
                                 Property="FrameworkElement.Margin"
-                                Value="0" />
+                                Value="0" />-->
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
