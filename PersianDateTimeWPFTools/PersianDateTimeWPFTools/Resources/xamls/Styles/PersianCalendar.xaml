@@ -1053,7 +1053,7 @@
             <Setter.Value>
                 <ControlTemplate
                     TargetType="{x:Type pdtwt:PersianCalendar}">
-                    <StackPanel
+                    <Grid
                         x:Name="PART_Root"
                         SnapsToDevicePixels="True">
                         <primitives:CalendarItem
@@ -1063,7 +1063,7 @@
                             Background="{TemplateBinding Control.Background}"
                             Style="{TemplateBinding pdtwt:PersianCalendar.CalendarItemStyle}"
                             primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
-                    </StackPanel>
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
