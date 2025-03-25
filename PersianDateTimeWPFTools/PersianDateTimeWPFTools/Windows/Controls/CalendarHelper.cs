@@ -82,8 +82,8 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             num = year % 100;
             string newValue2 = num.ToString();
 
-            if (IsContainsY) //Prevent us from displaying May as 25ay in en-US culture
-                format = str2.Replace("y", newValue2);
+            //if (IsContainsY) //Prevent us from displaying May as 25ay in en-US culture
+                //format = str2.Replace("y", newValue2);
 
             return format;
         }
