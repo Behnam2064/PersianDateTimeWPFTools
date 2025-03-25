@@ -609,7 +609,24 @@
                         </TextBlock>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="UIElement.IsMouseOver"
+                                           Value="True"/>
+                                <Condition Property="primitives:CalendarDayButton.IsInactive" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushMouseOver}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOver}"
+                                Property="Border.Background" />
+                        </MultiTrigger>
+
+                        <!--<Trigger
                             Property="UIElement.IsMouseOver"
                             Value="True">
                             <Setter
@@ -620,7 +637,8 @@
                                 TargetName="HighlightBorder"
                                 Value="{StaticResource DayButtonHighlightBackgroundMouseOver}"
                                 Property="Border.Background" />
-                        </Trigger>
+                        </Trigger>-->
+
                         <Trigger
                             Property="primitives:CalendarDayButton.IsSelected"
                             Value="True">
@@ -768,7 +786,7 @@
                                     SourceName="DayStatesListener"
                                     Property="primitives:VisualStateGroupListener.CurrentStateName"
                                     Value="RegularDay" />
-                                
+
                             </MultiTrigger.Conditions>
                             <Setter
                                 TargetName="NormalText"
@@ -806,7 +824,7 @@
 
                         </MultiTrigger>
 
-                        
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
@@ -815,13 +833,13 @@
                                 <Condition
                                     Property="primitives:CalendarDayButton.IsSelected"
                                     Value="True" />
-                                
+
                             </MultiTrigger.Conditions>
                             <Setter
                                 TargetName="NormalText"
                                 Value="{DynamicResource DayButtonBlackoutForeground}"
                                 Property="TextBlock.Foreground" />
-                            
+
                             <Setter
                                 TargetName="HighlightBorder"
                                 Value="{DynamicResource DayButtonBlackoutSelectedBorderBrush}"
