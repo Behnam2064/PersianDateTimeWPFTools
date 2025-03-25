@@ -61,6 +61,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
                 format = format.Replace(str, dt.ToString(str, (IFormatProvider)formatProvider));
 
             bool IsContainsMM = format.Contains("MM");
+            bool IsContainsY = format.ToLower().Contains("y");
             format = format.Replace("dddd", formatProvider.GetDayName(dayOfWeek));
             format = format.Replace("ddd", formatProvider.GetAbbreviatedDayName(dayOfWeek));
             format = format.Replace("dd", ((int)dayOfWeek).ToString("00"));
@@ -80,7 +81,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             string str2 = format;
             num = year % 100;
             string newValue2 = num.ToString();
-            format = str2.Replace("y", newValue2);
+
+            if (IsContainsY) //Prevent us from displaying May as 25ay in en-US culture
+                format = str2.Replace("y", newValue2);
 
             return format;
         }
