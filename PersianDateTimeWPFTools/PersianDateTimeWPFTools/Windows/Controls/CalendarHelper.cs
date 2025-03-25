@@ -59,6 +59,8 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             DayOfWeek dayOfWeek = currentCalendar.GetDayOfWeek(dt);
             foreach (string str in strArray)
                 format = format.Replace(str, dt.ToString(str, (IFormatProvider)formatProvider));
+
+            bool IsContainsMM = format.Contains("MM");
             format = format.Replace("dddd", formatProvider.GetDayName(dayOfWeek));
             format = format.Replace("ddd", formatProvider.GetAbbreviatedDayName(dayOfWeek));
             format = format.Replace("dd", ((int)dayOfWeek).ToString("00"));
@@ -66,7 +68,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             format = format.Replace("MMMM", formatProvider.GetMonthName(month));
             format = format.Replace("MMM", formatProvider.GetAbbreviatedMonthName(month));
             format = format.Replace("MM", month.ToString("00"));
-            format = format.Replace("M", month.ToString());
+            if (!IsContainsMM)//Prevent us from displaying March as 3arch in en-US culture
+                format = format.Replace("M", month.ToString());
+
             format = format.Replace("yyyy", year.ToString("0000"));
             format = format.Replace("yyy", year.ToString("000"));
             string str1 = format;
