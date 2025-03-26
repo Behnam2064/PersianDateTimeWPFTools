@@ -55,6 +55,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty AllowSelectBlackedOutDayProperty = DependencyProperty.Register(nameof(AllowSelectBlackedOutDay), typeof(bool), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)false, new PropertyChangedCallback(PersianCalendar.OnAllowSelectBlackedOutDayChanged)));
         public static readonly DependencyProperty CustomCultureProperty = DependencyProperty.Register(nameof(CustomCulture), typeof(CultureInfo), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianCalendar.OnCustomCultureChanged)));
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianCalendar.OnCustomCultureNameChanged)));
+        public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata(false, new PropertyChangedCallback(PersianCalendar.OnShowTodayButtonChanged)));
 
 
 
@@ -131,6 +132,12 @@ namespace PersianDateTimeWPFTools.Controls
             set => this.SetValue(PersianCalendar.CustomCultureNameProperty, (object)value);
         }
 
+        public bool ShowTodayButton
+        {
+            get => (bool)this.GetValue(PersianCalendar.ShowTodayButtonProperty);
+            set => this.SetValue(PersianCalendar.ShowTodayButtonProperty, value);
+        }
+
         private static void OnDisplayDateChanged(
           DependencyObject d,
           DependencyPropertyChangedEventArgs e)
@@ -140,6 +147,15 @@ namespace PersianDateTimeWPFTools.Controls
             persianCalendar.DisplayDateInternal = new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(cal).DiscardDayTime((DateTime)e.NewValue);
             persianCalendar.UpdateCellItems();
             persianCalendar.OnDisplayDateChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(new DateTime?((DateTime)e.OldValue), new DateTime?((DateTime)e.NewValue)));
+        }
+
+        private static void OnShowTodayButtonChanged(
+          DependencyObject d,
+          DependencyPropertyChangedEventArgs e)
+        {
+            PersianCalendar PersiansCalendar = d as PersianCalendar;
+            if (PersiansCalendar?.MonthControl != null)
+                PersiansCalendar.MonthControl.ShowTodayButton = (bool)e.NewValue;
         }
 
         private static object CoerceDisplayDate(DependencyObject d, object value)
@@ -476,8 +492,9 @@ namespace PersianDateTimeWPFTools.Controls
 
             _monthControl.CustomCulture = CustomCulture;
             this.CurrentDate = this.DisplayDate;
+            _monthControl.ShowTodayButton = this.ShowTodayButton;
             this.UpdateCellItems();
-            var cc = CustomCulture ??  DateTimeHelper.GetCulture((FrameworkElement)this);
+            var cc = CustomCulture ?? DateTimeHelper.GetCulture((FrameworkElement)this);
             if (cc != null)
             {
                 DisplayDate = DateTime.Today;
@@ -633,7 +650,7 @@ namespace PersianDateTimeWPFTools.Controls
             return dateOffset;
         }
 
-        private void MoveDisplayTo(DateTime? date)
+        internal void MoveDisplayTo(DateTime? date)
         {
             if (!date.HasValue)
                 return;

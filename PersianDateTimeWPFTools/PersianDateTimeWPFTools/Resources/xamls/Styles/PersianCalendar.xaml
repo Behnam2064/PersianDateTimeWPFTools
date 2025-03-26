@@ -260,6 +260,61 @@
                                     </Grid>
                                 </Grid>
                             </ControlTemplate>
+
+
+                            <ControlTemplate
+                                x:Key="TodayButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FF73A9D8"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="#11E5EBF1"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M184.858,1143.56 C185.397,1143.02 186.009,1142.55 186.009,1142 C186.009,1141.45 185.562,1141 185.009,1141 L175.009,1141 C174.888,1141 174.009,1141 174.009,1142 L174.009,1152 C174.009,1152.55 174.457,1153 175.009,1153 C175.562,1153 175.947,1152.47 176.373,1152.05 L179.152,1149.27 C180.922,1151.36 182,1154.05 182,1157 C182,1163.63 176.627,1169 170,1169 C163.373,1169 158,1163.63 158,1157 C158,1151.06 162.327,1146.13 168,1145.18 L168,1141.14 C160.109,1142.12 154,1148.84 154,1157 C154,1165.84 161.164,1173 170,1173 C178.836,1173 186,1165.84 186,1157 C186,1152.94 184.484,1149.25 181.993,1146.43 L184.858,1143.56"
+                                            Fill="#FF333333"
+                                            HorizontalAlignment="Center"
+                                            Height="10"
+                                            Margin="14,-6,0,0"
+                                            
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="10" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+
+
                             <ControlTemplate
                                 x:Key="NextButtonTemplate"
                                 TargetType="{x:Type Button}">
@@ -377,12 +432,13 @@
                                     <Button
                                         x:Name="PART_PreviousButton"
                                         Grid.Column="0"
-                                        Focusable="False"
-                                        HorizontalAlignment="Left"
-                                        Height="20"
                                         Grid.Row="0"
+                                        Focusable="False"
+                                        Width="28" 
+                                        Height="20"
+                                        HorizontalAlignment="Left"
                                         Template="{StaticResource PreviousButtonTemplate}"
-                                        Width="28" />
+                                        />
                                     <!--Style="{StaticResource NavigationButtonStyle}"-->
                                     <Button
                                         x:Name="PART_HeaderButton"
@@ -395,16 +451,34 @@
                                         Template="{StaticResource HeaderButtonTemplate}"
                                         VerticalAlignment="Center" />
                                     <!--Style="{StaticResource NavigationButtonStyle}"-->
-                                    <Button
+                                    <DockPanel LastChildFill="False"
+                                               Grid.Row="0"
+                                                Grid.Column="2"
+                                               HorizontalAlignment="Right"
+                                               >
+                                        <Button
+                                            x:Name="PART_GoToTodayButton"
+                                            Focusable="False"
+                                            Template="{StaticResource TodayButtonTemplate}"
+                                            Width="{Binding ElementName=PART_NextButton, Mode=OneWay, Path=Width, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="{Binding ElementName=PART_NextButton, Mode=OneWay, Path=Height, UpdateSourceTrigger=PropertyChanged}"
+                                            >
+
+                                        </Button>
+
+                                        <Button
                                         x:Name="PART_NextButton"
-                                        Grid.Column="2"
-                                        Focusable="False"
-                                        HorizontalAlignment="Right"
+                                        Width="28" 
                                         Height="20"
                                         Grid.Row="0"
+                                        Grid.Column="2"
+                                        Focusable="False"
                                         Template="{StaticResource NextButtonTemplate}"
-                                        Width="28" />
-                                    <!--Style="{StaticResource NavigationButtonStyle}"-->
+                                        />
+                                        <!--HorizontalAlignment="Right"-->
+                                        <!--Style="{StaticResource NavigationButtonStyle}"-->
+
+                                    </DockPanel>
 
                                     <Rectangle
                                         x:Name="BackgroundLayer"

@@ -16,6 +16,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
     [TemplatePart(Name = "PART_Root", Type = typeof(FrameworkElement))]
     [TemplatePart(Name = "PART_HeaderButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_PreviousButton", Type = typeof(Button))]
+    [TemplatePart(Name = "PART_GoToTodayButton", Type = typeof(Button))]
     [TemplatePart(Name = "PART_NextButton", Type = typeof(Button))]
     [TemplatePart(Name = "DayTitleTemplate", Type = typeof(DataTemplate))]
     [TemplatePart(Name = "PART_MonthView", Type = typeof(Grid))]
@@ -28,6 +29,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
         private const string ElementRoot = "PART_Root";
         private const string ElementHeaderButton = "PART_HeaderButton";
         private const string ElementPreviousButton = "PART_PreviousButton";
+        private const string ElementGoToTodayButton = "PART_GoToTodayButton";
         private const string ElementNextButton = "PART_NextButton";
         private const string ElementDayTitleTemplate = "DayTitleTemplate";
         private const string ElementMonthView = "PART_MonthView";
@@ -45,9 +47,21 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
         private Grid _monthView;
         private Button _nextButton;
         private Button _previousButton;
+        private Button _goToTodayButton;
         private Grid _yearView;
         private bool _isMonthPressed;
         private bool _isDayPressed;
+        private bool _ShowTodayButton { get; set; }
+        public bool ShowTodayButton
+        {
+            get => _ShowTodayButton;
+            set
+            {
+                _ShowTodayButton = value;
+                if (_goToTodayButton != null)
+                    _goToTodayButton.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         private CultureInfo _CustomCulture { get; set; }
         public CultureInfo CustomCulture
@@ -120,11 +134,14 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 this._previousButton.Click -= new RoutedEventHandler(this.PreviousButton_Click);
             if (this._nextButton != null)
                 this._nextButton.Click -= new RoutedEventHandler(this.NextButton_Click);
+            if (this._goToTodayButton != null)
+                this._goToTodayButton.Click -= new RoutedEventHandler(this.GoToTodayButton_Click);
             if (this._headerButton != null)
                 this._headerButton.Click -= new RoutedEventHandler(this.HeaderButton_Click);
             this._monthView = this.GetTemplateChild("PART_MonthView") as Grid;
             this._yearView = this.GetTemplateChild("PART_YearView") as Grid;
             this._previousButton = this.GetTemplateChild("PART_PreviousButton") as Button;
+            this._goToTodayButton = this.GetTemplateChild("PART_GoToTodayButton") as Button;
             this._nextButton = this.GetTemplateChild("PART_NextButton") as Button;
             this._headerButton = this.GetTemplateChild("PART_HeaderButton") as Button;
             this._disabledVisual = this.GetTemplateChild("PART_DisabledVisual") as FrameworkElement;
@@ -137,6 +154,14 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                     this._previousButton.Content = (object)"Previous button";
                 this._previousButton.Click += new RoutedEventHandler(this.PreviousButton_Click);
             }
+
+            if (this._goToTodayButton != null)
+            {
+                if (this._goToTodayButton.Content == null)
+                    this._goToTodayButton.Content = (object)"Got to today button";
+                this._goToTodayButton.Click += new RoutedEventHandler(this.GoToTodayButton_Click);
+            }
+
             if (this._nextButton != null)
             {
                 if (this._nextButton.Content == null)
@@ -145,6 +170,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             }
             if (this._headerButton != null)
                 this._headerButton.Click += new RoutedEventHandler(this.HeaderButton_Click);
+
+            if (_goToTodayButton != null)
+                _goToTodayButton.Visibility = ShowTodayButton ? Visibility.Visible : Visibility.Collapsed;
             this.PopulateGrids();
             if (this.Owner != null)
             {
@@ -163,6 +191,29 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             }
             else
                 this.UpdateMonthMode();
+        }
+
+        private void GoToTodayButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btnToday = null;
+            if (this._goToTodayButton != null)
+            {
+                btnToday = _goToTodayButton;
+            }
+            else
+            {
+                btnToday = sender as Button;
+            }
+
+            if (btnToday == null || Owner == null)
+                return;
+
+            //this.Owner.DisplayMode = this.Owner.DisplayMode != CalendarMode.Month ? CalendarMode.Decade : CalendarMode.Year;
+            if (Owner.DisplayMode != CalendarMode.Month)
+                Owner.DisplayMode = CalendarMode.Month;
+
+            this.Owner.MoveDisplayTo(new DateTime?(dateTimeHelper.DiscardDayTime(DateTime.Now)));
+
         }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)
@@ -200,6 +251,8 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         internal void UpdateMonthMode()
         {
+            /*if (_goToTodayButton != null)
+                _goToTodayButton.Visibility = Visibility.Visible;*/
             this.SetMonthModeHeaderButton();
             this.SetMonthModePreviousButton();
             this.SetMonthModeNextButton();
@@ -212,6 +265,8 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         internal void UpdateYearMode()
         {
+            /*if (_goToTodayButton != null)
+                _goToTodayButton.Visibility = Visibility.Collapsed;*/
             this.SetYearModeHeaderButton();
             this.SetYearModePreviousButton();
             this.SetYearModeNextButton();
