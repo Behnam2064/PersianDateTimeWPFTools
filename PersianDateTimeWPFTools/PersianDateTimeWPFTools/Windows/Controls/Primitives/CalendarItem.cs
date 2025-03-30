@@ -340,6 +340,11 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         private IEnumerable<CalendarButton> GetCalendarButtons()
         {
+            //If DisplayMode is anything other than Month, a null error is thrown for this.YearView.Children.
+            //Unfortunately, there is no value displayed for calendar buttons in design mode.
+            if (this.YearView?.Children == null)
+                yield break;
+
             foreach (UIElement child in this.YearView.Children)
             {
                 if (child is CalendarButton calendarButton)
