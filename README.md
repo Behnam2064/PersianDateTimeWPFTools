@@ -8,13 +8,13 @@ Step 1: Add the following resources in the App.xaml file
 
 ```
 <Application 
-             ...
+             
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             ...
+             
              >
     <Application.Resources>
-        ...
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
@@ -35,12 +35,12 @@ xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
 
 Sample:
 ```
-<Window ...
+<Window 
     xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
-    ...>
-    <Grid>...
+    >
+    <Grid>
         <pdtt:PersianCalendar />
-    ...</Grid>
+    </Grid>
 </Window>
 ```
 
