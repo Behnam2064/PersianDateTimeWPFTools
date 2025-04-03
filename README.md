@@ -46,9 +46,31 @@ Sample:
 
 ## Dependency Properties
 New Dependency Properties
-| Name | Description | Default |
-| ------ | ------ | ------ |
-| CustomCulture | Selecting a different culture than the current software culture | Based on the current software culture |
-| CustomCultureName | Choosing a culture name that is different from the current software culture (such as fa-IR or en-US) | Based on the current software culture |
-| AllowSelectBlackedOutDay | Selectable holidays | False |
-| ShowTodayButton | Show a button to move to the current day | False |
+
+<table>
+<tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Default</th>
+</tr>
+<tr>
+    <td>CustomCulture</td>
+    <td>Selecting a different culture than the current software culture</td>
+    <td>Based on the current software culture</td>
+</tr>
+<tr>
+    <td>CustomCultureName</td>
+    <td>Choosing a culture name that is different from the current software culture (such as fa-IR or en-US)</td>
+    <td>Based on the current software culture</td>
+</tr>
+<tr>
+    <td>AllowSelectBlackedOutDay</td>
+    <td>Selectable holidays</td>
+    <td>False</td>
+</tr>
+<tr>
+    <td>ShowTodayButton</td>
+    <td>Show a button to move to the current day</td>
+    <td>False</td>
+</tr>
+</table>
