@@ -57,6 +57,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty AllowSelectBlackedOutDayProperty = DependencyProperty.Register(nameof(AllowSelectBlackedOutDay), typeof(bool), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)false, new PropertyChangedCallback(PersianDatePicker.OnAllowSelectBlackedOutDayChanged)));
         public static readonly DependencyProperty CustomCultureProperty = DependencyProperty.Register(nameof(CustomCulture), typeof(CultureInfo), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianDatePicker.OnCustomCultureChanged)));
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianDatePicker.OnCustomCultureNameChanged)));
+        public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata(false, new PropertyChangedCallback(PersianDatePicker.OnShowTodayButtonChanged)));
 
         #endregion
 
@@ -127,6 +128,12 @@ namespace PersianDateTimeWPFTools.Controls
             set => this.SetValue(PersianDatePicker.CustomCultureProperty, (object)value);
         }
 
+        public bool ShowTodayButton
+        {
+            get => (bool)this.GetValue(PersianDatePicker.ShowTodayButtonProperty);
+            set => this.SetValue(PersianDatePicker.ShowTodayButtonProperty, value);
+        }
+
 
         private static void OnAllowSelectBlackedOutDayChanged(
           DependencyObject d,
@@ -189,6 +196,17 @@ namespace PersianDateTimeWPFTools.Controls
                 persianCalendar.CustomCulture = null;
             }
         }
+
+        private static void OnShowTodayButtonChanged(
+  DependencyObject d,
+  DependencyPropertyChangedEventArgs e)
+        {
+            PersianDatePicker persianCalendar = d as PersianDatePicker;
+            if (persianCalendar?._persianCalendar != null)
+                persianCalendar._persianCalendar.ShowTodayButton = (bool)e.NewValue;
+        }
+
+
 
         #endregion
 
@@ -274,7 +292,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 dp._persianCalendar.Focus();
             });
-            dp.Dispatcher.Invoke(()=> dp._persianCalendar.Focus());
+            dp.Dispatcher.Invoke(() => dp._persianCalendar.Focus());
             //dp.Dispatcher.BeginInvoke(DispatcherPriority.Input, (Delegate)(() => dp._persianCalendar.Focus()));
         }
 
