@@ -52,12 +52,35 @@
 		```
 		## Dependency Properties
 		New Dependency Properties
-		| Name | Description | Default |
-		| ------ | ------ | ------ |
-		| CustomCulture | Selecting a different culture than the current software culture | Based on the current software culture |
-		| CustomCultureName | Choosing a culture name that is different from the current software culture (such as fa-IR or en-US) | Based on the current software culture |
-		| AllowSelectBlackedOutDay | Selectable holidays | False |
-		| ShowTodayButton | Show a button to move to the current day | False |
+
+		&lt;table&gt;
+		&lt;tr&gt;
+		&lt;th&gt;Name&lt;/th&gt;
+		&lt;th&gt;Description&lt;/th&gt;
+		&lt;th&gt;Default&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;td&gt;CustomCulture&lt;/td&gt;
+		&lt;td&gt;Selecting a different culture than the current software culture&lt;/td&gt;
+		&lt;td&gt;Based on the current software culture&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;td&gt;CustomCultureName&lt;/td&gt;
+		&lt;td&gt;Choosing a culture name that is different from the current software culture (such as fa-IR or en-US)&lt;/td&gt;
+		&lt;td&gt;Based on the current software culture&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;td&gt;AllowSelectBlackedOutDay&lt;/td&gt;
+		&lt;td&gt;Selectable holidays&lt;/td&gt;
+		&lt;td&gt;False&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+		&lt;td&gt;ShowTodayButton&lt;/td&gt;
+		&lt;td&gt;Show a button to move to the current day&lt;/td&gt;
+		&lt;td&gt;False&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;/table&gt;
+
 	</Description>
     <PackageProjectUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</RepositoryUrl>
