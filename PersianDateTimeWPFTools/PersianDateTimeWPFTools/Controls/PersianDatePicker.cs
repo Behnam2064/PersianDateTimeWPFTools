@@ -109,21 +109,21 @@ namespace PersianDateTimeWPFTools.Controls
 
         public bool AllowSelectBlackedOutDay
         {
-            get => (bool)this.GetValue(PersianCalendar.AllowSelectBlackedOutDayProperty);
-            set => this.SetValue(PersianCalendar.AllowSelectBlackedOutDayProperty, (object)value);
+            get => (bool)this.GetValue(PersianDatePicker.AllowSelectBlackedOutDayProperty);
+            set => this.SetValue(PersianDatePicker.AllowSelectBlackedOutDayProperty, (object)value);
         }
 
         public string CustomCultureName
         {
-            get => (string)this.GetValue(PersianCalendar.CustomCultureNameProperty);
-            set => this.SetValue(PersianCalendar.CustomCultureNameProperty, (object)value);
+            get => (string)this.GetValue(PersianDatePicker.CustomCultureNameProperty);
+            set => this.SetValue(PersianDatePicker.CustomCultureNameProperty, (object)value);
         }
 
         public CultureInfo CustomCulture
         {
-            get => this.GetValue(PersianCalendar.CustomCultureProperty) as CultureInfo;
+            get => this.GetValue(PersianDatePicker.CustomCultureProperty) as CultureInfo;
 
-            set => this.SetValue(PersianCalendar.CustomCultureProperty, (object)value);
+            set => this.SetValue(PersianDatePicker.CustomCultureProperty, (object)value);
         }
 
 
