@@ -7,7 +7,6 @@
     xmlns:local="clr-namespace:TestPersianCalendar"
     xmlns:dtt="clr-namespace:PersianDateTimeWPFTools.Controls;assembly=PersianDateTimeWPFTools"
     xmlns:dtt2="clr-namespace:PersianDateTimeWPFTools.Windows.Controls.Primitives;assembly=PersianDateTimeWPFTools"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:pc="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     mc:Ignorable="d"
     Title="MainWindow"
