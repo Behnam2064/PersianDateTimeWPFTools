@@ -585,6 +585,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 return;
             if (!calendarDayButton.IsBlackedOut)
                 this.Owner.OnDayButtonMouseUp(e);
+            else if (this.Owner != null && this.Owner.AllowSelectBlackedOutDay) // Close PersianDatePicker Popup
+                this.Owner.OnDayButtonMouseUp(e);
+
             if (!(calendarDayButton.DataContext is DateTime))
                 return;
             this.FinishSelection((DateTime)calendarDayButton.DataContext);

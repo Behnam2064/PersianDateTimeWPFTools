@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Automation.Peers;
@@ -273,6 +274,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 dp._persianCalendar.Focus();
             });
+            dp.Dispatcher.Invoke(()=> dp._persianCalendar.Focus());
             //dp.Dispatcher.BeginInvoke(DispatcherPriority.Input, (Delegate)(() => dp._persianCalendar.Focus()));
         }
 
