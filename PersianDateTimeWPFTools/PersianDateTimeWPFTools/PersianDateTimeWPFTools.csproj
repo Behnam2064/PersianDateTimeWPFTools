@@ -43,7 +43,7 @@
 		Sample:
 		```
 		&lt;Window ...
-		xmlns:pc="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+		xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
 		...&gt;
 		&lt;Grid&gt;...
 		&lt;pdtt:PersianCalendar /&gt;
