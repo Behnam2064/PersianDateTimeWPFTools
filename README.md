@@ -46,8 +46,7 @@ Sample:
 
 ## Dependency Properties
 New Dependency Properties
-
-		<![CDATA[
+		
        <table>
          <tr>
              <th>Name</th>
@@ -75,4 +74,4 @@ New Dependency Properties
              <td>False</td>
          </tr>
        </table>
-  ]]>
+  
