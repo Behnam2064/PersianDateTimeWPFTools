@@ -39,7 +39,7 @@ Sample:
     xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     ...>
     <Grid>...
-        <pc:PersianCalendar />
+        <pdtt:PersianCalendar />
     ...</Grid>
 </Window>
 ```
