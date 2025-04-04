@@ -37,9 +37,9 @@
         <Setter
             Property="Control.BorderThickness"
             Value="0" />
-        <Setter
+        <!--<Setter
             Property="FrameworkElement.Margin"
-            Value="8 0" />
+            Value="8 0" />-->
         <Setter
             Property="tools:BorderElement.CornerRadius"
             Value="{StaticResource DefaultCornerRadius}" />
