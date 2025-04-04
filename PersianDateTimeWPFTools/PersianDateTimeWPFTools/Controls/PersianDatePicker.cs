@@ -12,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 #if NET8_0_OR_GREATER
 #nullable disable
@@ -183,8 +184,13 @@ namespace PersianDateTimeWPFTools.Controls
                 string CultureName = e.NewValue?.ToString();
                 if (!string.IsNullOrEmpty(CultureName) || !string.IsNullOrWhiteSpace(CultureName))
                 {
-
                     persianCalendar.CustomCulture = new CultureInfo(CultureName);
+
+                    if (persianCalendar.IsLoaded && persianCalendar.SelectedDate != null)
+                    {
+                        persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDate));
+                    }
+
                 }
                 else
                 {
