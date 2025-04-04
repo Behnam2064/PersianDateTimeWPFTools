@@ -20,6 +20,7 @@ using System.Windows.Markup;
 
 [assembly: XmlnsPrefix("https://github.com/Behnam2064/PersianDateTimeWPFTools", "pdtt")]
 [assembly: XmlnsDefinition("https://github.com/Behnam2064/PersianDateTimeWPFTools", "PersianDateTimeWPFTools")]
+[assembly: XmlnsDefinition("https://github.com/Behnam2064/PersianDateTimeWPFTools", "PersianDateTimeWPFTools.Tools")]
 [assembly: XmlnsDefinition("https://github.com/Behnam2064/PersianDateTimeWPFTools", "PersianDateTimeWPFTools.Controls")]
 [assembly: XmlnsDefinition("https://github.com/Behnam2064/PersianDateTimeWPFTools", "PersianDateTimeWPFTools.Windows.Controls")]
 [assembly: XmlnsDefinition("https://github.com/Behnam2064/PersianDateTimeWPFTools", "PersianDateTimeWPFTools.Windows.Controls.Primitives")]

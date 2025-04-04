@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <System:String
+        x:Key="AmText">ق.ظ</System:String>
+    <System:String
+        x:Key="PmText">ب.ظ</System:String>
+</ResourceDictionary>

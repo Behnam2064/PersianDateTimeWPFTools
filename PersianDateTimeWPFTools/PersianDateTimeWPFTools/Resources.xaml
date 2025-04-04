@@ -9,6 +9,8 @@
     <ResourceDictionary.MergedDictionaries>
 
         <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/Lang/Lang.en.xaml" />
+        <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/light.xaml" />
 
         <ResourceDictionary
