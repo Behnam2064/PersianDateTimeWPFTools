@@ -417,8 +417,8 @@
                             BorderThickness="{TemplateBinding Control.BorderThickness}"
                             CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}">
                             <Border
-                                BorderBrush="#FFFFFFFF"
-                                BorderThickness="2"
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
                                 CornerRadius="1">
                                 <Grid
                                     VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
