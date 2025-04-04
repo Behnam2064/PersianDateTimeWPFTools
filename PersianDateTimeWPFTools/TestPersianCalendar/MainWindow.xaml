@@ -7,74 +7,43 @@
     xmlns:local="clr-namespace:TestPersianCalendar"
     xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
     Title="MainWindow"
-    Height="550"
+    Height="900"
     Width="800">
-    <Grid
-        ShowGridLines="True">
-        <Grid.Background>
-            <LinearGradientBrush
-                EndPoint="0.5,1"
-                StartPoint="0.5,0">
-                <GradientStop
-                    Color="#FFE2E2E2" />
-                <GradientStop
-                    Color="#FFCAA2A2"
-                    Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <DockPanel>
-            <Calendar
-                DockPanel.Dock="Top" />
-            <CalendarItem
-                Visibility="Collapsed"
-                DockPanel.Dock="Top" />
-            <DatePicker />
-        </DockPanel>
-        <pdtt:PersianDatePicker
-            Grid.Column="1"
-            CustomCultureName="fa-IR"
-            Height="50"
-            VerticalAlignment="Top"
-            HorizontalAlignment="Stretch"
-            x:Name="pdp"
-            DockPanel.Dock="Top" />
-
-        <TextBlock
-            Grid.Row="1"
-            FontFamily="{DynamicResource SymbolThemeFontFamily}"
-            Text="&#xE702;" />
-
-        <pdtt:PersianCalendar
-            Grid.Row="1"
-            Grid.Column="1"
-            CustomCultureName="fa-IR"
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            DockPanel.Dock="Top" />
-        <DockPanel
-            Visibility="Collapsed"
-            Grid.Column="1">
-
+    <Border
+        Background="#FFF3F3F3">
+        <StackPanel
+            Background="#FF8A8A8A"
+            Margin="10">
+            <TextBlock>
+                <Run>Changing the Calendar Culture Manually</Run>
+                <LineBreak />
+                <Run>Note that changing the Culture is usually done only once when initializing the software</Run>
+                <LineBreak />
+                <Run>Or when changing the software language.</Run>
+                <LineBreak />
+                <Run>However, you can change it at any time.</Run>
+            </TextBlock>
+            <ComboBox
+                x:Name="cb">
+                <ComboBoxItem
+                    IsSelected="True">fa-IR</ComboBoxItem>
+                <ComboBoxItem>en-US</ComboBoxItem>
+            </ComboBox>
+            
             <pdtt:PersianCalendar
-                Visibility="Collapsed"
-                CustomCultureName="fa-IR"
-                x:Name="pc1"
-                SelectionMode="MultipleRange"
-                AllowSelectBlackedOutDay="True"
-                DockPanel.Dock="Top" />
-        </DockPanel>
-
-        <pdtt:Clock Grid.Row="1" />
-
-    </Grid>
+                CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                ShowTodayButton="True"
+                Margin="10" />
+            <pdtt:PersianDatePicker
+                ShowTodayButton="True"
+                CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                MinHeight="30"
+                Margin="10" />
+            <pdtt:Clock
+                Margin="10" />
+        </StackPanel>
+    </Border>
 </Window>

@@ -20,7 +20,7 @@ namespace TestPersianCalendar
         public MainWindow()
         {
             InitializeComponent();
-            pdp.SelectedDate = DateTime.Now;
+            //pdp.SelectedDate = DateTime.Now;
             //new Test01(pc1);
 
             //pc1.BlackoutDates.Add(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(DateTime.Now.AddDays(+5), DateTime.Now.AddDays(+10)));
