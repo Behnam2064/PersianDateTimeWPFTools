@@ -10,10 +10,10 @@ namespace TestPersianCalendar
     /// </summary>
     public partial class App : Application
     {
-        private bool IsUsCuture = true;
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private bool IsUsCuture = false;
+        public App()
         {
-            /*if (IsUsCuture)
+            if (IsUsCuture)
             {
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
@@ -24,7 +24,7 @@ namespace TestPersianCalendar
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fa-IR");
             }
 
-            Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;*/
+            Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
         }
     }
 

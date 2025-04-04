@@ -5,12 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:TestPersianCalendar"
-    xmlns:dtt="clr-namespace:PersianDateTimeWPFTools.Controls;assembly=PersianDateTimeWPFTools"
-    xmlns:dtt2="clr-namespace:PersianDateTimeWPFTools.Windows.Controls.Primitives;assembly=PersianDateTimeWPFTools"
-    xmlns:pc="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     mc:Ignorable="d"
     Title="MainWindow"
-    Height="450"
+    Height="550"
     Width="800">
     <Grid
         ShowGridLines="True">
@@ -29,6 +27,11 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <DockPanel>
             <Calendar
                 DockPanel.Dock="Top" />
@@ -37,50 +40,41 @@
                 DockPanel.Dock="Top" />
             <DatePicker />
         </DockPanel>
-     
-        <Grid
-            ShowGridLines="False"
-            Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <pdtt:PersianDatePicker
+            Grid.Column="1"
+            CustomCultureName="fa-IR"
+            Height="50"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Stretch"
+            x:Name="pdp"
+            DockPanel.Dock="Top" />
 
-            <pc:PersianDatePicker
-                CustomCultureName="fa-IR"
-                Height="50"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Stretch"
-                x:Name="pdp"
-                DockPanel.Dock="Top" />
-            <TextBlock
-                Grid.Row="1"
-                FontFamily="{DynamicResource SymbolThemeFontFamily}"
-                Text="&#xE702;" />
+        <TextBlock
+            Grid.Row="1"
+            FontFamily="{DynamicResource SymbolThemeFontFamily}"
+            Text="&#xE702;" />
 
-
-            <pc:PersianCalendar
-                Grid.Row="1"
-                CustomCultureName="fa-IR"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Stretch"
-                DockPanel.Dock="Top" />
-
-        </Grid>
+        <pdtt:PersianCalendar
+            Grid.Row="1"
+            Grid.Column="1"
+            CustomCultureName="fa-IR"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            DockPanel.Dock="Top" />
         <DockPanel
             Visibility="Collapsed"
             Grid.Column="1">
 
-            <dtt:PersianCalendar
+            <pdtt:PersianCalendar
                 Visibility="Collapsed"
                 CustomCultureName="fa-IR"
                 x:Name="pc1"
                 SelectionMode="MultipleRange"
                 AllowSelectBlackedOutDay="True"
                 DockPanel.Dock="Top" />
-
         </DockPanel>
 
+        <pdtt:Clock Grid.Row="1" />
 
     </Grid>
 </Window>

@@ -1,14 +1,16 @@
-﻿<Application x:Class="TestPersianCalendar.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TestPersianCalendar"
-             Startup="Application_Startup"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="TestPersianCalendar.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TestPersianCalendar"
+    xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary
-                    Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources.xaml" />
+                <!--You can still add the required resources using the previous method of adding Resources.-->
+                <!--You can also automatically change the control language using-->
+                <pdtt:InitResources />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
