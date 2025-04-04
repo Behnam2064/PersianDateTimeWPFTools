@@ -13,12 +13,11 @@
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/Lang/Lang.en.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/light.xaml" />
-
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/persiancalendar.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/persiandatepicker.xaml" />
-
-
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/Clock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
