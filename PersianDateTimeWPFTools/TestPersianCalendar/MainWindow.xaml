@@ -31,6 +31,19 @@
                     IsSelected="True">fa-IR</ComboBoxItem>
                 <ComboBoxItem>en-US</ComboBoxItem>
             </ComboBox>
+            <DockPanel
+                DockPanel.Dock="Top">
+                <ToggleButton
+                    Margin="2"
+                    Content="Show today button"
+                    x:Name="tbShowToday" />
+
+                <ToggleButton
+                    Margin="2"
+                    Content="Allow Select Blacked Out Day"
+                    x:Name="tbSelectBlackedOutDay" />
+
+            </DockPanel>
             <TabControl>
                 <TabItem
                     Header="Main">
@@ -51,36 +64,40 @@
                             <DockPanel
                                 Grid.ColumnSpan="2">
 
-
                                 <pdtt:PersianCalendar
+                                    x:Name="pc1"
                                     CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ShowTodayButton="True"
+                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
                                     Margin="10" />
 
                                 <pdtt:PersianCalendarWithClock
-                                    Grid.Column="1"
                                     x:Name="pcwc1"
-                                    AllowSelectBlackedOutDay="True"
-                                    ShowTodayButton="True"
+                                    Margin="10"
+                                    Grid.Column="1"
+                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
                                     CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
 
                             <DockPanel
                                 Grid.Column="0"
                                 Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                >
+                                Grid.ColumnSpan="2">
 
                                 <pdtt:Clock
+                                    x:Name="clock"
                                     Grid.Column="0"
                                     Grid.Row="1"
                                     Margin="10" />
 
                                 <pdtt:PersianDatePicker
+                                    x:Name="pdp1"
                                     VerticalAlignment="Center"
                                     Grid.Column="1"
                                     Grid.Row="1"
-                                    ShowTodayButton="True"
+                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
                                     CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     MinHeight="30"
                                     Margin="10" />
