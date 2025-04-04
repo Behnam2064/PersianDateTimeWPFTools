@@ -365,6 +365,14 @@ namespace PersianDateTimeWPFTools.Controls
                 // Like OnLanguageChanged(...);
                 persianCalendar.CoerceValue(PersianCalendar.FirstDayOfWeekProperty);
                 persianCalendar.UpdateCellItems();
+                
+                // Like OnLanguageChanged(...);
+                // Move to current DateTime
+                if (persianCalendar.SelectedDate == null)
+                    persianCalendar.MoveDisplayTo(DateTime.Now);
+                else
+                    persianCalendar.MoveDisplayTo((DateTime)persianCalendar.SelectedDate);
+
             }
 
 
