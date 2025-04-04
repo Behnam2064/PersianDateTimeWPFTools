@@ -8,6 +8,7 @@
     
     <ResourceDictionary.MergedDictionaries>
 
+        <!--Defalut language is english-->
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/Lang/Lang.en.xaml" />
         <ResourceDictionary
