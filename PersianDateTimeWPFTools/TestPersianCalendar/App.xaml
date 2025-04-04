@@ -10,6 +10,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <!--You can still add the required resources using the previous method of adding Resources.-->
                 <!--You can also automatically change the control language using-->
+                <!--If you remove the following resources, nothing will be displayed in design mode.-->
+                <ResourceDictionary
+                    Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources.xaml" />
                 <pdtt:InitResources />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
