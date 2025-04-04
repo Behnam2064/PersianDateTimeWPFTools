@@ -13,7 +13,9 @@
 
 		## How to use?
 		Step 1: Add the following resources in the App.xaml file
-
+		<![CDATA[
+		For more information please check my [github]: <https://github.com/Behnam2064/PersianDateTimeWPFTools>
+		 ]]>
 		```
 		&lt;Application
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -47,6 +49,12 @@
 		&lt;/Grid&gt;
 		&lt;/Window&gt;
 		```
+		## Controls
+		- Clock
+		- PersianCalendar
+		- PersianDatePicker
+		- PersianCalendarWithClock
+
 		## Dependency Properties
 		New Dependency Properties
 		<![CDATA[

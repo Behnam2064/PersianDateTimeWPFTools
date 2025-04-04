@@ -38,6 +38,13 @@ Sample:
 </Window>
 ```
 
+## Controls
+- Clock
+- PersianCalendar
+- PersianDatePicker
+- PersianCalendarWithClock
+
+
 ## Dependency Properties
 New Dependency Properties
 
