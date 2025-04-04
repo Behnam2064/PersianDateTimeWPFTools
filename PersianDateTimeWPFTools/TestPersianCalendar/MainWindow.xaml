@@ -8,16 +8,14 @@
     xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
-    WindowState="Maximized"
     Title="MainWindow"
     Height="900"
-    Width="800">
+    Width="950">
     <Border
         Background="#FFF3F3F3">
-        <StackPanel
-            Background="#FF8A8A8A"
-            Margin="10">
-            <TextBlock>
+        <DockPanel>
+            <TextBlock
+                DockPanel.Dock="Top">
                 <Run>Changing the Calendar Culture Manually</Run>
                 <LineBreak />
                 <Run>Note that changing the Culture is usually done only once when initializing the software</Run>
@@ -27,23 +25,71 @@
                 <Run>However, you can change it at any time.</Run>
             </TextBlock>
             <ComboBox
+                DockPanel.Dock="Top"
                 x:Name="cb">
                 <ComboBoxItem
                     IsSelected="True">fa-IR</ComboBoxItem>
                 <ComboBoxItem>en-US</ComboBoxItem>
             </ComboBox>
-            
-            <pdtt:PersianCalendar
-                CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                ShowTodayButton="True"
-                Margin="10" />
-            <pdtt:PersianDatePicker
-                ShowTodayButton="True"
-                CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                MinHeight="30"
-                Margin="10" />
-            <pdtt:Clock
-                Margin="10" />
-        </StackPanel>
+            <TabControl>
+                <TabItem
+                    Header="Main">
+                    <ScrollViewer>
+
+                        <Grid
+                            Background="#FF8A8A8A"
+                            Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <DockPanel
+                                Grid.ColumnSpan="2">
+
+
+                                <pdtt:PersianCalendar
+                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    ShowTodayButton="True"
+                                    Margin="10" />
+
+                                <pdtt:PersianCalendarWithClock
+                                    Grid.Column="1"
+                                    x:Name="pcwc1"
+                                    AllowSelectBlackedOutDay="True"
+                                    ShowTodayButton="True"
+                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DockPanel>
+
+                            <DockPanel
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                >
+
+                                <pdtt:Clock
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Margin="10" />
+
+                                <pdtt:PersianDatePicker
+                                    VerticalAlignment="Center"
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    ShowTodayButton="True"
+                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    MinHeight="30"
+                                    Margin="10" />
+                            </DockPanel>
+                        </Grid>
+
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
     </Border>
 </Window>

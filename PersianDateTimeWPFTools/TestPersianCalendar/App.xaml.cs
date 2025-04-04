@@ -10,7 +10,7 @@ namespace TestPersianCalendar
     /// </summary>
     public partial class App : Application
     {
-        private bool IsUsCuture = false;
+        private bool IsUsCuture = true;
         public App()
         {
             if (IsUsCuture)
