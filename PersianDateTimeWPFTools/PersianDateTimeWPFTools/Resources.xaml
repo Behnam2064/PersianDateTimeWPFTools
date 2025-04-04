@@ -19,5 +19,7 @@
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/persiandatepicker.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/Clock.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/PersianCalendarWithClock.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

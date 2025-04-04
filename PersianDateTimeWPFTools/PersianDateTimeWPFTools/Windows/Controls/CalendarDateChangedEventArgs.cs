@@ -14,6 +14,12 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             this.AddedDate = addedDate;
         }
 
+        internal CalendarDateChangedEventArgs(RoutedEvent routed, DateTime? removedDate, DateTime? addedDate) : base(routed)
+        {
+            this.RemovedDate = removedDate;
+            this.AddedDate = addedDate;
+        }
+
         public DateTime? AddedDate { get; private set; }
 
         public DateTime? RemovedDate { get; private set; }
