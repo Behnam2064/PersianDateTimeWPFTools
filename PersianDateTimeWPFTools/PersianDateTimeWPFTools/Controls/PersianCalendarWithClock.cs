@@ -251,16 +251,16 @@ namespace PersianDateTimeWPFTools.Controls
             };
 
             _calendar.SetBinding(PersianCalendar.AllowSelectBlackedOutDayProperty,
-                new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this });
+                new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendar.SetBinding(PersianCalendar.CustomCultureProperty,
-                new Binding(CustomCultureProperty.Name) { Source = this });
+                new Binding(CustomCultureProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendar.SetBinding(PersianCalendar.CustomCultureNameProperty,
-                new Binding(CustomCultureNameProperty.Name) { Source = this });
+                new Binding(CustomCultureNameProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendar.SetBinding(PersianCalendar.ShowTodayButtonProperty,
-                new Binding(ShowTodayButtonProperty.Name) { Source = this });
+                new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
 
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
