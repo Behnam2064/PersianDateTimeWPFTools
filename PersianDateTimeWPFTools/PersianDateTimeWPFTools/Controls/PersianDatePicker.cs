@@ -173,7 +173,20 @@ namespace PersianDateTimeWPFTools.Controls
                  persianCalendar.UpdateCellItems();
              }*/
 
+            PersianDatePicker persianCalendar = d as PersianDatePicker;
+            if (e.NewValue != null)
+            {
+                string CultureName = e.NewValue?.ToString();
+                if (!string.IsNullOrEmpty(CultureName) || !string.IsNullOrWhiteSpace(CultureName))
+                {
+                    //Changing how the date is displayed in the PersianDatePicker TextBox when changing Culture
+                    if (persianCalendar.IsLoaded && persianCalendar.SelectedDate != null)
+                    {
+                        persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDate));
+                    }
 
+                }
+            }
         }
 
         private static void OnCustomCultureNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -185,13 +198,6 @@ namespace PersianDateTimeWPFTools.Controls
                 if (!string.IsNullOrEmpty(CultureName) || !string.IsNullOrWhiteSpace(CultureName))
                 {
                     persianCalendar.CustomCulture = new CultureInfo(CultureName);
-
-                    //Changing how the date is displayed in the PersianDatePicker TextBox when changing Culture
-                    if (persianCalendar.IsLoaded && persianCalendar.SelectedDate != null)
-                    {
-                        persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDate));
-                    }
-
                 }
                 else
                 {
@@ -761,7 +767,8 @@ namespace PersianDateTimeWPFTools.Controls
         {
             return (BindingBase)new Binding(property.Name)
             {
-                Source = (object)this
+                Source = (object)this,
+                Mode = BindingMode.TwoWay,
             };
         }
 
