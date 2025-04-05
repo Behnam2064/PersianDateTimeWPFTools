@@ -3,8 +3,12 @@
 
 A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
 
-s
-
+## Controls
+- Clock
+- PersianCalendar
+- PersianDatePicker
+- PersianDateTimePicker
+- PersianCalendarWithClock
 
 ## How to use?
 Step 1: Add the following resources in the App.xaml file
