@@ -186,6 +186,7 @@ namespace PersianDateTimeWPFTools.Controls
                 {
                     persianCalendar.CustomCulture = new CultureInfo(CultureName);
 
+                    //Changing how the date is displayed in the PersianDatePicker TextBox when changing Culture
                     if (persianCalendar.IsLoaded && persianCalendar.SelectedDate != null)
                     {
                         persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDate));
