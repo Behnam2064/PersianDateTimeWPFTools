@@ -54,6 +54,7 @@ namespace PersianDateTimeWPFTools.Controls
             remove => RemoveHandler(SelectedDateTimeChangedEvent, value);
         }
 
+        [Obsolete]
         public event EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> DisplayDateTimeChanged;
 
         #endregion Public Events
@@ -135,7 +136,7 @@ namespace PersianDateTimeWPFTools.Controls
             get => (DateTime?)GetValue(SelectedDateTimeProperty);
             set => SetValue(SelectedDateTimeProperty, value);
         }
-
+        [Obsolete]
         public static readonly DependencyProperty DisplayDateTimeProperty = DependencyProperty.Register(
             "DisplayDateTime", typeof(DateTime), typeof(PersianCalendarWithClock), new FrameworkPropertyMetadata(DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateTimeChanged));
 
@@ -150,7 +151,7 @@ namespace PersianDateTimeWPFTools.Controls
             ctl._calendar.DisplayDate = v;
             ctl.OnDisplayDateTimeChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(e.OldValue as DateTime?, v));*/
         }
-
+        [Obsolete]
         public DateTime DisplayDateTime
         {
             get => (DateTime)GetValue(DisplayDateTimeProperty);
