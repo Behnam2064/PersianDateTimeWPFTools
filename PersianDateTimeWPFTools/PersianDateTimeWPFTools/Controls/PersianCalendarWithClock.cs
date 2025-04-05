@@ -71,27 +71,27 @@ namespace PersianDateTimeWPFTools.Controls
 
         public bool AllowSelectBlackedOutDay
         {
-            get => (bool)this.GetValue(PersianCalendar.AllowSelectBlackedOutDayProperty);
-            set => this.SetValue(PersianCalendar.AllowSelectBlackedOutDayProperty, (object)value);
+            get => (bool)this.GetValue(AllowSelectBlackedOutDayProperty);
+            set => this.SetValue(AllowSelectBlackedOutDayProperty, (object)value);
         }
 
         public string CustomCultureName
         {
-            get => (string)this.GetValue(PersianCalendar.CustomCultureNameProperty);
-            set => this.SetValue(PersianCalendar.CustomCultureNameProperty, (object)value);
+            get => (string)this.GetValue(CustomCultureNameProperty);
+            set => this.SetValue(CustomCultureNameProperty, (object)value);
         }
 
         public bool ShowTodayButton
         {
-            get => (bool)this.GetValue(PersianCalendar.ShowTodayButtonProperty);
-            set => this.SetValue(PersianCalendar.ShowTodayButtonProperty, value);
+            get => (bool)this.GetValue(ShowTodayButtonProperty);
+            set => this.SetValue(ShowTodayButtonProperty, value);
         }
 
         public CultureInfo CustomCulture
         {
-            get => this.GetValue(PersianCalendar.CustomCultureProperty) as CultureInfo;
+            get => this.GetValue(CustomCultureProperty) as CultureInfo;
 
-            set => this.SetValue(PersianCalendar.CustomCultureProperty, (object)value);
+            set => this.SetValue(CustomCultureProperty, (object)value);
         }
 
 
