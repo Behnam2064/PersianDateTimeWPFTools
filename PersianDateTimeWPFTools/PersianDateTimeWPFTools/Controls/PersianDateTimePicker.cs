@@ -112,12 +112,12 @@ namespace PersianDateTimeWPFTools.Controls
             = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null,
                 new PropertyChangedCallback((d, e) =>
             {
-               /* PersianDateTimePicker persianCalendar = d as PersianDateTimePicker;
-                //Changing how the date is displayed in the PersianDatePicker TextBox when changing Culture
-                if (persianCalendar.IsLoaded && persianCalendar.SelectedDateTime != null)
-                {
-                    persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDateTime));
-                }*/
+                /* PersianDateTimePicker persianCalendar = d as PersianDateTimePicker;
+                 //Changing how the date is displayed in the PersianDatePicker TextBox when changing Culture
+                 if (persianCalendar.IsLoaded && persianCalendar.SelectedDateTime != null)
+                 {
+                     persianCalendar.SetTextInternal(persianCalendar.DateTimeToString((DateTime)persianCalendar.SelectedDateTime));
+                 }*/
 
             })));
         public static readonly DependencyProperty ShowTodayButtonProperty
@@ -401,6 +401,7 @@ namespace PersianDateTimeWPFTools.Controls
             CheckNull();
 
             _popup.PreviewMouseLeftButtonDown += PopupPreviewMouseLeftButtonDown;
+            _popup.PreviewKeyDown += _popup_PreviewKeyDown;
             _popup.Opened += PopupOpened;
             _popup.Closed += PopupClosed;
             _popup.Child = _calendarWithClock;
@@ -456,6 +457,17 @@ namespace PersianDateTimeWPFTools.Controls
             else
             {
                 SetCurrentValue(DisplayDateTimeProperty, selectedDateTime);
+            }
+        }
+
+        private void _popup_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Escape)
+            {
+                if (_popup != null && _popup.IsOpen)
+                {
+                    _popup.IsOpen = false;
+                }
             }
         }
 
