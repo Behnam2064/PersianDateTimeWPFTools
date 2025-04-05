@@ -10,6 +10,7 @@ using PersianDateTimeWPFTools.Windows.Controls;
 using System.Windows.Data;
 using System.Collections.ObjectModel;
 using CalendarDateRange = PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange;
+using System.Runtime.CompilerServices;
 
 namespace PersianDateTimeWPFTools.Controls
 {
@@ -106,10 +107,11 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         #region Public Properties
-
+        [Obsolete("This feature will be removed soon and is currently of no use.")]
         public static readonly DependencyProperty DateTimeFormatProperty = DependencyProperty.Register(
             "DateTimeFormat", typeof(string), typeof(PersianCalendarWithClock), new PropertyMetadata("yyyy-MM-dd HH:mm:ss"));
 
+        [Obsolete("This feature will be removed soon and is currently of no use.")]
         public string DateTimeFormat
         {
             get => (string)GetValue(DateTimeFormatProperty);
