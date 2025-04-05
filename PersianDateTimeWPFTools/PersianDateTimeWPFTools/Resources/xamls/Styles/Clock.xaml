@@ -111,19 +111,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style
-        x:Key="BaseStyle"
-        TargetType="{x:Type Control}">
-        <Setter
-            Property="Control.Foreground"
-            Value="{DynamicResource PrimaryTextBrush}" />
-        <Setter
-            Property="Control.FontSize"
-            Value="{StaticResource TextFontSize}" />
-        <Setter
-            Property="FrameworkElement.FocusVisualStyle"
-            Value="{StaticResource FocusVisual}" />
-    </Style>
 
     <Style
         x:Key="ButtonCustom"

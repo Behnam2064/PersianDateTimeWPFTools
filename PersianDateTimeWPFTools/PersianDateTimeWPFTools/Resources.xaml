@@ -21,5 +21,7 @@
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/Clock.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/PersianCalendarWithClock.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/PersianDateTimePicker.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
