@@ -31,6 +31,9 @@
                     IsSelected="True">fa-IR</ComboBoxItem>
                 <ComboBoxItem>en-US</ComboBoxItem>
             </ComboBox>
+
+            <ToggleButton
+                DockPanel.Dock="Top" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Checked">Change culture C#</ToggleButton>
             <DockPanel
                 DockPanel.Dock="Top">
                 <ToggleButton
@@ -92,15 +95,25 @@
                                     Margin="10" />
 
                                 <pdtt:PersianDatePicker
+                                    DockPanel.Dock="Top"
                                     x:Name="pdp1"
-                                    VerticalAlignment="Center"
                                     Grid.Column="1"
                                     Grid.Row="1"
+                                    VerticalAlignment="Center"
                                     AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
                                     ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
                                     CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                     MinHeight="30"
                                     Margin="10" />
+                                <pdtt:PersianDateTimePicker
+                                    x:Name="pdtp1"
+                                    DockPanel.Dock="Top"
+                                    VerticalAlignment="Center"
+                                    MinHeight="30"
+                                    Margin="10"
+                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                             </DockPanel>
                         </Grid>
 
