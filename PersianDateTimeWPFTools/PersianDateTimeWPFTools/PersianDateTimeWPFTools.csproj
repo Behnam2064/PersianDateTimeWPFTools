@@ -6,56 +6,56 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Persian calendar</Title>
     <Description>
-		# Persian calendar
-		## WPF calendar with support for Gregorian and solar calendars
+# Persian calendar
+## WPF calendar with support for Gregorian and solar calendars
 
-		A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
+A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
 
-		## Controls
-		- Clock
-		- PersianCalendar
-		- PersianDatePicker
-		- PersianDateTimePicker
-		- PersianCalendarWithClock
+## Controls
+- Clock
+- PersianCalendar
+- PersianDatePicker
+- PersianDateTimePicker
+- PersianCalendarWithClock
 
-		<![CDATA[
-		For more information please check my [github]: <https://github.com/Behnam2064/PersianDateTimeWPFTools>
-		 ]]>
-		## How to use?
-		Step 1: Add the following resources in the App.xaml file
-		```
-		&lt;Application
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		&gt;
-		&lt;Application.Resources&gt;
-		
-		&lt;ResourceDictionary&gt;
-		&lt;ResourceDictionary.MergedDictionaries&gt;
-		&lt;ResourceDictionary
-		Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources.xaml" /&gt;
-		&lt;/ResourceDictionary.MergedDictionaries&gt;
-		&lt;/ResourceDictionary&gt;
-		&lt;/Application.Resources&gt;
-		&lt;/Application&gt;
-		```
+<![CDATA[
+For more information please check my [github]: <https://github.com/Behnam2064/PersianDateTimeWPFTools>
+ ]]>
+## How to use?
+Step 1: Add the following resources in the App.xaml file
+```
+&lt;Application
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+&gt;
+&lt;Application.Resources&gt;
 
-		Step 2:
-		Use in XAML (WPF) files
-		You can use below namespace in xaml (wpf)
-		xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+&lt;ResourceDictionary&gt;
+&lt;ResourceDictionary.MergedDictionaries&gt;
+&lt;ResourceDictionary
+Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources.xaml" /&gt;
+&lt;/ResourceDictionary.MergedDictionaries&gt;
+&lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+&lt;/Application&gt;
+```
+
+Step 2:
+Use in XAML (WPF) files
+You can use below namespace in xaml (wpf)
+xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
 
 
-		Sample:
-		```
-		&lt;Window 
-		xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
-		&gt;
-		&lt;Grid&gt;
-		&lt;pdtt:PersianCalendar /&gt;
-		&lt;/Grid&gt;
-		&lt;/Window&gt;
-		```
+Sample:
+```
+&lt;Window 
+xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+&gt;
+&lt;Grid&gt;
+&lt;pdtt:PersianCalendar /&gt;
+&lt;/Grid&gt;
+&lt;/Window&gt;
+```
 
 ## Dependency Properties
 New Dependency Properties
