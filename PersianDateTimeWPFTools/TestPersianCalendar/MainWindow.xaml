@@ -30,10 +30,16 @@
                 <ComboBoxItem
                     IsSelected="True">fa-IR</ComboBoxItem>
                 <ComboBoxItem>en-US</ComboBoxItem>
+                <ComboBoxItem>pt-PT</ComboBoxItem>
+                <ComboBoxItem>en-GB</ComboBoxItem>
+                <ComboBoxItem>pt-BR</ComboBoxItem>
+                <ComboBoxItem>ar-SA</ComboBoxItem>
             </ComboBox>
 
             <ToggleButton
-                DockPanel.Dock="Top" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Checked">Change culture C#</ToggleButton>
+                DockPanel.Dock="Top"
+                Checked="ToggleButton_Checked"
+                Unchecked="ToggleButton_Checked">Change culture C#</ToggleButton>
             <DockPanel
                 DockPanel.Dock="Top">
                 <ToggleButton
@@ -118,6 +124,47 @@
                         </Grid>
 
                     </ScrollViewer>
+                </TabItem>
+                <TabItem
+                    Header="Custom style">
+                    <TabItem.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.MergedDictionaries>
+                                <ResourceDictionary
+                                    Source="pack://application:,,,/TestPersianCalendar;component/Dictionary1.xaml" />
+                            </ResourceDictionary.MergedDictionaries>
+                        </ResourceDictionary>
+                    </TabItem.Resources>
+
+
+                    <StackPanel
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        >
+
+
+                        <pdtt:PersianCalendar
+                            Margin="5"
+                            x:Name="pc2"
+                            
+                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            CalendarItemStyle="{StaticResource CalendarItemStyle1}">
+                        </pdtt:PersianCalendar>
+
+                        <pdtt:PersianCalendar
+                            Margin="5"
+                            x:Name="pc3"
+                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
+                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            >
+                        </pdtt:PersianCalendar>
+
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>

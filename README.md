@@ -2,6 +2,7 @@
 ## WPF calendar with support for Gregorian and solar calendars
 
 A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
+You can write any style you like for the controls.
 
 ## Controls
 - Clock
