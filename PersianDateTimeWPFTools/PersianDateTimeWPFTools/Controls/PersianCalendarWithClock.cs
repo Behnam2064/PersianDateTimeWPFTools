@@ -74,6 +74,18 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty ClockStyleProperty
             = DependencyProperty.Register(nameof(ClockStyle), typeof(Style), typeof(PersianCalendarWithClock));
 
+
+        public static readonly DependencyProperty IsTodayHighlightedProperty =
+            DependencyProperty.Register(nameof(IsTodayHighlighted),
+                typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new
+                FrameworkPropertyMetadata((object)true));
+
+        public bool IsTodayHighlighted
+        {
+            get => (bool)this.GetValue(PersianCalendar.IsTodayHighlightedProperty);
+            set => this.SetValue(PersianCalendar.IsTodayHighlightedProperty, (object)value);
+        }
+
         public Style ClockStyle
         {
             get => (Style)this.GetValue(ClockStyleProperty);
@@ -275,6 +287,11 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendar.SetBinding(PersianCalendar.StyleProperty,
                 new Binding(CalendarStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendar.SetBinding(PersianCalendar.IsTodayHighlightedProperty,
+                new Binding(IsTodayHighlightedProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
 
             this.CalendarStyle = (Style)Application.Current.Resources["DefaultPersianCalendarStyle"];
 

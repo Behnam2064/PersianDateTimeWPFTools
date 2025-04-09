@@ -124,6 +124,19 @@ namespace PersianDateTimeWPFTools.Controls
             = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata(false));
 
 
+        public static readonly DependencyProperty IsTodayHighlightedProperty =
+          DependencyProperty.Register(nameof(IsTodayHighlighted),
+              typeof(bool), typeof(PersianDateTimePicker), (PropertyMetadata)new
+              FrameworkPropertyMetadata((object)true));
+
+        public bool IsTodayHighlighted
+        {
+            get => (bool)this.GetValue(IsTodayHighlightedProperty);
+            set => this.SetValue(IsTodayHighlightedProperty, (object)value);
+        }
+
+
+
         public bool AllowSelectBlackedOutDay
         {
             get => (bool)this.GetValue(PersianDateTimePicker.AllowSelectBlackedOutDayProperty);
@@ -507,8 +520,11 @@ namespace PersianDateTimeWPFTools.Controls
             };
 
 
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.IsTodayHighlightedProperty,
+                new Binding(IsTodayHighlightedProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
             _calendarWithClock.SetBinding(PersianCalendarWithClock.AllowSelectBlackedOutDayProperty,
-      new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+                new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendarWithClock.SetBinding(PersianCalendarWithClock.CustomCultureProperty,
                 new Binding(CustomCultureProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
