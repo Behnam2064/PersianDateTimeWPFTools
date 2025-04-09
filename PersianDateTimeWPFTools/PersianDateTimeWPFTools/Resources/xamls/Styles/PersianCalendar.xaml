@@ -726,7 +726,7 @@
                                 Value="{StaticResource DayButtonHighlightBackgroundPressed}"
                                 Property="Border.Background" />
                         </Trigger>
-                        <Trigger
+                        <!--<Trigger
                             Property="primitives:CalendarDayButton.IsToday"
                             Value="True">
                             <Setter
@@ -738,7 +738,39 @@
                                 TargetName="HighlightBorder"
                                 Value="{StaticResource DayButtonHighlightBackgroundToday}"
                                 Property="Border.Background" />
-                        </Trigger>
+                        </Trigger>-->
+
+                        <!--Start-->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushToday}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundToday}"
+                                Property="Border.Background" />
+                        </MultiTrigger>
+
+                        <!--End-->
+
+
+
+
+
+
+
                         <Trigger
                             Property="primitives:CalendarDayButton.IsSelected"
                             Value="True">
@@ -794,6 +826,10 @@
                                 <Condition
                                     Property="primitives:CalendarDayButton.IsToday"
                                     Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
                             </MultiTrigger.Conditions>
 
                             <Setter
@@ -816,6 +852,10 @@
                                 <Condition
                                     Property="primitives:CalendarDayButton.IsToday"
                                     Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
                             </MultiTrigger.Conditions>
 
                             <Setter
@@ -898,6 +938,9 @@
 
                         </MultiTrigger>
 
+                        
+                      
+                        
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
