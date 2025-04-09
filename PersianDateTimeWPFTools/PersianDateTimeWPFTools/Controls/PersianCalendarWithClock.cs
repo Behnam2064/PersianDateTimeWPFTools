@@ -68,6 +68,23 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty CustomCultureProperty = DependencyProperty.Register(nameof(CustomCulture), typeof(CultureInfo), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
         public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty CalendarStyleProperty
+            = DependencyProperty.Register(nameof(CalendarStyle), typeof(Style), typeof(PersianCalendarWithClock));
+
+        public static readonly DependencyProperty ClockStyleProperty
+            = DependencyProperty.Register(nameof(ClockStyle), typeof(Style), typeof(PersianCalendarWithClock));
+
+        public Style ClockStyle
+        {
+            get => (Style)this.GetValue(ClockStyleProperty);
+            set => this.SetValue(ClockStyleProperty, (object)value);
+        }
+
+        public Style CalendarStyle
+        {
+            get => (Style)this.GetValue(CalendarStyleProperty);
+            set => this.SetValue(CalendarStyleProperty, (object)value);
+        }
 
 
         public bool AllowSelectBlackedOutDay
@@ -241,6 +258,10 @@ namespace PersianDateTimeWPFTools.Controls
                 BorderThickness = new Thickness(),
                 Background = Brushes.Transparent
             };
+
+            _clock.SetBinding(FrameworkElement.StyleProperty, this.GetDatePickerBinding(ClockStyleProperty)); 
+            this.ClockStyle = (Style)Application.Current.Resources["ClockBaseStyle"];
+
             TitleElement.SetBackground(_clock, Brushes.Transparent);
             _clock.DisplayTimeChanged += Clock_DisplayTimeChanged;
 
@@ -250,6 +271,12 @@ namespace PersianDateTimeWPFTools.Controls
                 Background = Brushes.Transparent,
                 Focusable = false
             };
+
+
+            _calendar.SetBinding(PersianCalendar.StyleProperty,
+                new Binding(CalendarStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            this.CalendarStyle = (Style)Application.Current.Resources["DefaultPersianCalendarStyle"];
 
             _calendar.SetBinding(PersianCalendar.AllowSelectBlackedOutDayProperty,
                 new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
@@ -266,6 +293,15 @@ namespace PersianDateTimeWPFTools.Controls
 
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
             _calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+        }
+
+        private BindingBase GetDatePickerBinding(DependencyProperty property)
+        {
+            return (BindingBase)new Binding(property.Name)
+            {
+                Source = (object)this,
+                Mode = BindingMode.TwoWay,
+            };
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
