@@ -6,4 +6,6 @@
         x:Key="AmText">Am</System:String>
     <System:String
         x:Key="PmText">Pm</System:String>
+    <System:String
+        x:Key="ConfirmText">Confirm</System:String>
 </ResourceDictionary>

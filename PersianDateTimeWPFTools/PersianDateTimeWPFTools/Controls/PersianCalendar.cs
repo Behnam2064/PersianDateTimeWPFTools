@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 using PersianDateTimeWPFTools.Windows.Controls;
@@ -39,6 +40,8 @@ namespace PersianDateTimeWPFTools.Controls
         private PersianDateTimeWPFTools.Windows.Controls.Primitives.CalendarItem _monthControl;
         private PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection _blackoutDates;
         private PersianDateTimeWPFTools.Windows.Controls.SelectedDatesCollection _selectedDates;
+
+        public static readonly RoutedEvent ConfirmButtonClickedEvent = EventManager.RegisterRoutedEvent("ConfirmButtonClick", RoutingStrategy.Direct, typeof(EventHandler), typeof(PersianCalendar));
         public static readonly RoutedEvent SelectedDatesChangedEvent = EventManager.RegisterRoutedEvent("SelectedDatesChanged", RoutingStrategy.Direct, typeof(EventHandler<SelectionChangedEventArgs>), typeof(PersianCalendar));
         public static readonly DependencyProperty CalendarButtonStyleProperty = DependencyProperty.Register(nameof(CalendarButtonStyle), typeof(Style), typeof(PersianCalendar));
         public static readonly DependencyProperty CalendarDayButtonStyleProperty = DependencyProperty.Register(nameof(CalendarDayButtonStyle), typeof(Style), typeof(PersianCalendar));
@@ -59,10 +62,30 @@ namespace PersianDateTimeWPFTools.Controls
 
 
 
+        public bool ShowConfirmButton
+        {
+            get { return (bool)GetValue(ShowConfirmButtonProperty); }
+            set { SetValue(ShowConfirmButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowConfirmButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowConfirmButtonProperty =
+            DependencyProperty.Register("ShowConfirmButton", typeof(bool), typeof(PersianCalendar), new PropertyMetadata(false));
+
+
+
+
         public event EventHandler<SelectionChangedEventArgs> SelectedDatesChanged
         {
             add => this.AddHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
             remove => this.RemoveHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
+        }
+        
+
+        public event EventHandler ConfirmButtonClicked
+        {
+            add => this.AddHandler(PersianCalendar.ConfirmButtonClickedEvent, (Delegate)value);
+            remove => this.RemoveHandler(PersianCalendar.ConfirmButtonClickedEvent, (Delegate)value);
         }
 
         public event EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> DisplayDateChanged;
@@ -365,7 +388,7 @@ namespace PersianDateTimeWPFTools.Controls
                 // Like OnLanguageChanged(...);
                 persianCalendar.CoerceValue(PersianCalendar.FirstDayOfWeekProperty);
                 persianCalendar.UpdateCellItems();
-                
+
                 // Like OnLanguageChanged(...);
                 // Move to current DateTime
                 if (persianCalendar.SelectedDate == null)
@@ -498,6 +521,8 @@ namespace PersianDateTimeWPFTools.Controls
             if (this._monthControl != null)
                 this._monthControl.Owner = this;
 
+            _monthControl.SetBinding(CalendarItem.ShowConfirmButtonProperty,
+                new Binding(ShowConfirmButtonProperty.Name) { Mode = BindingMode.TwoWay, Source = this });
             _monthControl.CustomCulture = CustomCulture;
             this.CurrentDate = this.DisplayDate;
             _monthControl.ShowTodayButton = this.ShowTodayButton;
@@ -519,6 +544,11 @@ namespace PersianDateTimeWPFTools.Controls
         protected virtual void OnSelectedDatesChanged(SelectionChangedEventArgs e)
         {
             this.RaiseEvent((RoutedEventArgs)e);
+        }
+
+        internal virtual void RaiseConfirmButtonClick()
+        {
+            RaiseEvent(new RoutedEventArgs(ConfirmButtonClickedEvent, this));
         }
 
         protected virtual void OnDisplayDateChanged(PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs e)

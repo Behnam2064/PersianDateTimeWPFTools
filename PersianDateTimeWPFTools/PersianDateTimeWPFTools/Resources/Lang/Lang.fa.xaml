@@ -6,4 +6,6 @@
         x:Key="AmText">ق.ظ</System:String>
     <System:String
         x:Key="PmText">ب.ظ</System:String>
+    <System:String
+        x:Key="ConfirmText">تایید</System:String>
 </ResourceDictionary>

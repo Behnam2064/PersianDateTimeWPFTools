@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersianDateTimeWPFTools.Tools;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -22,6 +23,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
     [TemplatePart(Name = "PART_MonthView", Type = typeof(Grid))]
     [TemplatePart(Name = "PART_YearView", Type = typeof(Grid))]
     [TemplatePart(Name = "PART_DisabledVisual", Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = "PART_ButtonConfirm", Type = typeof(Button))]
     [TemplateVisualState(Name = "Normal", GroupName = "CommonStates")]
     [TemplateVisualState(Name = "Disabled", GroupName = "CommonStates")]
     public sealed class CalendarItem : Control
@@ -46,6 +48,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
         private Button _headerButton;
         private Grid _monthView;
         private Button _nextButton;
+        private Button _confirmButton;
         private Button _previousButton;
         private Button _goToTodayButton;
         private Grid _yearView;
@@ -62,6 +65,22 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                     _goToTodayButton.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
+
+
+
+
+        public bool ShowConfirmButton
+        {
+            get { return (bool)GetValue(ShowConfirmButtonProperty); }
+            set { SetValue(ShowConfirmButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowConfirmButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowConfirmButtonProperty =
+            DependencyProperty.Register("ShowConfirmButton", typeof(bool), typeof(CalendarItem), new PropertyMetadata(false));
+
+
+
 
         private CultureInfo _CustomCulture { get; set; }
         public CultureInfo CustomCulture
@@ -138,11 +157,16 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 this._goToTodayButton.Click -= new RoutedEventHandler(this.GoToTodayButton_Click);
             if (this._headerButton != null)
                 this._headerButton.Click -= new RoutedEventHandler(this.HeaderButton_Click);
+            if (this._confirmButton != null)
+                this._confirmButton.Click -= new RoutedEventHandler(this.ConfirmButton_Click);
+
+
             this._monthView = this.GetTemplateChild("PART_MonthView") as Grid;
             this._yearView = this.GetTemplateChild("PART_YearView") as Grid;
             this._previousButton = this.GetTemplateChild("PART_PreviousButton") as Button;
             this._goToTodayButton = this.GetTemplateChild("PART_GoToTodayButton") as Button;
             this._nextButton = this.GetTemplateChild("PART_NextButton") as Button;
+            this._confirmButton = this.GetTemplateChild("PART_ButtonConfirm") as Button;
             this._headerButton = this.GetTemplateChild("PART_HeaderButton") as Button;
             this._disabledVisual = this.GetTemplateChild("PART_DisabledVisual") as FrameworkElement;
             this._dayTitleTemplate = (DataTemplate)null;
@@ -160,6 +184,25 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 if (this._goToTodayButton.Content == null)
                     this._goToTodayButton.Content = (object)"Got to today button";
                 this._goToTodayButton.Click += new RoutedEventHandler(this.GoToTodayButton_Click);
+            }
+
+            if (this._confirmButton != null)
+            {
+                if (this._confirmButton.Content == null)
+                    this._confirmButton.Content = "Confirm";
+                this._confirmButton.Click += new RoutedEventHandler(this.ConfirmButton_Click);
+
+                Binding binding = new Binding()
+                {
+                    Source = this,
+                    Converter = new Bool2VisibilityConverter(),
+                    Path = new PropertyPath(ShowConfirmButtonProperty.Name),
+                    Mode = BindingMode.OneWay,
+                };
+
+                //_confirmButton.SetBinding(Button.VisibilityProperty, new Binding(ShowConfirmButtonProperty.Name) { Source = this, Converter = new BooleanToVisibilityConverter() });
+                _confirmButton.SetBinding(Button.VisibilityProperty, binding);
+
             }
 
             if (this._nextButton != null)
@@ -191,6 +234,14 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             }
             else
                 this.UpdateMonthMode();
+        }
+
+        private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Owner != null)
+            {
+                Owner.RaiseConfirmButtonClick();
+            }
         }
 
         private void GoToTodayButton_Click(object sender, RoutedEventArgs e)
