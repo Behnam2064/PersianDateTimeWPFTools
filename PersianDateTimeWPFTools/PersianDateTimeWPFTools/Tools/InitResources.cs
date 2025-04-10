@@ -14,6 +14,11 @@ namespace PersianDateTimeWPFTools.Tools
     {
         public InitResources()
         {
+            // Check for design mode. 
+          /*  if ((bool)(DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue))
+            {
+                //in Design mode
+            }*/
             Init();
             if (CultureInfo.CurrentUICulture.Name == "fa-IR")
             {
