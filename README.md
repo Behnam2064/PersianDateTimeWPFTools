@@ -55,3 +55,11 @@ New Dependency Properties
 | CustomCultureName     | Choosing a culture name that is different from the current software culture (such as fa-IR or en-US)      |   Based on the current software culture |
 | AllowSelectBlackedOutDay | Selectable holidays      |    False |
 | ShowTodayButton | Show a button to move to the current day   |    False |
+| ShowConfirmButton | Show a button to display confirm button   |    False |
+| DisplayDate | Displays the current date   |    ? |
+| DisplayDateStart | Start displaying the date   |    ? |
+| DisplayDateEnd | End of displaying date   |    ? |
+| DisplayMode | Date display type (like Month,Year,Decade)   |    Month |
+| FirstDayOfWeek | First day of the week  |    Sunday |
+| SelectionMode | Type of selection  |    SingleDate |
+| IsTodayHighlighted | Show current day as highlights  |    True |
