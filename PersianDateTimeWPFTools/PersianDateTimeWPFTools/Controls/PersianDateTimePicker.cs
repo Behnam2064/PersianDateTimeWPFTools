@@ -598,7 +598,7 @@ namespace PersianDateTimeWPFTools.Controls
             _calendarWithClock.SetBinding(PersianCalendarWithClock.ShowTodayButtonProperty,
                 new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
-
+            DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
             _calendarWithClock.SelectedDateTimeChanged += CalendarWithClock_SelectedDateTimeChanged;
             //_calendarWithClock.Confirmed += CalendarWithClock_Confirmed;
         }

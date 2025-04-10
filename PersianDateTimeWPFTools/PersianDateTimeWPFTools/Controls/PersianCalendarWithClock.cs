@@ -326,7 +326,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 BorderThickness = new Thickness(),
                 Background = Brushes.Transparent,
-                Focusable = false
+                Focusable = false,
             };
 
 
@@ -369,7 +369,7 @@ namespace PersianDateTimeWPFTools.Controls
             _calendar.SetBinding(PersianCalendar.ShowTodayButtonProperty,
                 new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
-
+            DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
             _calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
         }
