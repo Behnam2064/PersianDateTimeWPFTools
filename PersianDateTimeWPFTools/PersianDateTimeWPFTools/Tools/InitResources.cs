@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,8 @@ namespace PersianDateTimeWPFTools.Tools
         {
             foreach (var item in mergedDictionaries)
             {
-                if (item.Source.AbsoluteUri.Contains(containsString))
+                if (item?.Source != null // In DesignMode will be null
+                    && item.Source.AbsoluteUri.Contains(containsString))
                 {
                     return item;
                 }
