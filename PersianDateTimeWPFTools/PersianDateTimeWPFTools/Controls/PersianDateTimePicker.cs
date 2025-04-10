@@ -54,6 +54,24 @@ namespace PersianDateTimeWPFTools.Controls
         private DateTime? _originalSelectedDateTime;
 
 
+        public bool ShowConfirmButton
+        {
+            get { return (bool)GetValue(ShowConfirmButtonProperty); }
+            set { SetValue(ShowConfirmButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowConfirmButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowConfirmButtonProperty =
+            DependencyProperty.Register("ShowConfirmButton", typeof(bool), typeof(PersianDateTimePicker), new PropertyMetadata(true));
+
+
+        public event EventHandler ConfirmButtonClicked
+        {
+            add => _calendarWithClock.ConfirmButtonClicked += value;
+            remove => _calendarWithClock.ConfirmButtonClicked -= value;
+        }
+
+
         public ObservableCollection<CalendarDateRange> BlackoutDates
         {
             get => _calendarWithClock?.BlackoutDates;
@@ -564,6 +582,9 @@ namespace PersianDateTimeWPFTools.Controls
                 //ShowConfirmButton = true
             };
 
+            
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.ShowConfirmButtonProperty,
+                new Binding(ShowConfirmButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendarWithClock.SetBinding(PersianCalendarWithClock.FirstDayOfWeekProperty,
                 new Binding(FirstDayOfWeekProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
@@ -600,10 +621,10 @@ namespace PersianDateTimeWPFTools.Controls
 
             DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
             _calendarWithClock.SelectedDateTimeChanged += CalendarWithClock_SelectedDateTimeChanged;
-            //_calendarWithClock.Confirmed += CalendarWithClock_Confirmed;
+            _calendarWithClock.ConfirmButtonClicked += CalendarWithClock_Confirmed;
         }
 
-        //private void CalendarWithClock_Confirmed() => TogglePopup();
+        private void CalendarWithClock_Confirmed(object sender, EventArgs e) => TogglePopup();
 
         private void CalendarWithClock_SelectedDateTimeChanged(object sender, PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs e)
         {

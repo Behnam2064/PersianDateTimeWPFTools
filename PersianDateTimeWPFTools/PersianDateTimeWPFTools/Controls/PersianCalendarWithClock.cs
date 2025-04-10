@@ -170,6 +170,24 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
 
+        public bool ShowConfirmButton
+        {
+            get { return (bool)GetValue(ShowConfirmButtonProperty); }
+            set { SetValue(ShowConfirmButtonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShowConfirmButton.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShowConfirmButtonProperty =
+            DependencyProperty.Register("ShowConfirmButton", typeof(bool), typeof(PersianCalendarWithClock), new PropertyMetadata(false));
+
+
+        public event EventHandler ConfirmButtonClicked
+        {
+            add => _calendar.ConfirmButtonClicked += value;
+            remove => _calendar.ConfirmButtonClicked -= value;
+        }
+
+
         public PersianCalendarWithClock()
         {
             InitCalendarAndClock();
@@ -330,12 +348,15 @@ namespace PersianDateTimeWPFTools.Controls
             };
 
 
+            _calendar.SetBinding(PersianCalendar.ShowConfirmButtonProperty,
+                new Binding(ShowConfirmButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
             _calendar.SetBinding(PersianCalendar.FirstDayOfWeekProperty,
                 new Binding(FirstDayOfWeekProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             _calendar.SetBinding(PersianCalendar.DisplayModeProperty,
                 new Binding(DisplayModeProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
-            
+
             _calendar.SetBinding(PersianCalendar.DisplayDateStartProperty,
                 new Binding(DisplayDateStartProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
@@ -372,7 +393,9 @@ namespace PersianDateTimeWPFTools.Controls
             DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
             _calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
+
         }
+
 
         private BindingBase GetDatePickerBinding(DependencyProperty property)
         {
