@@ -120,6 +120,51 @@ namespace PersianDateTimeWPFTools.Controls
                  }*/
 
             })));
+
+
+
+
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(nameof(DisplayMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarMode), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Month, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty FirstDayOfWeekProperty = DependencyProperty.Register(nameof(FirstDayOfWeek), typeof(DayOfWeek), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCurrentDateFormat().FirstDayOfWeek));
+        public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register(nameof(SelectionMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.SingleDate));
+
+
+        public DateTime DisplayDate
+        {
+            get => (DateTime)this.GetValue(PersianDateTimePicker.DisplayDateProperty);
+            set => this.SetValue(PersianDateTimePicker.DisplayDateProperty, (object)value);
+        }
+
+
+        public DateTime? DisplayDateEnd
+        {
+            get => (DateTime?)this.GetValue(PersianDateTimePicker.DisplayDateEndProperty);
+            set => this.SetValue(PersianDateTimePicker.DisplayDateEndProperty, (object)value);
+        }
+
+        public DateTime? DisplayDateStart
+        {
+            get => (DateTime?)this.GetValue(PersianDateTimePicker.DisplayDateStartProperty);
+            set => this.SetValue(PersianDateTimePicker.DisplayDateStartProperty, (object)value);
+        }
+
+        public PersianDateTimeWPFTools.Windows.Controls.CalendarMode DisplayMode
+        {
+            get => (PersianDateTimeWPFTools.Windows.Controls.CalendarMode)this.GetValue(PersianDateTimePicker.DisplayModeProperty);
+            set => this.SetValue(PersianDateTimePicker.DisplayModeProperty, (object)value);
+        }
+
+
+        public DayOfWeek FirstDayOfWeek
+        {
+            get => (DayOfWeek)this.GetValue(PersianDateTimePicker.FirstDayOfWeekProperty);
+            set => this.SetValue(PersianDateTimePicker.FirstDayOfWeekProperty, (object)value);
+        }
+
+
         public static readonly DependencyProperty ShowTodayButtonProperty
             = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata(false));
 
@@ -518,6 +563,24 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 //ShowConfirmButton = true
             };
+
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.FirstDayOfWeekProperty,
+                new Binding(FirstDayOfWeekProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DisplayModeProperty,
+                new Binding(DisplayModeProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DisplayDateStartProperty,
+                new Binding(DisplayDateStartProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DisplayDateEndProperty,
+                new Binding(DisplayDateEndProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DisplayDateProperty,
+                new Binding(DisplayDateProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
 
 
             _calendarWithClock.SetBinding(PersianCalendarWithClock.IsTodayHighlightedProperty,
