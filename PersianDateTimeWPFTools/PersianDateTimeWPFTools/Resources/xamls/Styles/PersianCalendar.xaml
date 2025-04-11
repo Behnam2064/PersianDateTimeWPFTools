@@ -783,14 +783,14 @@
 
 
 
-                        <Trigger
+                        <!--<Trigger
                             Property="primitives:CalendarDayButton.IsSelected"
                             Value="True">
                             <Setter
                                 TargetName="HighlightBorder"
                                 Value="{DynamicResource CalendarViewSelectedBorderBrush}"
                                 Property="Border.BorderBrush" />
-                        </Trigger>
+                        </Trigger>-->
                         <!--<MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
