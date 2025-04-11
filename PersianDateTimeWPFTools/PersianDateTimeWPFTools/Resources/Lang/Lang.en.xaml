@@ -8,4 +8,6 @@
         x:Key="PmText">Pm</System:String>
     <System:String
         x:Key="ConfirmText">Confirm</System:String>
+    <System:String
+        x:Key="TodayText">Today</System:String>
 </ResourceDictionary>

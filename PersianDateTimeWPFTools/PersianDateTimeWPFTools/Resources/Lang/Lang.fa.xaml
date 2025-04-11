@@ -8,4 +8,6 @@
         x:Key="PmText">ب.ظ</System:String>
     <System:String
         x:Key="ConfirmText">تایید</System:String>
+    <System:String
+        x:Key="TodayText">امروز</System:String>
 </ResourceDictionary>
