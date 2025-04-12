@@ -15,10 +15,10 @@ namespace PersianDateTimeWPFTools.Tools
         public InitResources()
         {
             // Check for design mode. 
-          /*  if ((bool)(DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue))
-            {
-                //in Design mode
-            }*/
+            /*  if ((bool)(DesignerProperties.IsInDesignModeProperty.GetMetadata(typeof(DependencyObject)).DefaultValue))
+              {
+                  //in Design mode
+              }*/
             Init();
             if (CultureInfo.CurrentUICulture.Name == "fa-IR")
             {
@@ -42,12 +42,16 @@ namespace PersianDateTimeWPFTools.Tools
         }
 
         /// <summary>
-        /// Change lang
+        /// Change Language
         /// </summary>
         /// <param name="language">fa or en</param>
-        public void ChangeLanguage(string language)
+        /// <param name="lanAddress"></param>
+        public void ChangeLanguage(string language, string lanAddress = null)
         {
             string langFile = $"pack://application:,,,/PersianDateTimeWPFTools;component/Resources/Lang/Lang.{language}.xaml";
+            if (!string.IsNullOrEmpty(lanAddress))
+                langFile = lanAddress;
+
             ResourceDictionary langDict = new ResourceDictionary { Source = new Uri(langFile) };
             Application.Current.Resources.MergedDictionaries.Remove(SearchResourceDictionary("/Resources/Lang/", Application.Current.Resources.MergedDictionaries));
             Application.Current.Resources.MergedDictionaries.Add(langDict);

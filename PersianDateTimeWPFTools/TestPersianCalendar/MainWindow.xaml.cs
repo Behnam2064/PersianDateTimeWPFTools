@@ -27,23 +27,26 @@ namespace TestPersianCalendar
             pdtp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pc4.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pc5.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
-            PersianDateTimeWPFTools.Tools.InitResources init = new PersianDateTimeWPFTools.Tools.InitResources();
-            init.ChangeLanguage("fa");
+            
 
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             var isChecked = (sender as ToggleButton)?.IsChecked ?? true;
+            PersianDateTimeWPFTools.Tools.InitResources init = new PersianDateTimeWPFTools.Tools.InitResources();
+            
             CultureInfo? culture = null;
             if (isChecked)
             {
                 culture = CultureInfo.CreateSpecificCulture("en-US");
+                init.ChangeLanguage("en");// Change Language
             }
             else
             {
 
                 culture = CultureInfo.CreateSpecificCulture("fa-IR");
+                init.ChangeLanguage("fa"); // Change Language
             }
 
             pcwc1.CustomCulture = culture;
@@ -51,6 +54,17 @@ namespace TestPersianCalendar
             pdp1.CustomCulture = culture;
             pdtp1.CustomCulture = culture;
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ChangeResourceLanguageClicked(object sender, RoutedEventArgs e)
+        {
+            PersianDateTimeWPFTools.Tools.InitResources init = new PersianDateTimeWPFTools.Tools.InitResources();
+            init.ChangeLanguage(null, "pack://application:,,,/TestPersianCalendar;component/Lang.es.xaml");
         }
     }
 }

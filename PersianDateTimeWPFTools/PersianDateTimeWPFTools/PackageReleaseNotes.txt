@@ -1,1 +1,1 @@
-﻿-Fix the language change problem (PersianDateTimePicker)
+﻿-Support for more languages ​​that the user has provided information for

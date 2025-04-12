@@ -40,6 +40,12 @@
                 DockPanel.Dock="Top"
                 Checked="ToggleButton_Checked"
                 Unchecked="ToggleButton_Checked">Change culture C#</ToggleButton>
+
+            <Button
+                DockPanel.Dock="Top"
+                Click="ChangeResourceLanguageClicked"
+                Content="Change Resource Language" 
+                />
             <DockPanel
                 DockPanel.Dock="Top">
                 <ToggleButton

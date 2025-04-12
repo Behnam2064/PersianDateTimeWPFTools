@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=netstandard">
+    <System:String
+        x:Key="AmText">Am</System:String>
+    <System:String
+        x:Key="PmText">Pm</System:String>
+    <System:String
+        x:Key="ConfirmText">Confirmar</System:String>
+    <System:String
+        x:Key="TodayText">Hoy</System:String>
+</ResourceDictionary>
