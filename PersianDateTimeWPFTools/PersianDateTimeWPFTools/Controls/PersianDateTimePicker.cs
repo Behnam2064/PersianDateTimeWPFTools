@@ -253,6 +253,7 @@ namespace PersianDateTimeWPFTools.Controls
 
         public PersianDateTimePicker()
         {
+            DisplayDate = DateTime.Today;
             InitCalendarWithClock();
             //CommandBindings.Add(new CommandBinding(ControlCommands.Clear, (s, e) =>
             //{

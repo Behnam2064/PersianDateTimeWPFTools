@@ -1,10 +1,1 @@
-﻿-Fix UI related to IsTodayHighlighted
--The problem with selecting the year and decade in the PersianDateTimePicker and PersianCalendarWithClock controls has been resolved.
--ShowConfirmButton Dependency Property added to PersianCalendar 
--ConfirmButtonClicked Event added to PersianCalendar 
--PersianCalendar style changed
--ShowConfirmButton Dependency Property added to PersianCalendarWithClock
--ConfirmButtonClicked Event added to PersianCalendarWithClock
--ShowConfirmButton Dependency Property added to PersianDateTimePicker
--ConfirmButtonClicked Event added to PersianDateTimePicker
--CalendarStyle Dependency Property added to PersianCalendarWithClock
+﻿-Fix the language change problem (PersianDateTimePicker)

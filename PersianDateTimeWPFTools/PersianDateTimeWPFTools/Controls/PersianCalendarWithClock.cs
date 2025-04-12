@@ -67,7 +67,9 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty AllowSelectBlackedOutDayProperty = DependencyProperty.Register(nameof(AllowSelectBlackedOutDay), typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)false));
         public static readonly DependencyProperty CustomCultureProperty = DependencyProperty.Register(nameof(CustomCulture), typeof(CultureInfo), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
-        public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata(false));
+        public static readonly DependencyProperty ShowTodayButtonProperty
+            = DependencyProperty.Register(nameof(ShowTodayButton), 
+                typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata(false));
         public static readonly DependencyProperty CalendarStyleProperty
             = DependencyProperty.Register(nameof(CalendarStyle), typeof(Style), typeof(PersianCalendarWithClock));
 
@@ -190,6 +192,8 @@ namespace PersianDateTimeWPFTools.Controls
 
         public PersianCalendarWithClock()
         {
+            DisplayDateTime = DateTime.Today;
+            DisplayDate = DateTime.Today;   
             InitCalendarAndClock();
             Loaded += (s, e) =>
             {
@@ -390,7 +394,7 @@ namespace PersianDateTimeWPFTools.Controls
             _calendar.SetBinding(PersianCalendar.ShowTodayButtonProperty,
                 new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
-            DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
+            DisplayDate = DateTime.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
             _calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
 

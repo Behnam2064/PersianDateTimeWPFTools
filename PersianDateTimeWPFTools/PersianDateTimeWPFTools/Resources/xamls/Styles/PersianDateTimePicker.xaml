@@ -200,9 +200,9 @@
         <Setter
             Property="tools:BorderElement.CornerRadius"
             Value="{StaticResource DefaultCornerRadius}" />
-        <Setter
+        <!--<Setter
             Property="FrameworkElement.MinHeight"
-            Value="{StaticResource DefaultControlHeight}" />
+            Value="{StaticResource DefaultControlHeight}" />-->
         <!--<Setter
             Property="Control.Padding"
             Value="{StaticResource DefaultInputPadding}" />-->
