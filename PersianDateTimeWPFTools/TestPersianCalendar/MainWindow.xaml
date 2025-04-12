@@ -135,19 +135,13 @@
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </TabItem.Resources>
-
-
                     <StackPanel
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Orientation="Horizontal"
-                        >
-
-
+                        Orientation="Horizontal">
                         <pdtt:PersianCalendar
                             Margin="5"
                             x:Name="pc2"
-                            
                             AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
                             ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
                             CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -160,11 +154,63 @@
                             SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
                             AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
                             ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                            >
+                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         </pdtt:PersianCalendar>
-
                     </StackPanel>
+                </TabItem>
+                <TabItem
+                    Background="Gray"
+                    Header="Custom style">
+
+                    <Grid
+                        Background="#FF353535">
+                        <pdtt:PersianCalendar
+                            IsEnabled="True"
+                            Margin="5"
+                            x:Name="pc4"
+                            ShowConfirmButton="True"
+                            SelectionMode="MultipleRange"
+                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
+                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                            <pdtt:PersianCalendar.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary
+                                            Source="pack://application:,,,/TestPersianCalendar;component/CustomPersianCalendarStyle1.xaml" />
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </pdtt:PersianCalendar.Resources>
+                        </pdtt:PersianCalendar>
+                    </Grid>
+                </TabItem>
+
+                <TabItem
+                    IsSelected="True"
+                    Header="Custom style">
+                    <Grid>
+                        <pdtt:PersianCalendar
+                            IsEnabled="True"
+                            Margin="5"
+                            x:Name="pc5"
+                            IsTodayHighlighted="False"
+                            ShowConfirmButton="True"
+                            SelectionMode="MultipleRange"
+                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
+                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                            <pdtt:PersianCalendar.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary
+                                            Source="pack://application:,,,/TestPersianCalendar;component/CustomPersianCalendarStyle2.xaml" />
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </pdtt:PersianCalendar.Resources>
+                        </pdtt:PersianCalendar>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </DockPanel>

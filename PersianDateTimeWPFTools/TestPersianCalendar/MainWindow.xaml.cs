@@ -25,6 +25,11 @@ namespace TestPersianCalendar
             pc1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pdp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pdtp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
+            pc4.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
+            pc5.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
+            PersianDateTimeWPFTools.Tools.InitResources init = new PersianDateTimeWPFTools.Tools.InitResources();
+            init.ChangeLanguage("fa");
+
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)

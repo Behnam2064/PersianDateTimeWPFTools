@@ -12,4 +12,10 @@
     <ProjectReference Include="..\PersianDateTimeWPFTools\PersianDateTimeWPFTools.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="CustomPersianCalendarStyle2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>
