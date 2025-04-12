@@ -37,7 +37,7 @@
 
     <SolidColorBrush
         x:Key="DayButtonBlackoutForeground"
-        Color="#E0FD1D" />
+        Color="#FFD2004D" />
 
     <SolidColorBrush
         x:Key="NormalForeground"
