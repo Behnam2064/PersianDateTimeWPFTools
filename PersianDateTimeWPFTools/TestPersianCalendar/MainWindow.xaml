@@ -165,10 +165,11 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem
+                    IsSelected="False"
                     Background="Gray"
                     Header="Custom style">
-
-                    <Grid
+                    <StackPanel
+                        Orientation="Horizontal"
                         Background="#FF353535">
                         <pdtt:PersianCalendar
                             IsEnabled="True"
@@ -178,45 +179,64 @@
                             SelectionMode="MultipleRange"
                             SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
                             AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="True"
                             CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                             <pdtt:PersianCalendar.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/CustomPersianCalendarStyle1.xaml" />
+                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarStyle1.xaml" />
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
                             </pdtt:PersianCalendar.Resources>
                         </pdtt:PersianCalendar>
-                    </Grid>
+                        <pdtt:Clock>
+                            <pdtt:Clock.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary
+                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomClockStyle1.xaml" />
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </pdtt:Clock.Resources>
+                        </pdtt:Clock>
+                    </StackPanel>
                 </TabItem>
-
                 <TabItem
                     IsSelected="True"
                     Header="Custom style">
-                    <Grid>
+                    <StackPanel Orientation="Horizontal">
                         <pdtt:PersianCalendar
                             IsEnabled="True"
                             Margin="5"
                             x:Name="pc5"
-                            IsTodayHighlighted="False"
                             ShowConfirmButton="True"
                             SelectionMode="MultipleRange"
                             SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
                             AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                            ShowTodayButton="True"
                             CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                             <pdtt:PersianCalendar.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/CustomPersianCalendarStyle2.xaml" />
+                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarStyle2.xaml" />
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
                             </pdtt:PersianCalendar.Resources>
                         </pdtt:PersianCalendar>
-                    </Grid>
+
+                        <pdtt:Clock>
+                            <pdtt:Clock.Resources>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary
+                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomClockStyle2.xaml" />
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
+                            </pdtt:Clock.Resources>
+                        </pdtt:Clock>
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </DockPanel>
