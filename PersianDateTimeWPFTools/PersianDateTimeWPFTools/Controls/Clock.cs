@@ -75,6 +75,16 @@ namespace PersianDateTimeWPFTools.Controls
             set => SetValue(ClockRadioButtonStyleProperty, value);
         }
 
+
+        public static readonly DependencyProperty ClockRadioButtonHourStyleProperty = DependencyProperty.Register(
+            nameof(ClockRadioButtonHourStyle), typeof(Style), typeof(Clock), new PropertyMetadata(default(Style)));
+
+        public Style ClockRadioButtonHourStyle
+        {
+            get => (Style)GetValue(ClockRadioButtonHourStyleProperty);
+            set => SetValue(ClockRadioButtonHourStyleProperty, value);
+        }
+
         private int SecValue
         {
             get => _secValue;
@@ -149,6 +159,13 @@ namespace PersianDateTimeWPFTools.Controls
             _borderClock.RenderTransform = _rotateTransformClock;
 
             _radioButtonList = new List<RadioButton>();
+
+            if (ClockRadioButtonHourStyle == null)
+            {
+                ClockRadioButtonHourStyle = ClockRadioButtonStyle;
+            }
+
+
             for (var i = 0; i < 12; i++)
             {
                 var num = i + 1;
@@ -158,7 +175,8 @@ namespace PersianDateTimeWPFTools.Controls
                     Tag = num,
                     Content = num
                 };
-                button.SetBinding(StyleProperty, new Binding(ClockRadioButtonStyleProperty.Name) { Source = this });
+                //button.SetBinding(StyleProperty, new Binding(ClockRadioButtonStyleProperty.Name) { Source = this });
+                button.SetBinding(StyleProperty, new Binding(ClockRadioButtonHourStyleProperty.Name) { Source = this });
                 _radioButtonList.Add(button);
                 _circlePanel.Children.Add(button);
             }
