@@ -62,7 +62,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             {
                 _ShowTodayButton = value;
                 if (_goToTodayButton != null)
-                    _goToTodayButton.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                    _goToTodayButton.Visibility = value ? Visibility.Visible : Visibility.Hidden;
             }
         }
 
@@ -215,7 +215,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                 this._headerButton.Click += new RoutedEventHandler(this.HeaderButton_Click);
 
             if (_goToTodayButton != null)
-                _goToTodayButton.Visibility = ShowTodayButton ? Visibility.Visible : Visibility.Collapsed;
+                _goToTodayButton.Visibility = ShowTodayButton ? Visibility.Visible : Visibility.Hidden;
             this.PopulateGrids();
             if (this.Owner != null)
             {
