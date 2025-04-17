@@ -37,6 +37,13 @@
         <Setter
             Property="Control.BorderThickness"
             Value="0" />
+        <Setter
+            Property="pdtwt:PersianCalendarWithClock.CalendarStyle"
+            Value="{DynamicResource DefaultPersianCalendarStyle}" />
+        <Setter
+            Property="pdtwt:PersianCalendarWithClock.ClockStyle"
+            Value="{DynamicResource ClockBaseStyle}" />
+
         <!--<Setter
             Property="FrameworkElement.Margin"
             Value="8 0" />-->

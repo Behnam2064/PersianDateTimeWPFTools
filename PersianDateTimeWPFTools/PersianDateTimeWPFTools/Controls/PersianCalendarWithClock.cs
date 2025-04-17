@@ -339,7 +339,7 @@ namespace PersianDateTimeWPFTools.Controls
             };
 
             _clock.SetBinding(FrameworkElement.StyleProperty, this.GetDatePickerBinding(ClockStyleProperty));
-            this.ClockStyle = (Style)Application.Current.Resources["ClockBaseStyle"];
+            //this.ClockStyle = (Style)Application.Current.Resources["ClockBaseStyle"];
 
             TitleElement.SetBackground(_clock, Brushes.Transparent);
             _clock.DisplayTimeChanged += Clock_DisplayTimeChanged;
@@ -380,7 +380,6 @@ namespace PersianDateTimeWPFTools.Controls
                 new Binding(IsTodayHighlightedProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
 
-            this.CalendarStyle = (Style)Application.Current.Resources["DefaultPersianCalendarStyle"];
 
             _calendar.SetBinding(PersianCalendar.AllowSelectBlackedOutDayProperty,
                 new Binding(AllowSelectBlackedOutDayProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
