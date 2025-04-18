@@ -5,7 +5,7 @@
         x:Key="AIranianSans">pack://application:,,,/Resources;component/Fonts/#A Iranian Sans</FontFamily>-->
     <FontFamily
         x:Key="SymbolThemeFontFamily">Segoe MDL2 Assets</FontFamily>
-    
+
     <ResourceDictionary.MergedDictionaries>
 
         <!--Defalut language is english-->
@@ -13,6 +13,16 @@
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/Lang/Lang.en.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/light.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesModern1/ClockModern1.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesModern1/PersianCalendarModern1.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesModern1/PersianDatePickerModern1.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesModern1/PersianCalendarWithClockModern1.xaml" />
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesModern1/PersianDateTimePickerModern1.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/persiancalendar.xaml" />
         <ResourceDictionary

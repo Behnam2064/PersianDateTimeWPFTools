@@ -12,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
+using PersianDateTimeWPFTools.Tools;
 using PersianDateTimeWPFTools.Windows.Controls;
 using PersianDateTimeWPFTools.Windows.Controls.Primitives;
 using CalendarButton = PersianDateTimeWPFTools.Windows.Controls.Primitives.CalendarButton;
@@ -80,7 +81,7 @@ namespace PersianDateTimeWPFTools.Controls
             add => this.AddHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
             remove => this.RemoveHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
         }
-        
+
 
         public event EventHandler ConfirmButtonClicked
         {
@@ -108,6 +109,7 @@ namespace PersianDateTimeWPFTools.Controls
         public PersianCalendar()
         {
             this._calendar = DateTimeHelper.GetCulture((FrameworkElement)this).Calendar;
+            InitResources.SetControlStyle(this);
             dateTimeHelper = new DateTimeHelper(_calendar);
             this._blackoutDates = new PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection(this);
             this._selectedDates = new PersianDateTimeWPFTools.Windows.Controls.SelectedDatesCollection(this);

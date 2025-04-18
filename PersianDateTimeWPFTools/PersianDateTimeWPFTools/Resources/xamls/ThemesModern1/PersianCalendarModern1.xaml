@@ -1,0 +1,2546 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="clr-namespace:PersianDateTimeWPFTools.Windows.Controls.Primitives"
+    xmlns:tools="clr-namespace:PersianDateTimeWPFTools.Tools"
+    xmlns:pdtwt="clr-namespace:PersianDateTimeWPFTools.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/button.xaml" />
+
+        <!--Use=>ButtonCustom-->
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/PredefiendDictionary.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushMouseOverDark"
+        Color="#FFF51C6B" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundMouseOverDark"
+        Color="#FFF51C6B" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushPressedDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundPressedDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushTodayDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundTodayDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushTodayDarkSelectedDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundTodayDarkSelectedDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutForegroundDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="NormalForegroundDark"
+        Color="#FFB3B3B3" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutBackgroundTodayDark"
+        Color="#FFA06E6E" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutSelectedBorderBrushDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutSelectedBackgroundDark"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonInactiveForegroundDark"
+        Color="#FF525252" />
+
+    <SolidColorBrush
+        x:Key="DayButtonInactiveBackgroundDark"
+        Color="#FF1B1B1B" />
+
+    <SolidColorBrush
+        x:Key="DayButtonGridHighlightBorderDark"
+        Color="#FF272727" />
+
+    <SolidColorBrush
+        x:Key="PersianCalendarBackgroundDark"
+        Color="#FF121111" />
+
+    <SolidColorBrush
+        x:Key="PersianCalendarBorderBrushDark"
+        Color="Black" />
+
+    <Style
+        x:Key="DefaultPersianCalendarDarkModern1"
+        TargetType="{x:Type primitives:CalendarItem}">
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Background"
+            Value="#FFEFEFEF" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Stretch" />
+
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarItem}">
+                    <FrameworkTemplate.Resources>
+                        <Style
+                            TargetType="{x:Type TextBlock}"
+                            x:Key="WeekDayNameStyle">
+                            <Setter
+                                Property="TextBlock.FontWeight"
+                                Value="Normal" />
+                            <Setter
+                                Property="TextBlock.FontSize"
+                                Value="12" />
+                            <Setter
+                                Property="TextBlock.TextTrimming"
+                                Value="None" />
+                            <Setter
+                                Property="TextBlock.TextWrapping"
+                                Value="Wrap" />
+                            <Setter
+                                Property="TextBlock.LineStackingStrategy"
+                                Value="MaxHeight" />
+                            <Setter
+                                Property="FrameworkElement.HorizontalAlignment"
+                                Value="Center" />
+                            <Setter
+                                Property="FrameworkElement.VerticalAlignment"
+                                Value="Center" />
+                        </Style>
+                        <DataTemplate
+                            x:Key="DayTitleTemplate">
+                            <TextBlock
+                                Style="{StaticResource WeekDayNameStyle}"
+                                Text="{Binding}" />
+                        </DataTemplate>
+
+                        <DataTemplate
+                            x:Key="IconTemplate">
+                            <primitives:FontIconFallback
+                                Data="{Binding}" />
+                        </DataTemplate>
+                    </FrameworkTemplate.Resources>
+                    <Grid
+                        x:Name="PART_Root"
+                        SnapsToDevicePixels="True">
+                        <Grid.Resources>
+                            <Style
+                                TargetType="{x:Type Button}"
+                                x:Key="NavigationButtonStyle"
+                                BasedOn="{StaticResource DefaultButtonStyle}">
+                                <Setter
+                                    Property="FrameworkElement.HorizontalAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="FrameworkElement.VerticalAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="FrameworkElement.FocusVisualStyle"
+                                    Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+                                <Setter
+                                    Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+                                    Value="{DynamicResource UseSystemFocusVisuals}" />
+                                <Setter
+                                    Property="Control.FontSize"
+                                    Value="20" />
+                                <Setter
+                                    Property="Control.Background"
+                                    Value="{DynamicResource CalendarViewNavigationButtonBackground}" />
+                                <Setter
+                                    Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate
+                                            TargetType="{x:Type Button}">
+                                            <Border
+                                                Background="{TemplateBinding Control.Background}"
+                                                Margin="{TemplateBinding Control.Padding}">
+                                                <Border
+                                                    x:Name="Border"
+                                                    BorderBrush="{DynamicResource CalendarViewNavigationButtonBorderBrush}"
+                                                    BorderThickness="{TemplateBinding Control.BorderThickness}">
+                                                    <ContentPresenter
+                                                        x:Name="Text"
+                                                        HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                                                </Border>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger
+                                                    Property="UIElement.IsMouseOver"
+                                                    Value="True">
+                                                    <Setter
+                                                        TargetName="Border"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonBorderBrushPointerOver}"
+                                                        Property="Border.BorderBrush" />
+                                                    <Setter
+                                                        TargetName="Text"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonForegroundPointerOver}"
+                                                        Property="TextElement.Foreground" />
+                                                </Trigger>
+                                                <Trigger
+                                                    Property="ButtonBase.IsPressed"
+                                                    Value="True">
+                                                    <Setter
+                                                        TargetName="Text"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonForegroundPressed}"
+                                                        Property="TextElement.Foreground" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <ControlTemplate
+                                x:Key="PreviousButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
+                                            Fill="{DynamicResource NormalForegroundDark}"
+                                            HorizontalAlignment="Left"
+                                            Height="10"
+                                            Margin="14,-6,0,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="6" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="TodayButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FF73A9D8"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M184.858,1143.56 C185.397,1143.02 186.009,1142.55 186.009,1142 C186.009,1141.45 185.562,1141 185.009,1141 L175.009,1141 C174.888,1141 174.009,1141 174.009,1142 L174.009,1152 C174.009,1152.55 174.457,1153 175.009,1153 C175.562,1153 175.947,1152.47 176.373,1152.05 L179.152,1149.27 C180.922,1151.36 182,1154.05 182,1157 C182,1163.63 176.627,1169 170,1169 C163.373,1169 158,1163.63 158,1157 C158,1151.06 162.327,1146.13 168,1145.18 L168,1141.14 C160.109,1142.12 154,1148.84 154,1157 C154,1165.84 161.164,1173 170,1173 C178.836,1173 186,1165.84 186,1157 C186,1152.94 184.484,1149.25 181.993,1146.43 L184.858,1143.56"
+                                            Fill="{DynamicResource NormalForegroundDark}"
+                                            HorizontalAlignment="Center"
+                                            Height="10"
+                                            Margin="14,-6,0,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="10" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="NextButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+                                            Fill="{DynamicResource NormalForegroundDark}"
+                                            HorizontalAlignment="Right"
+                                            Height="10"
+                                            Margin="0,-6,14,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="6" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="HeaderButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="buttonContent"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="buttonContent"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="Opacity" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter
+                                        x:Name="buttonContent"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Content="{TemplateBinding Content}"
+                                        TextElement.Foreground="{DynamicResource NormalForegroundDark}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="1,4,1,9"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Grid>
+                            </ControlTemplate>
+                            <SolidColorBrush
+                                x:Key="DisabledColor"
+                                Color="#A5FFFFFF" />
+                        </Grid.Resources>
+                        <Border
+                            Background="{TemplateBinding Control.Background}"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}">
+                            <Border
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="1">
+                                <Grid
+                                    Margin="0,10"
+                                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="40" />
+                                        <RowDefinition
+                                            Height="*" />
+                                        <RowDefinition
+                                            Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Button
+                                        x:Name="PART_PreviousButton"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Focusable="False"
+                                        Width="28"
+                                        Height="20"
+                                        HorizontalAlignment="Left"
+                                        Template="{StaticResource PreviousButtonTemplate}" />
+
+                                    <Button
+                                        x:Name="PART_HeaderButton"
+                                        Grid.Column="1"
+                                        Focusable="False"
+                                        FontWeight="Bold"
+                                        HorizontalAlignment="Center"
+                                        Grid.Row="0"
+                                        Style="{StaticResource NavigationButtonStyle}"
+                                        Template="{StaticResource HeaderButtonTemplate}"
+                                        VerticalAlignment="Center" />
+
+                                    <Button
+                                        x:Name="PART_NextButton"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Right"
+                                        Width="28"
+                                        Height="20"
+                                        Focusable="False"
+                                        Template="{StaticResource NextButtonTemplate}" />
+
+                                    <Grid
+                                        x:Name="PART_MonthView"
+                                        Visibility="Visible"
+                                        TextElement.Foreground="{DynamicResource NormalForegroundDark}"
+                                        Grid.ColumnSpan="3"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="6,-1,6,6"
+                                        Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="38" />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+
+                                    <Grid
+                                        x:Name="PART_YearView"
+                                        Grid.ColumnSpan="3"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="6,-3,7,6"
+                                        Grid.Row="1"
+                                        Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+
+                                    <Grid
+                                        Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Button
+                                            Margin="0,10"
+                                            x:Name="PART_GoToTodayButton"
+                                            Focusable="False"
+                                            Content="{DynamicResource TodayText}"
+                                            Style="{StaticResource ButtonCustom}">
+                                        </Button>
+
+                                        <Button
+                                            Grid.Column="1"
+                                            Margin="0,10"
+                                            Visibility="Collapsed"
+                                            Name="PART_ButtonConfirm"
+                                            HorizontalAlignment="Center"
+                                            Style="{StaticResource ButtonCustom}"
+                                            Content="{DynamicResource ConfirmText}">
+
+                                        </Button>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </Border>
+
+                        <Rectangle
+                            x:Name="PART_DisabledVisual"
+                            Fill="{StaticResource DisabledColor}"
+                            Opacity="0"
+                            RadiusX="2"
+                            RadiusY="2"
+                            Stroke="{StaticResource DisabledColor}"
+                            Stretch="Fill"
+                            StrokeThickness="1"
+                            Visibility="Collapsed" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Value="{DynamicResource CalendarViewWeekDayForegroundDisabled}"
+                                Property="TextElement.Foreground" />
+                        </Trigger>
+                        <DataTrigger
+                            Value="Year"
+                            Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pdtwt:PersianCalendar}}}">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Property="UIElement.Visibility"
+                                Value="Hidden" />
+                            <Setter
+                                TargetName="PART_YearView"
+                                Property="UIElement.Visibility"
+                                Value="Visible" />
+
+                        </DataTrigger>
+                        <DataTrigger
+                            Value="Decade"
+                            Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pdtwt:PersianCalendar}}}">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Property="UIElement.Visibility"
+                                Value="Hidden" />
+                            <Setter
+                                TargetName="PART_YearView"
+                                Property="UIElement.Visibility"
+                                Value="Visible" />
+
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="CalendarDayButtonStyleDarkModern1"
+        TargetType="{x:Type primitives:CalendarDayButton}">
+        <Setter
+            Property="Control.Background"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBackground}" />
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundDark}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBorderBrush}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="1" />
+        <Setter
+            Property="FrameworkElement.MinWidth"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.MinHeight"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.Margin"
+            Value="1" />
+        <Setter
+            Property="Control.FontSize"
+            Value="20" />
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.FocusVisualStyle"
+            Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+        <Setter
+            Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
+            Property="primitives:FocusVisualHelper.FocusVisualMargin"
+            Value="-2" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarDayButton}">
+                    <Grid
+                        SnapsToDevicePixels="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="DayStates">
+                                <primitives:VisualStateGroupListener.Listener>
+                                    <primitives:VisualStateGroupListener
+                                        x:Name="DayStatesListener" />
+                                </primitives:VisualStateGroupListener.Listener>
+                                <VisualState
+                                    x:Name="RegularDay" />
+                                <VisualState
+                                    x:Name="Today" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Margin="-1" />
+                        <Rectangle
+                            x:Name="Background"
+                            Fill="{TemplateBinding Control.Background}" />
+                        <Border
+                            CornerRadius="1"
+                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
+                            x:Name="HighlightBorderCover"
+                            Margin="-2"
+                            BorderThickness="0" />
+                        <Border
+                            CornerRadius="1"
+                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
+                            x:Name="HighlightBorder"
+                            Margin="-2"
+                            BorderThickness="1" />
+                        <TextBlock
+                            x:Name="NormalText"
+                            FontFamily="{TemplateBinding Control.FontFamily}"
+                            FontSize="{TemplateBinding Control.FontSize}"
+                            FontWeight="{TemplateBinding Control.FontWeight}"
+                            Text="{TemplateBinding ContentControl.Content}"
+                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+              <UIElement.RenderTransform>
+                <TranslateTransform
+                                    Y="-1" />
+              </UIElement.RenderTransform>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsInactive"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushMouseOverDark}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOverDark}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsSelected"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushPressedDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundPressedDark}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushTodayDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundTodayDark}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <!--<Trigger
+                            Property="primitives:CalendarDayButton.IsSelected"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewSelectedBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </Trigger>-->
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+                                <Condition
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushPressedDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundPressedDark}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushTodayDarkSelectedDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBackgroundTodayDarkSelectedDark}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsMouseOver"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushTodayDarkSelectedDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBackgroundTodayDarkSelectedDark}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource DayButtonInactiveBackgroundDark}"
+                                Property="Shape.Fill" />
+                        </Trigger>
+
+                        <Trigger
+                            SourceName="DayStatesListener"
+                            Property="primitives:VisualStateGroupListener.CurrentStateName"
+                            Value="Today">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource SystemControlHighlightAccentBrush}"
+                                Property="Shape.Fill" />
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewTodayForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="RegularDay" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundDark}"
+                                Property="TextBlock.Foreground" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="Background"
+                                Property="UIElement.Opacity"
+                                Value="0.5" />
+                            <Setter
+                                TargetName="NormalText"
+                                Property="UIElement.Opacity"
+                                Value="0.8" />
+
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundDark}"
+                                Property="TextBlock.Foreground" />
+
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutBackgroundTodayDark}"
+                                Property="TextBlock.Foreground" />
+
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundDark}"
+                                Property="TextBlock.Foreground" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonBlackoutSelectedBorderBrushDark}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonBlackoutSelectedBackgroundDark}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonInactiveForegroundDark}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewBlackoutForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarButtonStyleDarkModern1"
+        TargetType="{x:Type primitives:CalendarButton}">
+
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundDark}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBorderBrush}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="1" />
+        <Setter
+            Property="FrameworkElement.MinWidth"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.MinHeight"
+            Value="42" />
+        <Setter
+            Property="FrameworkElement.Margin"
+            Value="1" />
+        <Setter
+            Property="Control.FontSize"
+            Value="20" />
+        <Setter
+            Property="Control.FontWeight"
+            Value="Normal" />
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.FocusVisualStyle"
+            Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+        <Setter
+            Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
+            Property="primitives:FocusVisualHelper.FocusVisualMargin"
+            Value="-2" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarButton}">
+                    <Grid
+                        SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="Background"
+                            Background="{TemplateBinding Control.Background}"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Margin="-1" />
+                        <Border
+                            x:Name="HighlightBorder"
+                            BorderThickness="2" />
+                        <TextBlock
+                            x:Name="NormalText"
+                            FontFamily="{TemplateBinding Control.FontFamily}"
+                            FontSize="{TemplateBinding Control.FontSize}"
+                            FontWeight="{TemplateBinding Control.FontWeight}"
+                            Text="{TemplateBinding ContentControl.Content}"
+                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="UIElement.IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushMouseOverDark}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOverDark}"
+                                Property="Border.Background" />
+                        </Trigger>
+                        <Trigger
+                            Property="ButtonBase.IsPressed"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewPressedBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </Trigger>
+                        <Trigger
+                            Property="primitives:CalendarButton.HasSelectedDays"
+                            Value="True">
+                            <!--Selected months-->
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource DayButtonHighlightBackgroundPressedDark}"
+                                Property="Border.Background" />
+
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarButton.HasSelectedDays"
+                                    Value="True" />
+                                <Condition
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewSelectedHoverBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarButton.HasSelectedDays"
+                                    Value="True" />
+                                <Condition
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewSelectedPressedBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </MultiTrigger>
+                        <Trigger
+                            Property="primitives:CalendarButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource SystemControlDisabledChromeMediumLowBrush}"
+                                Property="Border.Background" />
+                        </Trigger>
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewBlackoutForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarStyleDarkModern1"
+        TargetType="{x:Type pdtwt:PersianCalendar}">
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarItemStyle"
+            Value="{StaticResource DefaultPersianCalendarDarkModern1}" />
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarDayButtonStyle"
+            Value="{StaticResource CalendarDayButtonStyleDarkModern1}" />
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarButtonStyle"
+            Value="{StaticResource PersianCalendarButtonStyleDarkModern1}" />
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundDark}" />
+        <Setter
+            Property="Control.Background"
+            Value="{DynamicResource PersianCalendarBackgroundDark}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource PersianCalendarBorderBrushDark}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="2" />
+        <Setter
+            Property="FrameworkElement.HorizontalAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.VerticalAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.IsTabStop"
+            Value="False" />
+        <Setter
+            Property="primitives:ControlHelper.CornerRadius"
+            Value="5" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:PersianCalendar}">
+                    <Grid
+                        x:Name="PART_Root"
+                        SnapsToDevicePixels="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition
+                                Height="auto" />
+                        </Grid.RowDefinitions>
+                        <primitives:CalendarItem
+                            x:Name="PART_CalendarItem"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Background="{TemplateBinding Control.Background}"
+                            Style="{TemplateBinding pdtwt:PersianCalendar.CalendarItemStyle}"
+                            primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarDarkModern1"
+        TargetType="{x:Type pdtwt:PersianCalendar}"
+        BasedOn="{StaticResource PersianCalendarStyleDarkModern1}">
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:PersianCalendar}">
+                    <!--<primitives:ThemeShadowChrome
+                        x:Name="Shdw"
+                        IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"
+                        CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
+                        SnapsToDevicePixels="True"
+                        primitives:OpeningAnimationHelper.Storyboard="{DynamicResource OpeningStoryboard}">
+                        <FrameworkElement.Resources>
+                            <Storyboard
+                                x:Key="OpeningStoryboard">
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="0"
+                                    To="1"
+                                    Duration="0:0:0.100"
+                                    Storyboard.Target="{Binding ElementName=Shdw}" />
+                            </Storyboard>
+                        </FrameworkElement.Resources>
+                    </primitives:ThemeShadowChrome>-->
+                    <Grid
+                        x:Name="PART_Root">
+                        <primitives:CalendarItem
+                            x:Name="PART_CalendarItem"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Background="{TemplateBinding Control.Background}"
+                            Style="{TemplateBinding pdtwt:PersianCalendar.CalendarItemStyle}"
+                            primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--Light-->
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushMouseOverLight"
+        Color="#FFF51C6B" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundMouseOverLight"
+        Color="#FFF51C6B" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushPressedLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundPressedLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushTodayLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundTodayLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBorderBrushTodayLightSelectedLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonHighlightBackgroundTodayLightSelectedLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutForegroundLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="NormalForegroundLight"
+        Color="#FF777777" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutBackgroundTodayLight"
+        Color="#FFA06E6E" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutSelectedBorderBrushLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutSelectedBackgroundLight"
+        Color="#FFD2004D" />
+
+    <SolidColorBrush
+        x:Key="DayButtonInactiveForegroundLight"
+        Color="#FFC3C3C3" />
+
+    <SolidColorBrush
+        x:Key="DayButtonInactiveBackgroundLight"
+        Color="#FFEDEDED" />
+
+    <SolidColorBrush
+        x:Key="DayButtonGridHighlightBorderLight"
+        Color="White" />
+
+    <SolidColorBrush
+        x:Key="PersianCalendarBackgroundLight"
+        Color="WhiteSmoke" />
+
+    <SolidColorBrush
+        x:Key="PersianCalendarBorderBrushLight"
+        Color="White" />
+
+    <Style
+        x:Key="DefaultPersianCalendarLightModern1"
+        TargetType="{x:Type primitives:CalendarItem}">
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Background"
+            Value="#FFEFEFEF" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Stretch" />
+
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarItem}">
+                    <FrameworkTemplate.Resources>
+                        <Style
+                            TargetType="{x:Type TextBlock}"
+                            x:Key="WeekDayNameStyle">
+                            <Setter
+                                Property="TextBlock.FontWeight"
+                                Value="Normal" />
+                            <Setter
+                                Property="TextBlock.FontSize"
+                                Value="12" />
+                            <Setter
+                                Property="TextBlock.TextTrimming"
+                                Value="None" />
+                            <Setter
+                                Property="TextBlock.TextWrapping"
+                                Value="Wrap" />
+                            <Setter
+                                Property="TextBlock.LineStackingStrategy"
+                                Value="MaxHeight" />
+                            <Setter
+                                Property="FrameworkElement.HorizontalAlignment"
+                                Value="Center" />
+                            <Setter
+                                Property="FrameworkElement.VerticalAlignment"
+                                Value="Center" />
+                        </Style>
+                        <DataTemplate
+                            x:Key="DayTitleTemplate">
+                            <TextBlock
+                                Style="{StaticResource WeekDayNameStyle}"
+                                Text="{Binding}" />
+                        </DataTemplate>
+
+                        <DataTemplate
+                            x:Key="IconTemplate">
+                            <primitives:FontIconFallback
+                                Data="{Binding}" />
+                        </DataTemplate>
+                    </FrameworkTemplate.Resources>
+                    <Grid
+                        x:Name="PART_Root"
+                        SnapsToDevicePixels="True">
+                        <Grid.Resources>
+                            <Style
+                                TargetType="{x:Type Button}"
+                                x:Key="NavigationButtonStyle"
+                                BasedOn="{StaticResource DefaultButtonStyle}">
+                                <Setter
+                                    Property="FrameworkElement.HorizontalAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="FrameworkElement.VerticalAlignment"
+                                    Value="Stretch" />
+                                <Setter
+                                    Property="FrameworkElement.FocusVisualStyle"
+                                    Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+                                <Setter
+                                    Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+                                    Value="{DynamicResource UseSystemFocusVisuals}" />
+                                <Setter
+                                    Property="Control.FontSize"
+                                    Value="20" />
+                                <Setter
+                                    Property="Control.Background"
+                                    Value="{DynamicResource CalendarViewNavigationButtonBackground}" />
+                                <Setter
+                                    Property="Control.Template">
+                                    <Setter.Value>
+                                        <ControlTemplate
+                                            TargetType="{x:Type Button}">
+                                            <Border
+                                                Background="{TemplateBinding Control.Background}"
+                                                Margin="{TemplateBinding Control.Padding}">
+                                                <Border
+                                                    x:Name="Border"
+                                                    BorderBrush="{DynamicResource CalendarViewNavigationButtonBorderBrush}"
+                                                    BorderThickness="{TemplateBinding Control.BorderThickness}">
+                                                    <ContentPresenter
+                                                        x:Name="Text"
+                                                        HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                                                </Border>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger
+                                                    Property="UIElement.IsMouseOver"
+                                                    Value="True">
+                                                    <Setter
+                                                        TargetName="Border"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonBorderBrushPointerOver}"
+                                                        Property="Border.BorderBrush" />
+                                                    <Setter
+                                                        TargetName="Text"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonForegroundPointerOver}"
+                                                        Property="TextElement.Foreground" />
+                                                </Trigger>
+                                                <Trigger
+                                                    Property="ButtonBase.IsPressed"
+                                                    Value="True">
+                                                    <Setter
+                                                        TargetName="Text"
+                                                        Value="{DynamicResource CalendarViewNavigationButtonForegroundPressed}"
+                                                        Property="TextElement.Foreground" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <ControlTemplate
+                                x:Key="PreviousButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
+                                            Fill="{DynamicResource NormalForegroundLight}"
+                                            HorizontalAlignment="Left"
+                                            Height="10"
+                                            Margin="14,-6,0,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="6" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="TodayButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FF73A9D8"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M184.858,1143.56 C185.397,1143.02 186.009,1142.55 186.009,1142 C186.009,1141.45 185.562,1141 185.009,1141 L175.009,1141 C174.888,1141 174.009,1141 174.009,1142 L174.009,1152 C174.009,1152.55 174.457,1153 175.009,1153 C175.562,1153 175.947,1152.47 176.373,1152.05 L179.152,1149.27 C180.922,1151.36 182,1154.05 182,1157 C182,1163.63 176.627,1169 170,1169 C163.373,1169 158,1163.63 158,1157 C158,1151.06 162.327,1146.13 168,1145.18 L168,1141.14 C160.109,1142.12 154,1148.84 154,1157 C154,1165.84 161.164,1173 170,1173 C178.836,1173 186,1165.84 186,1157 C186,1152.94 184.484,1149.25 181.993,1146.43 L184.858,1143.56"
+                                            Fill="{DynamicResource NormalForegroundLight}"
+                                            HorizontalAlignment="Center"
+                                            Height="10"
+                                            Margin="14,-6,0,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="10" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="NextButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="path"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="(Shape.Fill).(Brush.Opacity)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Rectangle
+                                        Fill="Transparent"
+                                        Opacity="1"
+                                        Stretch="Fill" />
+                                    <Grid>
+                                        <Path
+                                            x:Name="path"
+                                            Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+                                            Fill="{DynamicResource NormalForegroundLight}"
+                                            HorizontalAlignment="Right"
+                                            Height="10"
+                                            Margin="0,-6,14,0"
+                                            Stretch="Fill"
+                                            VerticalAlignment="Center"
+                                            Width="6" />
+                                    </Grid>
+                                </Grid>
+                            </ControlTemplate>
+                            <ControlTemplate
+                                x:Key="HeaderButtonTemplate"
+                                TargetType="{x:Type Button}">
+                                <Grid
+                                    Cursor="Hand">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup
+                                            x:Name="CommonStates">
+                                            <VisualState
+                                                x:Name="Normal" />
+                                            <VisualState
+                                                x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="buttonContent"
+                                                        To="#FFF51C6B"
+                                                        Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState
+                                                x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Duration="0"
+                                                        Storyboard.TargetName="buttonContent"
+                                                        To=".5"
+                                                        Storyboard.TargetProperty="Opacity" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <ContentPresenter
+                                        x:Name="buttonContent"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Content="{TemplateBinding Content}"
+                                        TextElement.Foreground="{DynamicResource NormalForegroundLight}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        Margin="1,4,1,9"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Grid>
+                            </ControlTemplate>
+                            <SolidColorBrush
+                                x:Key="DisabledColor"
+                                Color="#A5FFFFFF" />
+                        </Grid.Resources>
+                        <Border
+                            Background="{TemplateBinding Control.Background}"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}">
+                            <Border
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                CornerRadius="1">
+                                <Grid
+                                    Margin="0,10"
+                                    VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="40" />
+                                        <RowDefinition
+                                            Height="*" />
+                                        <RowDefinition
+                                            Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Button
+                                        x:Name="PART_PreviousButton"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Focusable="False"
+                                        Width="28"
+                                        Height="20"
+                                        HorizontalAlignment="Left"
+                                        Template="{StaticResource PreviousButtonTemplate}" />
+
+                                    <Button
+                                        x:Name="PART_HeaderButton"
+                                        Grid.Column="1"
+                                        Focusable="False"
+                                        FontWeight="Bold"
+                                        HorizontalAlignment="Center"
+                                        Grid.Row="0"
+                                        Style="{StaticResource NavigationButtonStyle}"
+                                        Template="{StaticResource HeaderButtonTemplate}"
+                                        VerticalAlignment="Center" />
+
+                                    <Button
+                                        x:Name="PART_NextButton"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Right"
+                                        Width="28"
+                                        Height="20"
+                                        Focusable="False"
+                                        Template="{StaticResource NextButtonTemplate}" />
+
+                                    <Grid
+                                        x:Name="PART_MonthView"
+                                        Visibility="Visible"
+                                        TextElement.Foreground="{DynamicResource NormalForegroundLight}"
+                                        Grid.ColumnSpan="3"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="6,-1,6,6"
+                                        Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="38" />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+
+                                    <Grid
+                                        x:Name="PART_YearView"
+                                        Grid.ColumnSpan="3"
+                                        HorizontalAlignment="Stretch"
+                                        Margin="6,-3,7,6"
+                                        Grid.Row="1"
+                                        Visibility="Hidden">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+
+                                    <Grid
+                                        Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Button
+                                            Margin="0,10"
+                                            x:Name="PART_GoToTodayButton"
+                                            Focusable="False"
+                                            Content="{DynamicResource TodayText}"
+                                            Style="{StaticResource ButtonCustom}">
+                                        </Button>
+
+                                        <Button
+                                            Grid.Column="1"
+                                            Margin="0,10"
+                                            Visibility="Collapsed"
+                                            Name="PART_ButtonConfirm"
+                                            HorizontalAlignment="Center"
+                                            Style="{StaticResource ButtonCustom}"
+                                            Content="{DynamicResource ConfirmText}">
+
+                                        </Button>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </Border>
+
+                        <Rectangle
+                            x:Name="PART_DisabledVisual"
+                            Fill="{StaticResource DisabledColor}"
+                            Opacity="0"
+                            RadiusX="2"
+                            RadiusY="2"
+                            Stroke="{StaticResource DisabledColor}"
+                            Stretch="Fill"
+                            StrokeThickness="1"
+                            Visibility="Collapsed" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Value="{DynamicResource CalendarViewWeekDayForegroundDisabled}"
+                                Property="TextElement.Foreground" />
+                        </Trigger>
+                        <DataTrigger
+                            Value="Year"
+                            Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pdtwt:PersianCalendar}}}">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Property="UIElement.Visibility"
+                                Value="Hidden" />
+                            <Setter
+                                TargetName="PART_YearView"
+                                Property="UIElement.Visibility"
+                                Value="Visible" />
+
+                        </DataTrigger>
+                        <DataTrigger
+                            Value="Decade"
+                            Binding="{Binding DisplayMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type pdtwt:PersianCalendar}}}">
+                            <Setter
+                                TargetName="PART_MonthView"
+                                Property="UIElement.Visibility"
+                                Value="Hidden" />
+                            <Setter
+                                TargetName="PART_YearView"
+                                Property="UIElement.Visibility"
+                                Value="Visible" />
+
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="CalendarDayButtonStyleLightModern1"
+        TargetType="{x:Type primitives:CalendarDayButton}">
+        <Setter
+            Property="Control.Background"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBackground}" />
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundLight}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBorderBrush}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="1" />
+        <Setter
+            Property="FrameworkElement.MinWidth"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.MinHeight"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.Margin"
+            Value="1" />
+        <Setter
+            Property="Control.FontSize"
+            Value="20" />
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.FocusVisualStyle"
+            Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+        <Setter
+            Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
+            Property="primitives:FocusVisualHelper.FocusVisualMargin"
+            Value="-2" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarDayButton}">
+                    <Grid
+                        SnapsToDevicePixels="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup
+                                x:Name="DayStates">
+                                <primitives:VisualStateGroupListener.Listener>
+                                    <primitives:VisualStateGroupListener
+                                        x:Name="DayStatesListener" />
+                                </primitives:VisualStateGroupListener.Listener>
+                                <VisualState
+                                    x:Name="RegularDay" />
+                                <VisualState
+                                    x:Name="Today" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Margin="-1" />
+                        <Rectangle
+                            x:Name="Background"
+                            Fill="{TemplateBinding Control.Background}" />
+                        <Border
+                            CornerRadius="1"
+                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
+                            x:Name="HighlightBorderCover"
+                            Margin="-2"
+                            BorderThickness="0" />
+                        <Border
+                            CornerRadius="1"
+                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
+                            x:Name="HighlightBorder"
+                            Margin="-2"
+                            BorderThickness="1" />
+                        <TextBlock
+                            x:Name="NormalText"
+                            FontFamily="{TemplateBinding Control.FontFamily}"
+                            FontSize="{TemplateBinding Control.FontSize}"
+                            FontWeight="{TemplateBinding Control.FontWeight}"
+                            Text="{TemplateBinding ContentControl.Content}"
+                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+            <UIElement.RenderTransform>
+              <TranslateTransform
+                                    Y="-1" />
+            </UIElement.RenderTransform>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsInactive"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushMouseOverLight}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOverLight}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsSelected"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushPressedLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundPressedLight}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushTodayLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundTodayLight}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <!--<Trigger
+                          Property="primitives:CalendarDayButton.IsSelected"
+                          Value="True">
+                          <Setter
+                              TargetName="HighlightBorder"
+                              Value="{DynamicResource CalendarViewSelectedBorderBrush}"
+                              Property="Border.BorderBrush" />
+                      </Trigger>-->
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+                                <Condition
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBorderBrushPressedLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundPressedLight}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushTodayLightSelectedLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBackgroundTodayLightSelectedLight}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsMouseOver"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsToday"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushTodayLightSelectedLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBackgroundTodayLightSelectedLight}"
+                                Property="Border.Background" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="CornerRadius"
+                                Value="18" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Property="Margin"
+                                Value="3" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource DayButtonInactiveBackgroundLight}"
+                                Property="Shape.Fill" />
+                        </Trigger>
+
+                        <Trigger
+                            SourceName="DayStatesListener"
+                            Property="primitives:VisualStateGroupListener.CurrentStateName"
+                            Value="Today">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource SystemControlHighlightAccentBrush}"
+                                Property="Shape.Fill" />
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewTodayForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="RegularDay" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundLight}"
+                                Property="TextBlock.Foreground" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="DayStatesListener"
+                                    Property="primitives:VisualStateGroupListener.CurrentStateName"
+                                    Value="Today" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="Background"
+                                Property="UIElement.Opacity"
+                                Value="0.5" />
+                            <Setter
+                                TargetName="NormalText"
+                                Property="UIElement.Opacity"
+                                Value="0.8" />
+
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundLight}"
+                                Property="TextBlock.Foreground" />
+
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutBackgroundTodayLight}"
+                                Property="TextBlock.Foreground" />
+
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutForegroundLight}"
+                                Property="TextBlock.Foreground" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonBlackoutSelectedBorderBrushLight}"
+                                Property="Border.BorderBrush" />
+
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonBlackoutSelectedBackgroundLight}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="HighlightBorderCover"
+                                Property="BorderThickness"
+                                Value="1" />
+                        </MultiTrigger>
+
+                        <Trigger
+                            Property="primitives:CalendarDayButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonInactiveForegroundLight}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewBlackoutForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarButtonStyleLightModern1"
+        TargetType="{x:Type primitives:CalendarButton}">
+
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundLight}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource CalendarViewCalendarItemRevealBorderBrush}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="1" />
+        <Setter
+            Property="FrameworkElement.MinWidth"
+            Value="40" />
+        <Setter
+            Property="FrameworkElement.MinHeight"
+            Value="42" />
+        <Setter
+            Property="FrameworkElement.Margin"
+            Value="1" />
+        <Setter
+            Property="Control.FontSize"
+            Value="20" />
+        <Setter
+            Property="Control.FontWeight"
+            Value="Normal" />
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.FocusVisualStyle"
+            Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+        <Setter
+            Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+            Value="True" />
+        <Setter
+            Property="primitives:FocusVisualHelper.FocusVisualMargin"
+            Value="-2" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type primitives:CalendarButton}">
+                    <Grid
+                        SnapsToDevicePixels="True">
+                        <Border
+                            x:Name="Background"
+                            Background="{TemplateBinding Control.Background}"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Margin="-1" />
+                        <Border
+                            x:Name="HighlightBorder"
+                            BorderThickness="2" />
+                        <TextBlock
+                            x:Name="NormalText"
+                            FontFamily="{TemplateBinding Control.FontFamily}"
+                            FontSize="{TemplateBinding Control.FontSize}"
+                            FontWeight="{TemplateBinding Control.FontWeight}"
+                            Text="{TemplateBinding ContentControl.Content}"
+                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="UIElement.IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource DayButtonHighlightBorderBrushMouseOverLight}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{StaticResource DayButtonHighlightBackgroundMouseOverLight}"
+                                Property="Border.Background" />
+                        </Trigger>
+                        <Trigger
+                            Property="ButtonBase.IsPressed"
+                            Value="True">
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewPressedBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </Trigger>
+                        <Trigger
+                            Property="primitives:CalendarButton.HasSelectedDays"
+                            Value="True">
+                            <!--Selected months-->
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource DayButtonHighlightBackgroundPressedLight}"
+                                Property="Border.Background" />
+
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarButton.HasSelectedDays"
+                                    Value="True" />
+                                <Condition
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewSelectedHoverBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarButton.HasSelectedDays"
+                                    Value="True" />
+                                <Condition
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="HighlightBorder"
+                                Value="{DynamicResource CalendarViewSelectedPressedBorderBrush}"
+                                Property="Border.BorderBrush" />
+                        </MultiTrigger>
+                        <Trigger
+                            Property="primitives:CalendarButton.IsInactive"
+                            Value="True">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource SystemControlDisabledChromeMediumLowBrush}"
+                                Property="Border.Background" />
+                        </Trigger>
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource CalendarViewBlackoutForeground}"
+                                Property="TextBlock.Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarStyleLightModern1"
+        TargetType="{x:Type pdtwt:PersianCalendar}">
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarItemStyle"
+            Value="{StaticResource DefaultPersianCalendarLightModern1}" />
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarDayButtonStyle"
+            Value="{StaticResource CalendarDayButtonStyleLightModern1}" />
+        <Setter
+            Property="pdtwt:PersianCalendar.CalendarButtonStyle"
+            Value="{StaticResource PersianCalendarButtonStyleLightModern1}" />
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundLight}" />
+        <Setter
+            Property="Control.Background"
+            Value="{DynamicResource PersianCalendarBackgroundLight}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource PersianCalendarBorderBrushLight}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="2" />
+        <Setter
+            Property="FrameworkElement.HorizontalAlignment"
+            Value="Center" />
+        <Setter
+            Property="FrameworkElement.VerticalAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.IsTabStop"
+            Value="False" />
+        <Setter
+            Property="primitives:ControlHelper.CornerRadius"
+            Value="5" />
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:PersianCalendar}">
+                    <Grid
+                        x:Name="PART_Root"
+                        SnapsToDevicePixels="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition
+                                Height="auto" />
+                        </Grid.RowDefinitions>
+                        <primitives:CalendarItem
+                            x:Name="PART_CalendarItem"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Background="{TemplateBinding Control.Background}"
+                            Style="{TemplateBinding pdtwt:PersianCalendar.CalendarItemStyle}"
+                            primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="PersianCalendarLightModern1"
+        TargetType="{x:Type pdtwt:PersianCalendar}"
+        BasedOn="{StaticResource PersianCalendarStyleLightModern1}">
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:PersianCalendar}">
+                    <!--<primitives:ThemeShadowChrome
+                      x:Name="Shdw"
+                      IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"
+                      CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
+                      SnapsToDevicePixels="True"
+                      primitives:OpeningAnimationHelper.Storyboard="{DynamicResource OpeningStoryboard}">
+                      <FrameworkElement.Resources>
+                          <Storyboard
+                              x:Key="OpeningStoryboard">
+                              <DoubleAnimation
+                                  Storyboard.TargetProperty="Opacity"
+                                  From="0"
+                                  To="1"
+                                  Duration="0:0:0.100"
+                                  Storyboard.Target="{Binding ElementName=Shdw}" />
+                          </Storyboard>
+                      </FrameworkElement.Resources>
+                  </primitives:ThemeShadowChrome>-->
+                    <Grid
+                        x:Name="PART_Root">
+                        <primitives:CalendarItem
+                            x:Name="PART_CalendarItem"
+                            BorderBrush="{TemplateBinding Control.BorderBrush}"
+                            BorderThickness="{TemplateBinding Control.BorderThickness}"
+                            Background="{TemplateBinding Control.Background}"
+                            Style="{TemplateBinding pdtwt:PersianCalendar.CalendarItemStyle}"
+                            primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>

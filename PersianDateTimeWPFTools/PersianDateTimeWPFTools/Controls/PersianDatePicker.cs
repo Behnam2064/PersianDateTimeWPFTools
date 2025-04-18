@@ -1,4 +1,5 @@
-﻿using PersianDateTimeWPFTools.Windows.Controls;
+﻿using PersianDateTimeWPFTools.Tools;
+using PersianDateTimeWPFTools.Windows.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -747,6 +748,8 @@ namespace PersianDateTimeWPFTools.Controls
         private void InitializeCalendar()
         {
             this._persianCalendar = new PersianCalendar();
+            InitResources.SetControlStyle(this);
+
             this._persianCalendar.DayButtonMouseUp += new MouseButtonEventHandler(this.Calendar_DayButtonMouseUp);
             this._persianCalendar.DisplayDateChanged += new EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs>(this.Calendar_DisplayDateChanged);
             this._persianCalendar.SelectedDatesChanged += new EventHandler<SelectionChangedEventArgs>(this.Calendar_SelectedDatesChanged);

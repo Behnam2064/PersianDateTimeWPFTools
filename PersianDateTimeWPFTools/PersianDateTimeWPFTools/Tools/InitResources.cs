@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersianDateTimeWPFTools.Themes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,11 +8,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace PersianDateTimeWPFTools.Tools
 {
     public class InitResources : ResourceDictionary
     {
+
+        public static EventHandler<ThemeChangedEventArgs> OnTheme;
+
+        private static BaseTheme _theme = new ThemeDefault();
+        public static BaseTheme Theme
+        {
+            get => _theme;
+        }
+
+        public BaseThemeName SelectedTheme
+        {
+            set
+            {
+                switch (value)
+                {
+                    case BaseThemeName.DarkModern1:
+                        _theme = new ThemeDarkModern1();
+                        break;
+                    case BaseThemeName.LightModern1:
+                        _theme = new ThemeLightModern1();
+                        break;
+                    case BaseThemeName.Default:
+                    default:
+                        _theme = new ThemeDefault();
+                        break;
+                }
+            }
+            get
+            {
+                return Theme.Theme;
+            }
+        }
+
         public InitResources()
         {
             // Check for design mode. 
@@ -27,7 +62,39 @@ namespace PersianDateTimeWPFTools.Tools
             else
             {
                 // Default value is en-US
+                ChangeLanguage("en");
             }
+        }
+
+        public InitResources(bool noInit)
+        {
+
+        }
+
+        internal static Style FindStyle(string controlName, string styleName)
+        {
+            return (Style)Application.Current.Resources[controlName + styleName];
+        }
+
+        internal static void SetControlStyle(Control control)
+        {
+            if (Theme.Theme != BaseThemeName.Default)
+            {
+                var style = FindStyle(control.GetType().Name, Theme.Theme.ToString());
+                if (style != null)
+                    control.Style = style;
+            }
+        }
+
+        public static void SetTheme(BaseTheme theme)
+        {
+            if (theme == null)
+                throw new ArgumentNullException(nameof(theme));
+
+            var old = _theme.Clone();
+            _theme = theme;
+            var args = new ThemeChangedEventArgs(theme, (BaseTheme)old);
+            OnTheme?.Invoke(new InitResources(true), args);
         }
 
         private void Init()
@@ -78,4 +145,16 @@ namespace PersianDateTimeWPFTools.Tools
             return null;
         }
     }
+
+    public class ThemeChangedEventArgs : EventArgs
+    {
+        public BaseTheme NewTheme { get; private set; }
+        public BaseTheme OldTheme { get; private set; }
+        public ThemeChangedEventArgs(BaseTheme newTheme, BaseTheme oldTheme)
+        {
+            this.NewTheme = newTheme;
+            this.OldTheme = OldTheme;
+        }
+    }
+
 }

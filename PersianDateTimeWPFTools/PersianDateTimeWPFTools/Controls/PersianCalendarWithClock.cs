@@ -68,7 +68,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty CustomCultureProperty = DependencyProperty.Register(nameof(CustomCulture), typeof(CultureInfo), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null));
         public static readonly DependencyProperty ShowTodayButtonProperty
-            = DependencyProperty.Register(nameof(ShowTodayButton), 
+            = DependencyProperty.Register(nameof(ShowTodayButton),
                 typeof(bool), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata(false));
         public static readonly DependencyProperty CalendarStyleProperty
             = DependencyProperty.Register(nameof(CalendarStyle), typeof(Style), typeof(PersianCalendarWithClock));
@@ -192,8 +192,9 @@ namespace PersianDateTimeWPFTools.Controls
 
         public PersianCalendarWithClock()
         {
+            InitResources.SetControlStyle(this);
             DisplayDateTime = DateTime.Today;
-            DisplayDate = DateTime.Today;   
+            DisplayDate = DateTime.Today;
             InitCalendarAndClock();
             Loaded += (s, e) =>
             {
@@ -337,7 +338,7 @@ namespace PersianDateTimeWPFTools.Controls
                 BorderThickness = new Thickness(),
                 Background = Brushes.Transparent
             };
-
+            
             _clock.SetBinding(FrameworkElement.StyleProperty, this.GetDatePickerBinding(ClockStyleProperty));
             //this.ClockStyle = (Style)Application.Current.Resources["ClockBaseStyle"];
 
@@ -351,7 +352,7 @@ namespace PersianDateTimeWPFTools.Controls
                 Focusable = false,
             };
 
-
+            
             _calendar.SetBinding(PersianCalendar.ShowConfirmButtonProperty,
                 new Binding(ShowConfirmButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 

@@ -62,6 +62,12 @@ namespace PersianDateTimeWPFTools.Controls
 
         private int _secValue;
 
+        public Clock()
+        {
+            InitResources.SetControlStyle(this);
+            
+        }
+
         #endregion Data
 
         #region Public Properties

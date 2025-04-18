@@ -14,6 +14,8 @@ using System.Windows;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using CalendarDateRange = PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange;
+using System.Diagnostics;
+using PersianDateTimeWPFTools.Tools;
 
 namespace PersianDateTimeWPFTools.Controls
 {
@@ -253,6 +255,7 @@ namespace PersianDateTimeWPFTools.Controls
 
         public PersianDateTimePicker()
         {
+            InitResources.SetControlStyle(this);
             DisplayDate = DateTime.Today;
             InitCalendarWithClock();
             //CommandBindings.Add(new CommandBinding(ControlCommands.Clear, (s, e) =>
@@ -273,6 +276,18 @@ namespace PersianDateTimeWPFTools.Controls
             get => (Style)GetValue(CalendarStyleProperty);
             set => SetValue(CalendarStyleProperty, value);
         }
+
+
+        public static readonly DependencyProperty PersianCalendarWithClockStyleProperty = DependencyProperty.Register(
+            "PersianCalendarWithClockStyle", typeof(Style), typeof(PersianDateTimePicker), new PropertyMetadata(default(Style)));
+
+        public Style PersianCalendarWithClockStyle
+        {
+            get => (Style)GetValue(PersianCalendarWithClockStyleProperty);
+            set => SetValue(PersianCalendarWithClockStyleProperty, value);
+        }
+
+
 
         public static readonly DependencyProperty DisplayDateTimeProperty = DependencyProperty.Register(
             "DisplayDateTime", typeof(DateTime), typeof(PersianDateTimePicker), new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, null, CoerceDisplayDateTime));
@@ -583,7 +598,10 @@ namespace PersianDateTimeWPFTools.Controls
                 //ShowConfirmButton = true
             };
 
-            
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.StyleProperty,
+                new Binding(PersianCalendarWithClockStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
             _calendarWithClock.SetBinding(PersianCalendarWithClock.ShowConfirmButtonProperty,
                 new Binding(ShowConfirmButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
