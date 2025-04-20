@@ -77,7 +77,6 @@ New Dependency Properties
 
 
 ## How to change the theme
-
 In the **App.xaml** file, you can select one of the following themes by selecting the **SelectedTheme** property in the InitResources class.
 - Default
 - DarkModern1
@@ -129,12 +128,14 @@ public partial class App : Application
         public App()
         {
             new InitResources()
-            ..ChangeLanguage("fa"); // en
+            .ChangeLanguage("fa"); // en
         }
     }
 ```
 
 ## How to change the language of controls with our own resources
+To read the language resources, please visit the link below.
+https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/PersianDateTimeWPFTools/Resources/Lang/Lang.en.xaml
 ```
 public partial class App : Application
     {        
