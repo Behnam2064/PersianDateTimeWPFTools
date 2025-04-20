@@ -135,7 +135,7 @@ public partial class App : Application
 
 ## How to change the language of controls with our own resources
 To read the language resources, please visit the link below.
-[GithubLink]: <https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/PersianDateTimeWPFTools/Resources/Lang/Lang.en.xaml>
+[Github Link](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/PersianDateTimeWPFTools/Resources/Lang/Lang.en.xaml)
 ```
 public partial class App : Application
     {        
