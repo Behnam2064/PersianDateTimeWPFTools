@@ -21,11 +21,13 @@ Please see the test project for further guidance.
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdtp.png)
 
 You can manually change the Culture of the control using the following code in XAML or C#.
+
 **XAML**
 ```
 CustomCultureName="fa-IR"
 ```
 or
+
 **C#**
 ```
 pcwc1.CustomCulture = CultureInfo.CreateSpecificCulture("en-US");
