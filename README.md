@@ -74,3 +74,74 @@ New Dependency Properties
 | FirstDayOfWeek | First day of the week  |    Sunday |
 | SelectionMode | Type of selection  |    SingleDate |
 | IsTodayHighlighted | Show current day as highlights  |    True |
+
+
+## How to change the theme
+
+In the **App.xaml** file, you can select one of the following themes by selecting the **SelectedTheme** property in the InitResources class.
+- Default
+- DarkModern1
+- LightModern1
+```
+<Application 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <pdtt:InitResources
+                    SelectedTheme="LightModern1"
+                />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+```
+
+## How to change theme in C#
+You can do the following in the constructor of the App.xaml.cs class:
+```
+public partial class App : Application
+    {        
+        public App()
+        {
+            var init = new InitResources();
+            init.SelectedTheme = PersianDateTimeWPFTools.Themes.BaseThemeName.DarkModern1;
+        }
+    }
+```
+or
+```
+public partial class App : Application
+    {        
+        public App()
+        {
+            InitResources.SetTheme(new ThemeDarkModern1());
+        }
+    }
+```
+## How to change the control language?
+```
+public partial class App : Application
+    {        
+        public App()
+        {
+            new InitResources()
+            ..ChangeLanguage("fa"); // en
+        }
+    }
+```
+
+## How to change the language of controls with our own resources
+```
+public partial class App : Application
+    {        
+        public App()
+        {
+            new InitResources()
+            .ChangeLanguage(null, "pack://application:,,,/TestPersianCalendar;component/Lang.es.xaml"); // Your resource address
+        }
+    }
+```
