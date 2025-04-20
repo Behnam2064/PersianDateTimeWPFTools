@@ -9,6 +9,7 @@ Please see the test project for further guidance.
 
 ## Controls
 - Clock
+Select a time of day (24 hours)
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/clock.png)
 - PersianCalendar
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pc.png)
