@@ -9,12 +9,15 @@ Please see the test project for further guidance.
 
 ## Controls
 - Clock
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/clock.png)
 - PersianCalendar
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pc.png)
 - PersianDatePicker
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdp.png)
 - PersianDateTimePicker
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdpwc.png)
 - PersianCalendarWithClock
-
-![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Controls.png)
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdtp.png)
 
 ## How to use?
 Step 1: Add the following resources in the App.xaml file
@@ -54,7 +57,7 @@ Sample:
 
 
 ## Ability to write custom styles for all controls
-![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Persian-calendar-Custom-Style.png)
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Persian-calendar-Custom-Style.png)
 
 
 ## Dependency Properties
