@@ -22,11 +22,8 @@ Please see the test project for further guidance.(Click on the Project website l
 - PersianDateTimePicker
 - PersianCalendarWithClock
 
-![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/workflows/Controls.png)
+![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Controls.png)
 
-<![CDATA[
-For more information please check my [github]: <https://github.com/Behnam2064/PersianDateTimeWPFTools>
- ]]>
 ## How to use?
 Step 1: Add the following resources in the App.xaml file
 ```
@@ -64,7 +61,7 @@ xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
 ```
 
 ## Ability to write custom styles for all controls
-![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/workflows/Persian-calendar-Custom-Style.png)
+![IMAGE_DESCRIPTION](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Persian-calendar-Custom-Style.png)
 
 
 ## Dependency Properties
@@ -86,7 +83,6 @@ New Dependency Properties
 | IsTodayHighlighted | Show current day as highlights  |    True |
 
 
-
 ## How to change the theme
 In the **App.xaml** file, you can select one of the following themes by selecting the **SelectedTheme** property in the InitResources class.
 - Default
@@ -94,19 +90,11 @@ In the **App.xaml** file, you can select one of the following themes by selectin
 - LightModern1
 ```
 <Application 
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
              >
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <pdtt:InitResources
-                    SelectedTheme="LightModern1"
-                />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
+        <pdtt:InitResources
+            SelectedTheme="LightModern1"
+        />
 </Application>
 ```
 ## How to change theme in C#
@@ -117,46 +105,31 @@ public partial class App : Application
         public App()
         {
             var init = new InitResources();
-            init.SelectedTheme = PersianDateTimeWPFTools.Themes.BaseThemeName.DarkModern1;
-        }
-    }
-```
-or
-```
-public partial class App : Application
-    {        
-        public App()
-        {
-            InitResources.SetTheme(new ThemeDarkModern1());
-        }
-    }
-```
-## How to change the control language?
-```
-public partial class App : Application
-    {        
-        public App()
-        {
-            new InitResources()
-            .ChangeLanguage("fa"); // en
+            init.SelectedTheme = BaseThemeName.DarkModern1;
+			//or
+			InitResources.SetTheme(new ThemeDarkModern1());
         }
     }
 ```
 
+## How to change the control language?
+```    
+public App()
+{
+    new InitResources()
+    .ChangeLanguage("fa"); // en
+}
+```
+
 ## How to change the language of controls with our own resources
-To read the language resources, please visit the link below.
-[Github Link](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/PersianDateTimeWPFTools/Resources/Lang/Lang.en.xaml)
-```
-public partial class App : Application
-    {        
-        public App()
-        {
-            new InitResources()
-            .ChangeLanguage(null, "pack://application:,,,/TestPersianCalendar;component/Lang.es.xaml"); // Your resource address
-        }
-    }
-```
-	</Description>
+To read the language resources, please visit my repo
+```    
+public App()
+{
+    new InitResources()
+    .ChangeLanguage(null, "pack://application:,,,/Your resource address");
+}
+```	</Description>
     <PackageProjectUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</RepositoryUrl>
     <PackageTags>PersianCalendar;PersianDatePicker;Persian Calendar;PersianDate Picker;Solar Calendar;shamsi;jalili;</PackageTags>
