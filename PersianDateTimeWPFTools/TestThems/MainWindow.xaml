@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="TestThems.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:TestThems"
+    mc:Ignorable="d"
+    xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    Title="MainWindow"
+    Height="450"
+    Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+            <CheckBox
+                Content="Stretch"
+                Checked="cbIsStretch_Checked"
+                Unchecked="cbIsStretch_Checked"
+                x:Name="cbIsStretch" />
+        </DockPanel>
+
+        <pdtt:PersianCalendar
+            Grid.Row="1"
+            Style="{DynamicResource DefaultPersianCalendarStyle}" />
+        <pdtt:PersianCalendar
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{DynamicResource PersianCalendarLightModern1}" />
+        <pdtt:PersianCalendar
+            Grid.Row="1"
+            Style="{DynamicResource PersianCalendarDarkModern1}"
+            Grid.Column="2" />
+    </Grid>
+</Window>

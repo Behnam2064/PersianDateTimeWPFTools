@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using PersianDateTimeWPFTools.Tools;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,15 +27,17 @@ namespace TestPersianCalendar
             pdp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pdtp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pc4.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
-            pc5.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
+            //pc5.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             
 
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
+            
             var isChecked = (sender as ToggleButton)?.IsChecked ?? true;
             PersianDateTimeWPFTools.Tools.InitResources init = new PersianDateTimeWPFTools.Tools.InitResources();
+
             
             CultureInfo? culture = null;
             if (isChecked)

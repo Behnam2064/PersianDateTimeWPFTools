@@ -14,229 +14,224 @@
     <Border
         Background="#FFF3F3F3">
         <DockPanel>
-            <TextBlock
-                DockPanel.Dock="Top">
-                <Run>Changing the Calendar Culture Manually</Run>
-                <LineBreak />
-                <Run>Note that changing the Culture is usually done only once when initializing the software</Run>
-                <LineBreak />
-                <Run>Or when changing the software language.</Run>
-                <LineBreak />
-                <Run>However, you can change it at any time.</Run>
-            </TextBlock>
-            <ComboBox
-                DockPanel.Dock="Top"
-                x:Name="cb">
-                <ComboBoxItem
-                    IsSelected="True">fa-IR</ComboBoxItem>
-                <ComboBoxItem>en-US</ComboBoxItem>
-                <ComboBoxItem>pt-PT</ComboBoxItem>
-                <ComboBoxItem>en-GB</ComboBoxItem>
-                <ComboBoxItem>pt-BR</ComboBoxItem>
-                <ComboBoxItem>ar-SA</ComboBoxItem>
-            </ComboBox>
-
-            <ToggleButton
-                DockPanel.Dock="Top"
-                Checked="ToggleButton_Checked"
-                Unchecked="ToggleButton_Checked">Change culture C#</ToggleButton>
-
-            <Button
-                DockPanel.Dock="Top"
-                Click="ChangeResourceLanguageClicked"
-                Content="Change Resource Language" 
-                />
-            <DockPanel
-                DockPanel.Dock="Top">
-                <ToggleButton
-                    Margin="2"
-                    Content="Show today button"
-                    x:Name="tbShowToday" />
-
-                <ToggleButton
-                    Margin="2"
-                    Content="Allow Select Blacked Out Day"
-                    x:Name="tbSelectBlackedOutDay" />
-
-            </DockPanel>
             <TabControl>
                 <TabItem
                     Header="Main">
                     <ScrollViewer>
+                        <DockPanel>
+                            <TextBlock
+                                DockPanel.Dock="Top">
+     <Run>Changing the Calendar Culture Manually</Run>
+     <LineBreak />
+     <Run>Note that changing the Culture is usually done only once when initializing the software</Run>
+     <LineBreak />
+     <Run>Or when changing the software language.</Run>
+     <LineBreak />
+     <Run>However, you can change it at any time.</Run>
+                            </TextBlock>
+                            <ComboBox
+                                DockPanel.Dock="Top"
+                                x:Name="cb">
+                                <ComboBoxItem
+                                    IsSelected="True">fa-IR</ComboBoxItem>
+                                <ComboBoxItem>en-US</ComboBoxItem>
+                                <ComboBoxItem>pt-PT</ComboBoxItem>
+                                <ComboBoxItem>en-GB</ComboBoxItem>
+                                <ComboBoxItem>pt-BR</ComboBoxItem>
+                            </ComboBox>
 
-                        <Grid
-                            Background="#FF8A8A8A"
-                            Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-
+                            <Button
+                                Visibility="Collapsed"
+                                DockPanel.Dock="Top"
+                                Click="ChangeResourceLanguageClicked"
+                                Content="Change Resource Language" />
                             <DockPanel
-                                Grid.ColumnSpan="2">
+                                DockPanel.Dock="Top">
+                                <ToggleButton
+                                    Visibility="Collapsed"
+                                    Margin="2"
+                                    IsChecked="True"
+                                    Content="Show today button"
+                                    x:Name="tbShowToday" />
+
+                                <ToggleButton
+                                    Visibility="Collapsed"
+                                    Margin="2"
+                                    IsChecked="True"
+                                    Content="Allow Select Blacked Out Day"
+                                    x:Name="tbSelectBlackedOutDay" />
+
+                            </DockPanel>
+                            <Grid
+                                Background="#FF8A8A8A"
+                                Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <DockPanel
+                                    Grid.ColumnSpan="2">
+
+                                    <pdtt:PersianCalendarWithClock
+                                        x:Name="pcwc1"
+                                        Margin="10"
+                                        Grid.Column="1"
+                                        ShowConfirmButton="True"
+                                        AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                        ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                        CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <StackPanel
+                                        Grid.Row="2">
+
+                                        <pdtt:PersianDatePicker
+                                            DockPanel.Dock="Top"
+                                            x:Name="pdp1"
+                                            Grid.Column="1"
+                                            Grid.Row="1"
+                                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Height="30"
+                                            Margin="10">
+
+                                        </pdtt:PersianDatePicker>
+                                        <pdtt:PersianDateTimePicker
+                                            Background="Red"
+                                            x:Name="pdtp1"
+                                            DockPanel.Dock="Top"
+                                            Height="30"
+                                            Margin="10"
+                                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
+                                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </StackPanel>
+                                </DockPanel>
 
                                 <pdtt:PersianCalendar
+                                    HorizontalAlignment="Left"
                                     x:Name="pc1"
-                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                                    Margin="10" />
-
-                                <pdtt:PersianCalendarWithClock
-                                    x:Name="pcwc1"
-                                    Margin="10"
-                                    Grid.Column="1"
-                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </DockPanel>
-
-                            <DockPanel
-                                Grid.Column="0"
-                                Grid.Row="1"
-                                Grid.ColumnSpan="2">
-
-                                <pdtt:Clock
-                                    x:Name="clock"
+                                    ShowConfirmButton="True"
                                     Grid.Column="0"
                                     Grid.Row="1"
+                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
+                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
                                     Margin="10" />
-
-                                <pdtt:PersianDatePicker
-                                    DockPanel.Dock="Top"
-                                    x:Name="pdp1"
+                                
+                                <pdtt:Clock
+                                    HorizontalAlignment="Left"
+                                    x:Name="clock"
                                     Grid.Column="1"
                                     Grid.Row="1"
-                                    VerticalAlignment="Center"
-                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                    MinHeight="30"
                                     Margin="10" />
-                                <pdtt:PersianDateTimePicker
-                                    x:Name="pdtp1"
-                                    DockPanel.Dock="Top"
-                                    VerticalAlignment="Center"
-                                    MinHeight="30"
-                                    Margin="10"
-                                    AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                                    ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                                    CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </DockPanel>
-                        </Grid>
+                            </Grid>
 
+                        </DockPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem
-                    Header="Custom style">
-                    <TabItem.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.MergedDictionaries>
-                                <ResourceDictionary
-                                    Source="pack://application:,,,/TestPersianCalendar;component/Dictionary1.xaml" />
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                    </TabItem.Resources>
-                    <StackPanel
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                        <pdtt:PersianCalendar
-                            Margin="5"
-                            x:Name="pc2"
-                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                            CalendarItemStyle="{StaticResource CalendarItemStyle1}">
-                        </pdtt:PersianCalendar>
-
-                        <pdtt:PersianCalendar
-                            Margin="5"
-                            x:Name="pc3"
-                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
-                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="{Binding ElementName=tbShowToday, Path=IsChecked, Mode=OneWay}"
-                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                        </pdtt:PersianCalendar>
-                    </StackPanel>
-                </TabItem>
-                <TabItem
-                    IsSelected="False"
+                    IsSelected="True"
                     Background="Gray"
                     Header="Custom style">
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Background="#FF353535">
-                        <pdtt:PersianCalendar
-                            IsEnabled="True"
-                            Margin="5"
-                            x:Name="pc4"
-                            ShowConfirmButton="True"
-                            SelectionMode="MultipleRange"
-                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
-                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="True"
-                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                            <pdtt:PersianCalendar.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.MergedDictionaries>
-                                        <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarStyle1.xaml" />
-                                    </ResourceDictionary.MergedDictionaries>
-                                </ResourceDictionary>
-                            </pdtt:PersianCalendar.Resources>
-                        </pdtt:PersianCalendar>
-                        <pdtt:Clock>
-                            <pdtt:Clock.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.MergedDictionaries>
-                                        <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomClockStyle1.xaml" />
-                                    </ResourceDictionary.MergedDictionaries>
-                                </ResourceDictionary>
-                            </pdtt:Clock.Resources>
-                        </pdtt:Clock>
-                    </StackPanel>
-                </TabItem>
-                <TabItem
-                    IsSelected="True"
-                    Header="Custom style">
-                    <StackPanel Orientation="Horizontal">
-                        <pdtt:PersianCalendar
-                            IsEnabled="True"
-                            Margin="5"
-                            x:Name="pc5"
-                            ShowConfirmButton="True"
-                            SelectionMode="MultipleRange"
-                            SelectedDate="{Binding ElementName=pc2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedDate}"
-                            AllowSelectBlackedOutDay="{Binding ElementName=tbSelectBlackedOutDay, Path=IsChecked, Mode=OneWay}"
-                            ShowTodayButton="True"
-                            CustomCultureName="{Binding ElementName=cb, Path=SelectedItem.Content, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                            <pdtt:PersianCalendar.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.MergedDictionaries>
-                                        <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarStyle2.xaml" />
-                                    </ResourceDictionary.MergedDictionaries>
-                                </ResourceDictionary>
-                            </pdtt:PersianCalendar.Resources>
-                        </pdtt:PersianCalendar>
+                    <ScrollViewer
+                        HorizontalScrollBarVisibility="Auto">
 
-                        <pdtt:Clock>
-                            <pdtt:Clock.Resources>
+                        <DockPanel
+                            LastChildFill="True"
+                            Background="#FF353535">
+                            <DockPanel.Resources>
                                 <ResourceDictionary>
                                     <ResourceDictionary.MergedDictionaries>
                                         <ResourceDictionary
-                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomClockStyle2.xaml" />
+                                            Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianDateTimePickerStyle1.xaml" />
                                     </ResourceDictionary.MergedDictionaries>
                                 </ResourceDictionary>
-                            </pdtt:Clock.Resources>
-                        </pdtt:Clock>
-                    </StackPanel>
+                            </DockPanel.Resources>
+                            <pdtt:PersianCalendar
+                                IsEnabled="True"
+                                Margin="5"
+                                x:Name="pc4"
+                                Style="{DynamicResource PersianCalendarCustomStyle1}"
+                                ShowConfirmButton="True"
+                                SelectionMode="MultipleRange"
+                                ShowTodayButton="True">
+                                <pdtt:PersianCalendar.Resources>
+                                    <ResourceDictionary>
+                                        <ResourceDictionary.MergedDictionaries>
+                                            <ResourceDictionary
+                                                Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarStyle1.xaml" />
+                                        </ResourceDictionary.MergedDictionaries>
+                                    </ResourceDictionary>
+                                </pdtt:PersianCalendar.Resources>
+                            </pdtt:PersianCalendar>
+                            <pdtt:Clock
+                                Style="{DynamicResource ClockCustomStyle1}">
+                                <pdtt:Clock.Resources>
+                                    <ResourceDictionary>
+                                        <ResourceDictionary.MergedDictionaries>
+                                            <ResourceDictionary
+                                                Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomClockStyle1.xaml" />
+                                        </ResourceDictionary.MergedDictionaries>
+                                    </ResourceDictionary>
+                                </pdtt:Clock.Resources>
+                            </pdtt:Clock>
+
+                            <pdtt:PersianDatePicker
+                                Visibility="Visible"
+                                x:Name="pdp2"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                ShowTodayButton="True"
+                                MinWidth="200"
+                                VerticalAlignment="Center"
+                                Margin="10"
+                                MinHeight="30">
+
+                                <pdtt:PersianDatePicker.Resources>
+                                    <ResourceDictionary>
+                                        <ResourceDictionary.MergedDictionaries>
+                                            <ResourceDictionary
+                                                Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianDatePickerStyle1.xaml" />
+                                        </ResourceDictionary.MergedDictionaries>
+                                    </ResourceDictionary>
+                                </pdtt:PersianDatePicker.Resources>
+
+                            </pdtt:PersianDatePicker>
+
+                            <pdtt:PersianCalendarWithClock
+                                Visibility="Visible"
+                                x:Name="pcwc2"
+                                Margin="10"
+                                ShowConfirmButton="True"
+                                ShowTodayButton="True"
+                                Style="{DynamicResource PersianCalendarWithClockCustomStyle1}"
+                                Grid.Column="1">
+
+                                <pdtt:PersianCalendarWithClock.Resources>
+                                    <ResourceDictionary>
+                                        <ResourceDictionary.MergedDictionaries>
+                                            <ResourceDictionary
+                                                Source="pack://application:,,,/TestPersianCalendar;component/Resources/CustomPersianCalendarWithClockStyle1.xaml" />
+                                        </ResourceDictionary.MergedDictionaries>
+                                    </ResourceDictionary>
+                                </pdtt:PersianCalendarWithClock.Resources>
+                            </pdtt:PersianCalendarWithClock>
+
+                            <pdtt:PersianDateTimePicker
+                                ShowConfirmButton="True"
+                                ShowTodayButton="True"
+                                Style="{StaticResource PersianDateTimePickerCustomStyle1}">
+                            </pdtt:PersianDateTimePicker>
+                        </DockPanel>
+                    </ScrollViewer>
                 </TabItem>
             </TabControl>
         </DockPanel>

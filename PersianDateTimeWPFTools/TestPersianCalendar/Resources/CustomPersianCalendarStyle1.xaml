@@ -1231,6 +1231,7 @@
         </Setter>
     </Style>
     <Style
+        x:Key="PersianCalendarCustomStyle1"
         TargetType="{x:Type pdtwt:PersianCalendar}"
         BasedOn="{StaticResource DefaultPersianCalendarStyle}">
         <Setter
@@ -1270,7 +1271,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!--<Style
-        TargetType="{x:Type pdtwt:PersianCalendar}"
-        BasedOn="{StaticResource DefaultPersianCalendarStyle}" />-->
+
 </ResourceDictionary>

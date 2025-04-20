@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="TestPersianCalendar.App"
+    x:Class="TestThems.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:TestPersianCalendar"
+    xmlns:local="clr-namespace:TestThems"
     xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -13,9 +13,9 @@
                 <!--If you remove the following resources, nothing will be displayed in design mode.-->
                 <!--<ResourceDictionary
                     Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources.xaml" />-->
-                <pdtt:InitResources SelectedTheme="LightModern1" />
+                <pdtt:InitResources
+                    SelectedTheme="DarkModern1" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>

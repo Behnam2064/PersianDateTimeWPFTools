@@ -240,6 +240,7 @@
 
 
     <Style
+        x:Key="ClockCustomStyle1"
         TargetType="{x:Type pdtt:Clock}">
         <Setter
             Property="UIElement.Focusable"

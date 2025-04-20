@@ -1,0 +1,449 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    xmlns:o="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:tools="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    xmlns:pdtwt1="https://github.com/Behnam2064/PersianDateTimeWPFTools">
+    <Thickness
+        x:Key="CalendarDatePickerTopHeaderMargin">0,0,0,4</Thickness>
+
+    <SolidColorBrush
+        x:Key="PersianDateTimePickerTextBoxBackground"
+        Color="#FF121111" />
+
+    <SolidColorBrush
+        x:Key="PersianDateTimePickerTextBoxBorderBrush"
+        Color="Black" />
+
+    <SolidColorBrush
+        x:Key="NormalForegroundPersianDateTimePickerDarkModern1"
+        Color="#FFF51C6B" />
+
+    <SolidColorBrush
+        x:Key="TextBoxSelectedBackground"
+        Color="#FF3C3C3C" />
+
+
+    <SolidColorBrush
+        x:Key="PersianDateTimePickerIconBackground"
+        Color="#FFF51C6B" />
+
+    <Style
+        x:Key="PersianDateTimePickerCustomStyle1"
+        TargetType="{x:Type pdtwt1:PersianDateTimePicker}">
+        <Setter
+            Property="Control.Foreground"
+            Value="{DynamicResource NormalForegroundPersianDateTimePickerDarkModern1}" />
+        <Setter
+            Property="tools:PersianDateTimePicker.IsTodayHighlighted"
+            Value="True" />
+        <Setter
+            Property="tools:PersianDateTimePicker.Height"
+            Value="30" />
+        <Setter
+            Property="tools:PersianDateTimePicker.SelectedDateFormat"
+            Value="Short" />
+       
+        <Setter
+            Property="tools:PersianDateTimePicker.PersianCalendarWithClockStyle"
+            Value="{DynamicResource PersianCalendarWithClockDarkModern1}" />
+        <Setter
+            Property="Control.Background"
+            Value="{DynamicResource CalendarDatePickerBackground}" />
+        <Setter
+            Property="Control.BorderBrush"
+            Value="{DynamicResource CalendarDatePickerBorderBrush}" />
+        <Setter
+            Property="Control.BorderThickness"
+            Value="{DynamicResource CalendarDatePickerBorderThemeThickness}" />
+        <Setter
+            Property="Control.HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter
+            Property="Control.VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Control.FontSize"
+            Value="{DynamicResource ControlContentThemeFontSize}" />
+        <Setter
+            Property="Control.Padding"
+            Value="1" />
+        <Setter
+            Property="FrameworkElement.FocusVisualStyle"
+            Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+        <Setter
+            Property="primitives:FocusVisualHelper.UseSystemFocusVisuals"
+            Value="{DynamicResource IsApplicationFocusVisualKindReveal}" />
+        <Setter
+            Property="primitives:ControlHelper.CornerRadius"
+            Value="2" />
+        <!--<Setter
+            Property="primitives:PersianDateTimePickerHelper.IsEnabled"
+            Value="True" />-->
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt1:PersianDateTimePicker}">
+                    <FrameworkTemplate.Resources>
+
+                        <Style
+                            TargetType="{x:Type primitives:DatePickerTextBox}">
+                            <Setter
+                                Property="Control.Foreground"
+                                Value="{DynamicResource NormalForegroundPersianDateTimePickerDarkModern1}" />
+                            <Setter
+                                Property="Control.Background"
+                                Value="{DynamicResource PersianDateTimePickerTextBoxBackground}" />
+                            <Setter
+                                Property="ScrollViewer.PanningMode"
+                                Value="VerticalFirst" />
+                            <Setter
+                                Property="BorderBrush"
+                                Value="{DynamicResource PersianDateTimePickerTextBoxBorderBrush}" />
+                            <Setter
+                                Property="Stylus.IsFlicksEnabled"
+                                Value="False" />
+                            <Setter
+                                Property="FrameworkElement.FocusVisualStyle"
+                                Value="{x:Null}" />
+                            <Setter
+                                Property="FrameworkElement.ContextMenu"
+                                Value="{DynamicResource TextControlContextMenu}" />
+                            <Setter
+                                Property="tools:TextContextMenu.UsingTextContextMenu"
+                                Value="True" />
+                            <Setter
+                                Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate
+                                        TargetType="{x:Type primitives:DatePickerTextBox}">
+                                        <Grid
+                                            SnapsToDevicePixels="True">
+                                            <Border
+                                                x:Name="BorderElement"
+                                                Background="{TemplateBinding Control.Background}"
+                                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                                CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                                            <Border
+                                                x:Name="ContentElement"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                                            <ContentControl
+                                                x:Name="PART_Watermark"
+                                                Focusable="False"
+                                                IsHitTestVisible="False"
+                                                Opacity="0"
+                                                Foreground="{DynamicResource CalendarDatePickerTextForeground}"
+                                                Margin="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                                            <ScrollViewer
+                                                x:Name="PART_ContentHost"
+                                                Style="{DynamicResource TextControlContentHostStyle}"
+                                                Margin="0"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup
+                                                    x:Name="WatermarkStates">
+                                                    <VisualState
+                                                        x:Name="Unwatermarked" />
+                                                    <VisualState
+                                                        x:Name="Watermarked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation
+                                                                Storyboard.TargetName="ContentElement"
+                                                                Storyboard.TargetProperty="Opacity"
+                                                                To="0"
+                                                                Duration="0" />
+                                                            <DoubleAnimation
+                                                                Storyboard.TargetName="PART_Watermark"
+                                                                Storyboard.TargetProperty="Opacity"
+                                                                To="1"
+                                                                Duration="0" />
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger
+                                                Property="UIElement.IsEnabled"
+                                                Value="False">
+                                                <Setter
+                                                    TargetName="PART_ContentHost"
+                                                    Value="{DynamicResource CalendarDatePickerTextForegroundDisabled}"
+                                                    Property="Control.Foreground" />
+                                                <Setter
+                                                    TargetName="PART_Watermark"
+                                                    Value="{DynamicResource CalendarDatePickerTextForegroundDisabled}"
+                                                    Property="Control.Foreground" />
+                                            </Trigger>
+                                            <Trigger
+                                                Property="TextBoxBase.IsSelectionActive"
+                                                Value="True">
+                                                <Setter
+                                                    TargetName="BorderElement"
+                                                    Value="{DynamicResource TextBoxSelectedBackground}"
+                                                    Property="Border.Background" />
+                                                <Setter
+                                                    TargetName="BorderElement"
+                                                    Value="{DynamicResource TextControlBorderBrushFocused}"
+                                                    Property="Border.BorderBrush" />
+                                                <Setter
+                                                    TargetName="BorderElement"
+                                                    Value="{DynamicResource TextControlBorderThemeThicknessFocused}"
+                                                    Property="Border.BorderThickness" />
+                                                <Setter
+                                                    Value="White"
+                                                    Property="Control.Foreground" />
+                                                <Setter
+                                                    Value="White"
+                                                    Property="TextBoxBase.CaretBrush" />
+                                                <Setter
+                                                    TargetName="PART_Watermark"
+                                                    Value="White"
+                                                    Property="Control.Foreground" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </FrameworkTemplate.Resources>
+                    <Grid
+                            ShowGridLines="False"
+                            SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <tools:ContentPresenterEx
+                                x:Name="HeaderContentPresenter"
+                                Visibility="{TemplateBinding primitives:ControlHelper.HeaderVisibility}"
+                                Content="{TemplateBinding primitives:ControlHelper.Header}"
+                                ContentTemplate="{TemplateBinding primitives:ControlHelper.HeaderTemplate}"
+                                Margin="{StaticResource CalendarDatePickerTopHeaderMargin}"
+                                TextWrapping="Wrap"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                            <Grid
+                                x:Name="PART_Root"
+                                Row="1">
+                                <FrameworkElement.Resources>
+                                    <ControlTemplate
+                                        x:Key="DropDownButtonTemplate"
+                                        TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Rectangle
+                                                Fill="{TemplateBinding Control.Background}"
+                                                Margin="{TemplateBinding Control.Padding}" />
+                                            <TextBlock
+                                                x:Name="PART_Icon"
+                                                Foreground="{TemplateBinding Control.Foreground}"
+                                                FontFamily="{DynamicResource SymbolThemeFontFamily}"
+                                                FontSize="12"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="&#xE787;" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </FrameworkElement.Resources>
+                                <Border
+                                    x:Name="Background"
+                                    Background="{TemplateBinding Control.Background}"
+                                    BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                    CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
+                                    MinHeight="{DynamicResource ComboBoxMinHeight}" />
+                                <primitives:DatePickerTextBox
+                                    x:Name="PART_TextBox"
+                                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                    Padding="{DynamicResource ComboBoxEditableTextPadding}"
+                                    HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                    Focusable="{TemplateBinding UIElement.Focusable}"
+                                    primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}" />
+                                <Button
+                                    x:Name="PART_Button"
+                                    Focusable="False"
+                                    Background="Transparent"
+                                    Foreground="{TemplateBinding Control.Foreground}"
+                                    Width="30"
+                                    Padding="0,1,1,1"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Stretch"
+                                    Template="{StaticResource DropDownButtonTemplate}" />
+                                <Popup
+                                    Margin="0"
+                                    x:Name="PART_Popup"
+                                    AllowsTransparency="False"
+                                    Placement="Bottom"
+                                    StaysOpen="False">
+                                </Popup>
+                            </Grid>
+                            <ContentPresenter
+                                x:Name="DescriptionPresenter"
+                                Grid.Row="2"
+                                Content="{TemplateBinding primitives:ControlHelper.Description}"
+                                Visibility="{TemplateBinding primitives:ControlHelper.DescriptionVisibility}"
+                                TextElement.Foreground="{DynamicResource SystemControlDescriptionTextForegroundBrush}"
+                                SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            SourceName="PART_Root"
+                            Property="UIElement.IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource CalendarDatePickerBackgroundPointerOver}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource CalendarDatePickerBorderBrushPointerOver}"
+                                Property="Border.BorderBrush" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    SourceName="PART_TextBox"
+                                    Property="TextBoxBase.IsSelectionActive"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="UIElement.IsMouseOver"
+                                    Value="False" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="ButtonBase.IsPressed"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="White"
+                                Property="Control.Foreground" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Property="Control.Padding"
+                                Value="0,2,2,2" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    SourceName="PART_TextBox"
+                                    Property="TextBoxBase.IsSelectionActive"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxEditableDropDownGlyphForeground}"
+                                Property="Control.Foreground" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxFocusedDropDownBackgroundPointerOver}"
+                                Property="Control.Background" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Property="Control.Padding"
+                                Value="0,2,2,2" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    SourceName="PART_TextBox"
+                                    Property="TextBoxBase.IsSelectionActive"
+                                    Value="True" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxEditableDropDownGlyphForeground}"
+                                Property="Control.Foreground" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxFocusedDropDownBackgroundPointerPressed}"
+                                Property="Control.Background" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Property="Control.Padding"
+                                Value="0,2,2,2" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    SourceName="PART_TextBox"
+                                    Property="TextBoxBase.IsSelectionActive"
+                                    Value="False" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxDropDownBackgroundPointerOver}"
+                                Property="Control.Background" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    SourceName="PART_TextBox"
+                                    Property="TextBoxBase.IsSelectionActive"
+                                    Value="False" />
+                                <Condition
+                                    SourceName="PART_Button"
+                                    Property="ButtonBase.IsPressed"
+                                    Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource ComboBoxDropDownBackgroundPointerPressed}"
+                                Property="Control.Background" />
+                        </MultiTrigger>
+                        <Trigger
+                            Property="UIElement.IsEnabled"
+                            Value="False">
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource CalendarDatePickerBackgroundDisabled}"
+                                Property="Border.Background" />
+                            <Setter
+                                TargetName="Background"
+                                Value="{DynamicResource CalendarDatePickerBorderBrushDisabled}"
+                                Property="Border.BorderBrush" />
+                            <Setter
+                                TargetName="HeaderContentPresenter"
+                                Value="{DynamicResource CalendarDatePickerHeaderForegroundDisabled}"
+                                Property="tools:ContentPresenterEx.Foreground" />
+                            <Setter
+                                TargetName="PART_TextBox"
+                                Value="{DynamicResource CalendarDatePickerTextForegroundDisabled}"
+                                Property="Control.Foreground" />
+                            <Setter
+                                TargetName="PART_Button"
+                                Value="{DynamicResource CalendarDatePickerCalendarGlyphForegroundDisabled}"
+                                Property="Control.Foreground" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

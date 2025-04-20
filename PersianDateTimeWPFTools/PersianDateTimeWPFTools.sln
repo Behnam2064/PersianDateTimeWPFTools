@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianDateTimeWPFTools", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPersianCalendar", "TestPersianCalendar\TestPersianCalendar.csproj", "{54EB2A5A-B4A1-4A3E-B32F-15743D69DBAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestThems", "TestThems\TestThems.csproj", "{002EE898-FDEC-42D5-872A-24DEA4E4A476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{54EB2A5A-B4A1-4A3E-B32F-15743D69DBAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54EB2A5A-B4A1-4A3E-B32F-15743D69DBAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54EB2A5A-B4A1-4A3E-B32F-15743D69DBAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002EE898-FDEC-42D5-872A-24DEA4E4A476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002EE898-FDEC-42D5-872A-24DEA4E4A476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002EE898-FDEC-42D5-872A-24DEA4E4A476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002EE898-FDEC-42D5-872A-24DEA4E4A476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{45B1DDC2-4BC5-40DB-BDF1-39555FAF449D} = {CA498EE7-A3AC-4BD5-99E8-C0F1ABF7DB0A}
 		{54EB2A5A-B4A1-4A3E-B32F-15743D69DBAB} = {A8ED2C3C-6517-4B67-A619-D8DDFBA831FD}
+		{002EE898-FDEC-42D5-872A-24DEA4E4A476} = {A8ED2C3C-6517-4B67-A619-D8DDFBA831FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3DFF3188-CF2B-4D28-8B73-894F8196516D}
