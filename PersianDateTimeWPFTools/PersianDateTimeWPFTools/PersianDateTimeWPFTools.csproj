@@ -8,25 +8,14 @@
     <Description>
 # Persian calendar
 ## WPF calendar with support for Gregorian and solar calendars
-
-- A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
-- You can write any style you like for the controls.
-- Language change support and other resources
-
 Please see the test project for further guidance.(Click on the Project website link.)
 
-## Controls
+Controls
 - Clock
-
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/clock.png)
 - PersianCalendar
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pc.png)
 - PersianDatePicker
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdp.png)
 - PersianDateTimePicker
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdpwc.png)
 - PersianCalendarWithClock
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdtp.png)
 
 You can manually change the Culture of the control using the following code in XAML or C#.
 
@@ -129,8 +118,6 @@ public App()
     .ChangeLanguage(null, "pack://application:,,,/Your resource address");
 }
 ```
-
-The next update will include adding a tooltip to the days button.
 </Description>
     <PackageProjectUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</RepositoryUrl>
