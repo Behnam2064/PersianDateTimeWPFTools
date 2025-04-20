@@ -17,6 +17,7 @@ Please see the test project for further guidance.(Click on the Project website l
 
 ## Controls
 - Clock
+
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/clock.png)
 - PersianCalendar
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pc.png)
@@ -26,6 +27,21 @@ Please see the test project for further guidance.(Click on the Project website l
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdpwc.png)
 - PersianCalendarWithClock
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdtp.png)
+
+You can manually change the Culture of the control using the following code in XAML or C#.
+
+**XAML**
+```
+CustomCultureName="fa-IR"
+```
+or
+
+**C#**
+```
+pcwc1.CustomCulture = CultureInfo.CreateSpecificCulture("en-US");
+```
+If you do not select Culture, it will be automatically selected based on the software's Culture.
+
 
 ## How to use?
 Step 1: Add the following resources in the App.xaml file
@@ -65,26 +81,6 @@ xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
 
 ## Ability to write custom styles for all controls
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/PersianDateTimeWPFTools/TestPersianCalendar/assets/Persian-calendar-Custom-Style.png)
-
-
-## Dependency Properties
-New Dependency Properties
-
-| Name        | Description           | Default  |
-| :------------- |:-------------| :-----|
-| CustomCulture      | Selecting a different culture than the current software culture | Based on the current software culture |
-| CustomCultureName     | Choosing a culture name that is different from the current software culture (such as fa-IR or en-US)      |   Based on the current software culture |
-| AllowSelectBlackedOutDay | Selectable holidays      |    False |
-| ShowTodayButton | Show a button to move to the current day   |    False |
-| ShowConfirmButton | Show a button to display confirm button   |    False |
-| DisplayDate | Displays the current date   |    ? |
-| DisplayDateStart | Start displaying the date   |    ? |
-| DisplayDateEnd | End of displaying date   |    ? |
-| DisplayMode | Date display type (like Month,Year,Decade)   |    Month |
-| FirstDayOfWeek | First day of the week  |    Sunday |
-| SelectionMode | Type of selection  |    SingleDate |
-| IsTodayHighlighted | Show current day as highlights  |    True |
-
 
 ## How to change the theme
 In the **App.xaml** file, you can select one of the following themes by selecting the **SelectedTheme** property in the InitResources class.
@@ -132,7 +128,10 @@ public App()
     new InitResources()
     .ChangeLanguage(null, "pack://application:,,,/Your resource address");
 }
-```	</Description>
+```
+
+The next update will include adding a tooltip to the days button.
+</Description>
     <PackageProjectUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Behnam2064/PersianDateTimeWPFTools</RepositoryUrl>
     <PackageTags>PersianCalendar;PersianDatePicker;Persian Calendar;PersianDate Picker;Solar Calendar;shamsi;jalili;</PackageTags>
