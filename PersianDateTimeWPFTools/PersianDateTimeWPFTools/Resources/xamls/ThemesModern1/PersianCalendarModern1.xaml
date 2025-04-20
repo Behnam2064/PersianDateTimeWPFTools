@@ -520,6 +520,7 @@
                                             Margin="0,10"
                                             x:Name="PART_GoToTodayButton"
                                             Focusable="False"
+                                            Foreground="{DynamicResource NormalForegroundDark}"
                                             Content="{DynamicResource TodayText}"
                                             Style="{StaticResource ButtonCustom}">
                                         </Button>
@@ -1785,6 +1786,7 @@
                                             Margin="0,10"
                                             x:Name="PART_GoToTodayButton"
                                             Focusable="False"
+                                            Foreground="{DynamicResource NormalForegroundLight}"
                                             Content="{DynamicResource TodayText}"
                                             Style="{StaticResource ButtonCustom}">
                                         </Button>
