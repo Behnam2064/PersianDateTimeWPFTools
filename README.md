@@ -9,7 +9,7 @@ Please see the test project for further guidance.
 
 ## Controls
 - Clock
-Select a time of day (24 hours)
+
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/clock.png)
 - PersianCalendar
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pc.png)
@@ -19,6 +19,18 @@ Select a time of day (24 hours)
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdpwc.png)
 - PersianCalendarWithClock
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/pdtp.png)
+
+You can manually change the Culture of the control using the following code in XAML or C#.
+**XAML**
+```
+CustomCultureName="fa-IR"
+```
+or
+**C#**
+```
+pcwc1.CustomCulture = CultureInfo.CreateSpecificCulture("en-US");
+```
+If you do not select Culture, it will be automatically selected based on the software's Culture.
 
 ## How to use?
 Step 1: Add the following resources in the App.xaml file
