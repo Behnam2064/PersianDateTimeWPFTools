@@ -1,4 +1,1 @@
-﻿-Fixed some issues with styling controls.
--Fixed some UI issues.
--Fixed some readme issues
--Adding a theme.
+﻿-Fixed some issues with AddRange DateTime to SelectedDates before loading

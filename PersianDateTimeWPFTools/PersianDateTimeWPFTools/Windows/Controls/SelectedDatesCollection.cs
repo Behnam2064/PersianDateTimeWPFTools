@@ -73,7 +73,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
       this.BeginAddRange();
       if (this._owner.SelectionMode == CalendarSelectionMode.SingleRange && this.Count > 0)
         this.ClearInternal();
-      foreach (DateTime dateTime in SelectedDatesCollection.GetDaysInRange(_owner.MonthControl._calendar, start, end))
+      foreach (DateTime dateTime in SelectedDatesCollection.GetDaysInRange(_owner._calendar, start, end))
         this.Add(dateTime);
       this.EndAddRange();
     }
