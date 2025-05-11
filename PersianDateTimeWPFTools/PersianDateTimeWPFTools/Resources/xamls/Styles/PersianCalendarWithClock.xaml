@@ -17,7 +17,7 @@
 
 
     <Style
-        x:Key="PersianCalendarWithClockBaseStyle"
+        x:Key="DefaultPersianCalendarWithClockStyle"
         TargetType="{x:Type pdtwt:PersianCalendarWithClock}">
         <Setter
             Property="UIElement.Focusable"
@@ -98,5 +98,5 @@
     </Style>
     <Style
         TargetType="{x:Type pdtwt:PersianCalendarWithClock}"
-        BasedOn="{StaticResource PersianCalendarWithClockBaseStyle}" />
+        BasedOn="{StaticResource DefaultPersianCalendarWithClockStyle}" />
 </ResourceDictionary>

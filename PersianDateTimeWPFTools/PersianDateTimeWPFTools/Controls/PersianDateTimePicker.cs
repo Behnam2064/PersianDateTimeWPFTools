@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using CalendarDateRange = PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange;
 using System.Diagnostics;
 using PersianDateTimeWPFTools.Tools;
+using System.Runtime.CompilerServices;
 
 namespace PersianDateTimeWPFTools.Controls
 {
@@ -267,10 +268,10 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         #region Public Properties
-
+        [ObsoleteAttribute]
         public static readonly DependencyProperty CalendarStyleProperty = DependencyProperty.Register(
             "CalendarStyle", typeof(Style), typeof(PersianDateTimePicker), new PropertyMetadata(default(Style)));
-
+        [ObsoleteAttribute]
         public Style CalendarStyle
         {
             get => (Style)GetValue(CalendarStyleProperty);

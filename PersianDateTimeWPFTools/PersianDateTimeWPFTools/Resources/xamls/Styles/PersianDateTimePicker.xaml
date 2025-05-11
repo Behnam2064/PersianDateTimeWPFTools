@@ -249,6 +249,9 @@
             Property="pdtwt:PersianDateTimePicker.CaretBrush"
             Value="{DynamicResource PrimaryTextBrush}" />
         <Setter
+            Property="pdtwt:PersianDateTimePicker.PersianCalendarWithClockStyle"
+            Value="{DynamicResource DefaultPersianCalendarWithClockStyle}" />
+        <Setter
             Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate

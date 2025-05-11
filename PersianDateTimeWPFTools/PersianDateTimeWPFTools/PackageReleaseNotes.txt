@@ -1,1 +1,2 @@
 ﻿-Fixed some issues with AddRange DateTime to SelectedDates before loading
+-Fixed some issues with Display PersianDateTimePicker (Styling)
