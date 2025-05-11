@@ -30,7 +30,6 @@ You can manually change the Culture of the control using the following code in X
 ```
 CustomCultureName="fa-IR"
 ```
-or
 
 **C#**
 ```
