@@ -1,1 +1,5 @@
-﻿-feat: Added support for assigning tooltips to individual calendar days with full DataTemplate customization. Tooltips are virtualization-safe and only displayed when content is provided.
+﻿- feat: Added support for assigning tooltips to individual calendar days with full DataTemplate customization. Tooltips are virtualization-safe and only displayed when content is provided.
+- Added support for per-day indicators (e.g., dots under calendar days)
+- Indicators are fully styleable and include a default appearance out of the box
+- Fixed indicator state issues when navigating between months
+- Indicator rendering is virtualization-safe and works correctly with reused day buttons

@@ -612,9 +612,33 @@
     <!--Tooltip template feature-->
 
     <Style
+        x:Key="DayIndicatorStyleDarkModern1"
+        TargetType="Ellipse">
+        <Setter
+            Property="Width"
+            Value="10" />
+        <Setter
+            Property="Height"
+            Value="10" />
+        <Setter
+            Property="Fill"
+            Value="Cyan" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Right" />
+        <Setter
+            Property="Margin"
+            Value="2,2,2,4" />
+    </Style>
+
+
+    <Style
         x:Key="CalendarDayButtonStyleDarkModern1"
         TargetType="{x:Type primitives:CalendarDayButton}">
-      
+
 
         <!--Tooltip feature-->
         <Setter
@@ -622,6 +646,11 @@
             Value="{Binding RelativeSource={RelativeSource Self},
                 Path=(pdtwt:CalendarDayButtonExtensions.DayToolTip)}" />
         <!--Tooltip feature-->
+
+        <Setter
+            Property="pdtwt:PersianCalendar.DayIndicatorStyle"
+            Value="{StaticResource DayIndicatorStyleDarkModern1}" />
+
         <Setter
             Property="Control.Background"
             Value="{DynamicResource CalendarViewCalendarItemRevealBackground}" />
@@ -681,40 +710,57 @@
                                     x:Name="Today" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border
-                            BorderBrush="{TemplateBinding Control.BorderBrush}"
-                            BorderThickness="{TemplateBinding Control.BorderThickness}"
-                            Margin="-1" />
-                        <Rectangle
-                            x:Name="Background"
-                            Fill="{TemplateBinding Control.Background}" />
-                        <Border
-                            CornerRadius="1"
-                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
-                            x:Name="HighlightBorderCover"
-                            Margin="-2"
-                            BorderThickness="0" />
-                        <Border
-                            CornerRadius="1"
-                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
-                            x:Name="HighlightBorder"
-                            Margin="-2"
-                            BorderThickness="1" />
-                        <TextBlock
-                            x:Name="NormalText"
-                            FontFamily="{TemplateBinding Control.FontFamily}"
-                            FontSize="{TemplateBinding Control.FontSize}"
-                            FontWeight="{TemplateBinding Control.FontWeight}"
-                            Text="{TemplateBinding ContentControl.Content}"
-                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+                        <Grid>
+
+                            <Border
+                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                Margin="-1" />
+                            <Rectangle
+                                x:Name="Background"
+                                Fill="{TemplateBinding Control.Background}" />
+                            <Border
+                                CornerRadius="1"
+                                BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
+                                x:Name="HighlightBorderCover"
+                                Margin="-2"
+                                BorderThickness="0" />
+                            <Border
+                                CornerRadius="1"
+                                BorderBrush="{DynamicResource DayButtonGridHighlightBorderDark}"
+                                x:Name="HighlightBorder"
+                                Margin="-2"
+                                BorderThickness="1" />
+                            <TextBlock
+                                x:Name="NormalText"
+                                FontFamily="{TemplateBinding Control.FontFamily}"
+                                FontSize="{TemplateBinding Control.FontSize}"
+                                FontWeight="{TemplateBinding Control.FontWeight}"
+                                Text="{TemplateBinding ContentControl.Content}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
               <UIElement.RenderTransform>
                 <TranslateTransform
-                                    Y="-1" />
+                                        Y="-1" />
               </UIElement.RenderTransform>
-                        </TextBlock>
+                            </TextBlock>
+                            <Ellipse
+                                x:Name="DayIndicator"
+                                Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
+                                Visibility="Collapsed" />
+
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+
+                        <Trigger
+                            Property="pdtwt:CalendarDayButtonExtensions.HasDayIndicator"
+                            Value="True">
+                            <Setter
+                                TargetName="DayIndicator"
+                                Property="Visibility"
+                                Value="Visible" />
+                        </Trigger>
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -1888,13 +1934,18 @@
     <Style
         x:Key="CalendarDayButtonStyleLightModern1"
         TargetType="{x:Type primitives:CalendarDayButton}">
-     
+
         <!--Tooltip feature-->
         <Setter
             Property="ToolTip"
             Value="{Binding RelativeSource={RelativeSource Self},
                 Path=(pdtwt:CalendarDayButtonExtensions.DayToolTip)}" />
         <!--Tooltip feature-->
+
+        <Setter
+            Property="pdtwt:PersianCalendar.DayIndicatorStyle"
+            Value="{StaticResource DayIndicatorStyleDarkModern1}" />
+
         <Setter
             Property="Control.Background"
             Value="{DynamicResource CalendarViewCalendarItemRevealBackground}" />
@@ -1954,40 +2005,57 @@
                                     x:Name="Today" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border
-                            BorderBrush="{TemplateBinding Control.BorderBrush}"
-                            BorderThickness="{TemplateBinding Control.BorderThickness}"
-                            Margin="-1" />
-                        <Rectangle
-                            x:Name="Background"
-                            Fill="{TemplateBinding Control.Background}" />
-                        <Border
-                            CornerRadius="1"
-                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
-                            x:Name="HighlightBorderCover"
-                            Margin="-2"
-                            BorderThickness="0" />
-                        <Border
-                            CornerRadius="1"
-                            BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
-                            x:Name="HighlightBorder"
-                            Margin="-2"
-                            BorderThickness="1" />
-                        <TextBlock
-                            x:Name="NormalText"
-                            FontFamily="{TemplateBinding Control.FontFamily}"
-                            FontSize="{TemplateBinding Control.FontSize}"
-                            FontWeight="{TemplateBinding Control.FontWeight}"
-                            Text="{TemplateBinding ContentControl.Content}"
-                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+                        <Grid>
+
+                            <Border
+                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                Margin="-1" />
+                            <Rectangle
+                                x:Name="Background"
+                                Fill="{TemplateBinding Control.Background}" />
+                            <Border
+                                CornerRadius="1"
+                                BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
+                                x:Name="HighlightBorderCover"
+                                Margin="-2"
+                                BorderThickness="0" />
+                            <Border
+                                CornerRadius="1"
+                                BorderBrush="{DynamicResource DayButtonGridHighlightBorderLight}"
+                                x:Name="HighlightBorder"
+                                Margin="-2"
+                                BorderThickness="1" />
+                            <TextBlock
+                                x:Name="NormalText"
+                                FontFamily="{TemplateBinding Control.FontFamily}"
+                                FontSize="{TemplateBinding Control.FontSize}"
+                                FontWeight="{TemplateBinding Control.FontWeight}"
+                                Text="{TemplateBinding ContentControl.Content}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
             <UIElement.RenderTransform>
               <TranslateTransform
-                                    Y="-1" />
+                                        Y="-1" />
             </UIElement.RenderTransform>
-                        </TextBlock>
+                            </TextBlock>
+
+                        </Grid>
+                        <Ellipse
+                            x:Name="DayIndicator"
+                            Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
+                            Visibility="Collapsed" />
                     </Grid>
+
                     <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="pdtwt:CalendarDayButtonExtensions.HasDayIndicator"
+                            Value="True">
+                            <Setter
+                                TargetName="DayIndicator"
+                                Property="Visibility"
+                                Value="Visible" />
+                        </Trigger>
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

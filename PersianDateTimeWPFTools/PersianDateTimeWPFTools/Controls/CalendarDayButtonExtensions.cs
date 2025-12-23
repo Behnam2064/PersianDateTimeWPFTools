@@ -49,9 +49,31 @@ namespace PersianDateTimeWPFTools.Controls
             DependencyObject element)
         {
             return (DataTemplate)element.GetValue(DayToolTipTemplateProperty);
-        } 
+        }
         #endregion
 
+        #region Day Indicators featuer
+
+        public static readonly DependencyProperty HasDayIndicatorProperty =
+    DependencyProperty.RegisterAttached(
+        "HasDayIndicator",
+        typeof(bool),
+        typeof(CalendarDayButtonExtensions),
+        new FrameworkPropertyMetadata(false));
+
+        public static void SetHasDayIndicator(
+            DependencyObject element, bool value)
+        {
+            element.SetValue(HasDayIndicatorProperty, value);
+        }
+
+        public static bool GetHasDayIndicator(
+            DependencyObject element)
+        {
+            return (bool)element.GetValue(HasDayIndicatorProperty);
+        }
+
+        #endregion
     }
 
 }

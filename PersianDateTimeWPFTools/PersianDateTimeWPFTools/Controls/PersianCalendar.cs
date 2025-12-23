@@ -73,8 +73,76 @@ namespace PersianDateTimeWPFTools.Controls
                 nameof(DayToolTips),
                 typeof(IDictionary<DateTime, object>),
                 typeof(PersianCalendar),
+                new PropertyMetadata(null,new PropertyChangedCallback(DayToolTipsChanged)));
+
+
+        private static void DayToolTipsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PersianCalendar persianCalendar = d as PersianCalendar;
+            persianCalendar.CoerceValue(DayToolTipsProperty);
+            persianCalendar.UpdateCellItems();
+        }
+
+        #endregion
+
+        #region Tooltip template feature
+        public DataTemplate DayToolTipTemplate
+        {
+            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
+            set => SetValue(DayToolTipTemplateProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipTemplateProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTipTemplate),
+                typeof(DataTemplate),
+                typeof(PersianCalendar),
                 new PropertyMetadata(null));
 
+        #endregion
+
+        #region Day Indicators featuer
+
+        public IDictionary<DateTime, bool> DayIndicators
+        {
+            get => (IDictionary<DateTime, bool>)GetValue(DayIndicatorsProperty);
+            set => SetValue(DayIndicatorsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorsProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicators),
+                typeof(IDictionary<DateTime, bool>),
+                typeof(PersianCalendar),
+                new PropertyMetadata(null, DayIndicatorsChanged));
+
+
+        private static void DayIndicatorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PersianCalendar persianCalendar = d as PersianCalendar;
+            persianCalendar.CoerceValue(DayIndicatorsProperty);
+            persianCalendar.UpdateCellItems();
+        }
+
+        public Style DayIndicatorStyle
+        {
+            get => (Style)GetValue(DayIndicatorStyleProperty);
+            set => SetValue(DayIndicatorStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorStyleProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicatorStyle),
+                typeof(Style),
+                typeof(PersianCalendar),
+                new PropertyMetadata(null, DayIndicatorStyleChanged));
+
+        private static void DayIndicatorStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PersianCalendar persianCalendar = d as PersianCalendar;
+            persianCalendar.CoerceValue(DayIndicatorStyleProperty);
+            persianCalendar.UpdateCellItems();
+        }
         #endregion
 
         public bool ShowConfirmButton
@@ -109,21 +177,6 @@ namespace PersianDateTimeWPFTools.Controls
 
         public event EventHandler<EventArgs> SelectionModeChanged;
 
-        #region Tooltip template feature
-        public DataTemplate DayToolTipTemplate
-        {
-            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
-            set => SetValue(DayToolTipTemplateProperty, value);
-        }
-
-        public static readonly DependencyProperty DayToolTipTemplateProperty =
-            DependencyProperty.Register(
-                nameof(DayToolTipTemplate),
-                typeof(DataTemplate),
-                typeof(PersianCalendar),
-                new PropertyMetadata(null));
-
-        #endregion
 
         static PersianCalendar()
         {
@@ -144,6 +197,7 @@ namespace PersianDateTimeWPFTools.Controls
             this.DisplayDate = DateTime.Today;
             #region Tooltip feature
             DayToolTips = new Dictionary<DateTime, object>();
+            DayIndicators = new Dictionary<DateTime, bool>();
             #endregion
         }
 
@@ -553,6 +607,10 @@ namespace PersianDateTimeWPFTools.Controls
             this._monthControl = this.GetTemplateChild("PART_CalendarItem") as CalendarItem;
             if (this._monthControl != null)
                 this._monthControl.Owner = this;
+            var re = base.TryFindResource("DefaultDayIndicatorStyle");
+            if (re != null)
+                if (DayIndicatorStyle == null)
+                    this.DayIndicatorStyle = (Style)re;
 
             _monthControl.SetBinding(CalendarItem.ShowConfirmButtonProperty,
                 new Binding(ShowConfirmButtonProperty.Name) { Mode = BindingMode.TwoWay, Source = this });

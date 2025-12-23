@@ -124,6 +124,36 @@ namespace PersianDateTimeWPFTools.Controls
 
         #endregion
 
+        #region Day Indicators featuer
+
+        public IDictionary<DateTime, bool> DayIndicators
+        {
+            get => (IDictionary<DateTime, bool>)GetValue(DayIndicatorsProperty);
+            set => SetValue(DayIndicatorsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorsProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicators),
+                typeof(IDictionary<DateTime, bool>),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+
+        public Style DayIndicatorStyle
+        {
+            get => (Style)GetValue(DayIndicatorStyleProperty);
+            set => SetValue(DayIndicatorStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorStyleProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicatorStyle),
+                typeof(Style),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+        #endregion
         public DateTime DisplayDate
         {
             get => (DateTime)this.GetValue(PersianCalendarWithClock.DisplayDateProperty);
@@ -432,6 +462,13 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendar.SetBinding(PersianCalendar.DayToolTipTemplateProperty,
                 new Binding(DayToolTipTemplateProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendar.SetBinding(PersianCalendar.DayIndicatorsProperty,
+                new Binding(DayIndicatorsProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendar.SetBinding(PersianCalendar.DayIndicatorStyleProperty,
+                new Binding(DayIndicatorStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             DisplayDate = DateTime.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);

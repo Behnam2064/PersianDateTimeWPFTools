@@ -429,18 +429,18 @@
                                             Height="40" />
                                         <RowDefinition
                                             Height="*" />
-                                        <RowDefinition Height="auto" />
+                                        <RowDefinition
+                                            Height="auto" />
                                     </Grid.RowDefinitions>
                                     <Button
                                         x:Name="PART_PreviousButton"
                                         Grid.Column="0"
                                         Grid.Row="0"
                                         Focusable="False"
-                                        Width="28" 
+                                        Width="28"
                                         Height="20"
                                         HorizontalAlignment="Left"
-                                        Template="{StaticResource PreviousButtonTemplate}"
-                                        />
+                                        Template="{StaticResource PreviousButtonTemplate}" />
                                     <!--Style="{StaticResource NavigationButtonStyle}"-->
                                     <Button
                                         x:Name="PART_HeaderButton"
@@ -453,30 +453,28 @@
                                         Template="{StaticResource HeaderButtonTemplate}"
                                         VerticalAlignment="Center" />
                                     <!--Style="{StaticResource NavigationButtonStyle}"-->
-                                    <DockPanel LastChildFill="False"
-                                               Grid.Row="0"
-                                                Grid.Column="2"
-                                               HorizontalAlignment="Right"
-                                               >
+                                    <DockPanel
+                                        LastChildFill="False"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Right">
                                         <Button
                                             x:Name="PART_GoToTodayButton"
                                             Focusable="False"
                                             Template="{StaticResource TodayButtonTemplate}"
                                             Width="{Binding ElementName=PART_NextButton, Mode=OneWay, Path=Width, UpdateSourceTrigger=PropertyChanged}"
-                                            Height="{Binding ElementName=PART_NextButton, Mode=OneWay, Path=Height, UpdateSourceTrigger=PropertyChanged}"
-                                            >
+                                            Height="{Binding ElementName=PART_NextButton, Mode=OneWay, Path=Height, UpdateSourceTrigger=PropertyChanged}">
 
                                         </Button>
 
                                         <Button
-                                        x:Name="PART_NextButton"
-                                        Width="28" 
-                                        Height="20"
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        Focusable="False"
-                                        Template="{StaticResource NextButtonTemplate}"
-                                        />
+                                            x:Name="PART_NextButton"
+                                            Width="28"
+                                            Height="20"
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            Focusable="False"
+                                            Template="{StaticResource NextButtonTemplate}" />
                                         <!--HorizontalAlignment="Right"-->
                                         <!--Style="{StaticResource NavigationButtonStyle}"-->
 
@@ -608,7 +606,7 @@
     <Style
         TargetType="{x:Type primitives:CalendarItem}"
         BasedOn="{StaticResource DefaultPersianCalendarItemStyle}" />
-    
+
     <!--Tooltip template feature-->
     <Style
         TargetType="ToolTip">
@@ -626,7 +624,31 @@
         </Setter>
     </Style>
     <!--Tooltip template feature-->
-    
+
+    <Style
+        x:Key="DefaultDayIndicatorStyle"
+        TargetType="Ellipse">
+        <Setter
+            Property="Width"
+            Value="10" />
+        <Setter
+            Property="Height"
+            Value="10" />
+        <Setter
+            Property="Fill"
+            Value="#FF2196F3" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Top" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Right" />
+        <Setter
+            Property="Margin"
+            Value="2,2,2,4" />
+    </Style>
+
+
     <Style
         x:Key="DefaultPersianCalendarDayButtonStyle"
         TargetType="{x:Type primitives:CalendarDayButton}">
@@ -646,6 +668,10 @@
         <Setter
             Property="Control.BorderBrush"
             Value="{DynamicResource CalendarViewCalendarItemRevealBorderBrush}" />
+
+        <Setter
+            Property="pdtwt:PersianCalendar.DayIndicatorStyle"
+            Value="{StaticResource DefaultDayIndicatorStyle}" />
         <Setter
             Property="Control.BorderThickness"
             Value="1" />
@@ -681,6 +707,7 @@
             <Setter.Value>
                 <ControlTemplate
                     TargetType="{x:Type primitives:CalendarDayButton}">
+
                     <Grid
                         SnapsToDevicePixels="True">
                         <VisualStateManager.VisualStateGroups>
@@ -696,37 +723,68 @@
                                     x:Name="Today" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Border
-                            BorderBrush="{TemplateBinding Control.BorderBrush}"
-                            BorderThickness="{TemplateBinding Control.BorderThickness}"
-                            Margin="-1" />
-                        <Rectangle
-                            x:Name="Background"
-                            Fill="{TemplateBinding Control.Background}" />
-                        <Border
-                            x:Name="HighlightBorder"
-                            BorderThickness="2" />
-                        <TextBlock
-                            x:Name="NormalText"
-                            FontFamily="{TemplateBinding Control.FontFamily}"
-                            FontSize="{TemplateBinding Control.FontSize}"
-                            FontWeight="{TemplateBinding Control.FontWeight}"
-                            Text="{TemplateBinding ContentControl.Content}"
-                            HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
-              <UIElement.RenderTransform>
-                <TranslateTransform
-                                    Y="-1" />
-              </UIElement.RenderTransform>
-                        </TextBlock>
+                        <Grid>
+                            <Border
+                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                Margin="-1" />
+
+                            <Rectangle
+                                x:Name="Background"
+                                Fill="{TemplateBinding Control.Background}" />
+
+                            <Border
+                                x:Name="HighlightBorder"
+                                BorderThickness="2" />
+
+                            <TextBlock
+                                x:Name="NormalText"
+                                FontFamily="{TemplateBinding Control.FontFamily}"
+                                FontSize="{TemplateBinding Control.FontSize}"
+                                FontWeight="{TemplateBinding Control.FontWeight}"
+                                Text="{TemplateBinding ContentControl.Content}"
+                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}">
+                            <UIElement.RenderTransform>
+                              <TranslateTransform
+                                        Y="-1" />
+                            </UIElement.RenderTransform>
+
+                            </TextBlock>
+                            <Ellipse
+                                x:Name="DayIndicator"
+                                Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DefaultDayIndicatorStyle}}"
+                                Visibility="Collapsed" />
+                        </Grid>
+
+                        <!--
+                        Style="{TemplateBinding pdtwt:PersianCalendar.DayIndicatorStyle}"
+                        -->
+                        <!--
+                        Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DefaultDayIndicatorStyle}}"
+                        -->
                     </Grid>
+
                     <ControlTemplate.Triggers>
+
+                        <Trigger
+                            Property="pdtwt:CalendarDayButtonExtensions.HasDayIndicator"
+                            Value="True">
+                            <Setter
+                                TargetName="DayIndicator"
+                                Property="Visibility"
+                                Value="Visible" />
+                        </Trigger>
+
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="UIElement.IsMouseOver"
-                                           Value="True"/>
-                                <Condition Property="primitives:CalendarDayButton.IsInactive" Value="False" />
+                                <Condition
+                                    Property="UIElement.IsMouseOver"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsInactive"
+                                    Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter
                                 TargetName="HighlightBorder"
@@ -976,9 +1034,9 @@
 
                         </MultiTrigger>
 
-                        
-                      
-                        
+
+
+
 
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -1235,7 +1293,8 @@
                         SnapsToDevicePixels="True">
                         <Grid.RowDefinitions>
                             <RowDefinition />
-                            <RowDefinition Height="auto" />
+                            <RowDefinition
+                                Height="auto" />
                         </Grid.RowDefinitions>
                         <primitives:CalendarItem
                             x:Name="PART_CalendarItem"

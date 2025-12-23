@@ -825,7 +825,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                         var key = dateTime;
                         if (Owner.DayToolTips.TryGetValue(key, out var tooltip))
                         {
+                            #region Tooltip feature
                             CalendarDayButtonExtensions.SetDayToolTip(child, tooltip);
+                            #endregion
 
                             #region Tooltip template feature
 
@@ -836,13 +838,43 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                         }
                         else
                         {
+                            #region Tooltip feature
                             CalendarDayButtonExtensions.SetDayToolTip(child, null);
+                            #endregion
+
                             #region Tooltip template feature
                             CalendarDayButtonExtensions.SetDayToolTipTemplate(child, null);
                             #endregion
                         }
                     }
 
+                    #endregion
+
+                    #region Day Indicators featuer
+
+                    bool hasIndicator = false;
+
+                    if (Owner?.DayIndicators != null)
+                    {
+                        var key = dateTime.Date;
+
+                        if (Owner.DayIndicators.TryGetValue(key, out hasIndicator))
+                        {
+                            //CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
+                        }
+                        else
+                        {
+                            //CalendarDayButtonExtensions.SetHasDayIndicator(child, false);
+                            hasIndicator = false;
+                        }
+                    }
+                    else
+                    {
+                        //CalendarDayButtonExtensions.SetHasDayIndicator(child, false);
+                        hasIndicator = false;
+                    }
+
+                    CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
                     #endregion
                 }
                 else

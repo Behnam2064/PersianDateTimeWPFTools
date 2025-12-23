@@ -113,6 +113,38 @@ namespace PersianDateTimeWPFTools.Controls
 
         #endregion
 
+
+        #region Day Indicators featuer
+
+        public IDictionary<DateTime, bool> DayIndicators
+        {
+            get => (IDictionary<DateTime, bool>)GetValue(DayIndicatorsProperty);
+            set => SetValue(DayIndicatorsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorsProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicators),
+                typeof(IDictionary<DateTime, bool>),
+                typeof(PersianDateTimePicker),
+                new PropertyMetadata(null));
+
+
+        public Style DayIndicatorStyle
+        {
+            get => (Style)GetValue(DayIndicatorStyleProperty);
+            set => SetValue(DayIndicatorStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorStyleProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicatorStyle),
+                typeof(Style),
+                typeof(PersianDateTimePicker),
+                new PropertyMetadata(null));
+
+        #endregion
+
         #endregion Data
 
         public static readonly DependencyProperty SelectedDateFormatProperty
@@ -503,6 +535,14 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendarWithClock.SetBinding(PersianCalendarWithClock.DayToolTipTemplateProperty,
                 new Binding(DayToolTipTemplateProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DayIndicatorsProperty,
+                new Binding(DayIndicatorsProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DayIndicatorStyleProperty,
+                new Binding(DayIndicatorStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
 
             if (_popup != null)

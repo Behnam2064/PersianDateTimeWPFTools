@@ -72,7 +72,7 @@ namespace PersianDateTimeWPFTools.Controls
             DependencyProperty.Register(
                 nameof(DayToolTips),
                 typeof(IDictionary<DateTime, object>),
-                typeof(PersianCalendarWithClock),
+                typeof(PersianDatePicker),
                 new PropertyMetadata(null));
 
         #endregion
@@ -88,11 +88,41 @@ namespace PersianDateTimeWPFTools.Controls
             DependencyProperty.Register(
                 nameof(DayToolTipTemplate),
                 typeof(DataTemplate),
-                typeof(PersianCalendarWithClock),
+                typeof(PersianDatePicker),
                 new PropertyMetadata(null));
 
         #endregion
 
+        #region Day Indicators featuer
+
+        public IDictionary<DateTime, bool> DayIndicators
+        {
+            get => (IDictionary<DateTime, bool>)GetValue(DayIndicatorsProperty);
+            set => SetValue(DayIndicatorsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorsProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicators),
+                typeof(IDictionary<DateTime, bool>),
+                typeof(PersianDatePicker),
+                new PropertyMetadata(null));
+
+
+        public Style DayIndicatorStyle
+        {
+            get => (Style)GetValue(DayIndicatorStyleProperty);
+            set => SetValue(DayIndicatorStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty DayIndicatorStyleProperty =
+            DependencyProperty.Register(
+                nameof(DayIndicatorStyle),
+                typeof(Style),
+                typeof(PersianDatePicker),
+                new PropertyMetadata(null));
+
+        #endregion
         #endregion
 
         public event RoutedEventHandler CalendarClosed;
@@ -505,6 +535,8 @@ namespace PersianDateTimeWPFTools.Controls
             this._persianCalendar.SetBinding(PersianCalendar.DayToolTipsProperty, this.GetDatePickerBinding(PersianDatePicker.DayToolTipsProperty));
             this._persianCalendar.SetBinding(PersianCalendar.DayToolTipTemplateProperty, this.GetDatePickerBinding(PersianDatePicker.DayToolTipTemplateProperty));
 
+            this._persianCalendar.SetBinding(PersianCalendar.DayIndicatorsProperty, this.GetDatePickerBinding(PersianDatePicker.DayIndicatorsProperty));
+            this._persianCalendar.SetBinding(PersianCalendar.DayIndicatorStyleProperty, this.GetDatePickerBinding(PersianDatePicker.DayIndicatorStyleProperty));
 
             if (this._popUp != null)
             {
