@@ -608,9 +608,35 @@
     <Style
         TargetType="{x:Type primitives:CalendarItem}"
         BasedOn="{StaticResource DefaultPersianCalendarItemStyle}" />
+    
+    <!--Tooltip template feature-->
+    <Style
+        TargetType="ToolTip">
+        <Setter
+            Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentPresenter
+                        Content="{Binding}"
+                        ContentTemplate="{Binding
+                        RelativeSource={RelativeSource AncestorType=ToolTip},
+                        Path=PlacementTarget.(pdtwt:CalendarDayButtonExtensions.DayToolTipTemplate)}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Tooltip template feature-->
+    
     <Style
         x:Key="DefaultPersianCalendarDayButtonStyle"
         TargetType="{x:Type primitives:CalendarDayButton}">
+
+        <!--Tooltip feature-->
+        <Setter
+            Property="ToolTip"
+            Value="{Binding RelativeSource={RelativeSource Self},
+                        Path=(pdtwt:CalendarDayButtonExtensions.DayToolTip)}" />
+        <!--Tooltip feature-->
         <Setter
             Property="Control.Background"
             Value="{DynamicResource CalendarViewCalendarItemRevealBackground}" />

@@ -1,2 +1,1 @@
-﻿-Fixed some issues with AddRange DateTime to SelectedDates before loading
--Fixed some issues with Display PersianDateTimePicker (Styling)
+﻿-feat: Added support for assigning tooltips to individual calendar days with full DataTemplate customization. Tooltips are virtualization-safe and only displayed when content is provided.

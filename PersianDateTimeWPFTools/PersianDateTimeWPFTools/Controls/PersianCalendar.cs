@@ -61,7 +61,21 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianCalendar.OnCustomCultureNameChanged)));
         public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata(false, new PropertyChangedCallback(PersianCalendar.OnShowTodayButtonChanged)));
 
+        #region Tooltip feature
+        public IDictionary<DateTime, object> DayToolTips
+        {
+            get => (IDictionary<DateTime, object>)GetValue(DayToolTipsProperty);
+            set => SetValue(DayToolTipsProperty, value);
+        }
 
+        public static readonly DependencyProperty DayToolTipsProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTips),
+                typeof(IDictionary<DateTime, object>),
+                typeof(PersianCalendar),
+                new PropertyMetadata(null));
+
+        #endregion
 
         public bool ShowConfirmButton
         {
@@ -95,7 +109,21 @@ namespace PersianDateTimeWPFTools.Controls
 
         public event EventHandler<EventArgs> SelectionModeChanged;
 
+        #region Tooltip template feature
+        public DataTemplate DayToolTipTemplate
+        {
+            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
+            set => SetValue(DayToolTipTemplateProperty, value);
+        }
 
+        public static readonly DependencyProperty DayToolTipTemplateProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTipTemplate),
+                typeof(DataTemplate),
+                typeof(PersianCalendar),
+                new PropertyMetadata(null));
+
+        #endregion
 
         static PersianCalendar()
         {
@@ -114,6 +142,9 @@ namespace PersianDateTimeWPFTools.Controls
             this._blackoutDates = new PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection(this);
             this._selectedDates = new PersianDateTimeWPFTools.Windows.Controls.SelectedDatesCollection(this);
             this.DisplayDate = DateTime.Today;
+            #region Tooltip feature
+            DayToolTips = new Dictionary<DateTime, object>();
+            #endregion
         }
 
         public PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection BlackoutDates

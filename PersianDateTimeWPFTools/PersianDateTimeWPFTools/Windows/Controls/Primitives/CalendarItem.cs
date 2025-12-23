@@ -1,4 +1,5 @@
-﻿using PersianDateTimeWPFTools.Tools;
+﻿using PersianDateTimeWPFTools.Controls;
+using PersianDateTimeWPFTools.Tools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -791,7 +792,9 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             for (int index = 0; index < 7; ++index)
             {
                 if (this._monthView.Children[index] is FrameworkElement child && shortestDayNames != null && shortestDayNames.Length != 0)
+                {
                     child.DataContext = this.Owner == null ? (object)shortestDayNames[(int)(index + PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture).FirstDayOfWeek) % shortestDayNames.Length] : (object)shortestDayNames[(int)(index + this.Owner.FirstDayOfWeek) % shortestDayNames.Length];
+                }
             }
         }
 
@@ -814,6 +817,33 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                     this.SetMonthModeDayButtonState(child, new DateTime?(dateTime));
                     child.DataContext = (object)dateTime;
                     child.SetContentInternal(dateTimeHelper.ToDayString(new DateTime?(dateTime), culture));
+
+                    #region Tooltip feature
+
+                    if (Owner?.DayToolTips != null)
+                    {
+                        var key = dateTime;
+                        if (Owner.DayToolTips.TryGetValue(key, out var tooltip))
+                        {
+                            CalendarDayButtonExtensions.SetDayToolTip(child, tooltip);
+
+                            #region Tooltip template feature
+
+                            CalendarDayButtonExtensions.SetDayToolTipTemplate(
+                                child,
+                                Owner.DayToolTipTemplate); 
+                            #endregion
+                        }
+                        else
+                        {
+                            CalendarDayButtonExtensions.SetDayToolTip(child, null);
+                            #region Tooltip template feature
+                            CalendarDayButtonExtensions.SetDayToolTipTemplate(child, null);
+                            #endregion
+                        }
+                    }
+
+                    #endregion
                 }
                 else
                 {
