@@ -80,6 +80,39 @@ namespace PersianDateTimeWPFTools.Controls
             get => _calendarWithClock?.BlackoutDates;
         }
 
+
+        #region Tooltip feature
+        public IDictionary<DateTime, object> DayToolTips
+        {
+            get => (IDictionary<DateTime, object>)GetValue(DayToolTipsProperty);
+            set => SetValue(DayToolTipsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipsProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTips),
+                typeof(IDictionary<DateTime, object>),
+                typeof(PersianDateTimePicker),
+                new PropertyMetadata(null));
+
+        #endregion
+
+        #region Tooltip template feature
+        public DataTemplate DayToolTipTemplate
+        {
+            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
+            set => SetValue(DayToolTipTemplateProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipTemplateProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTipTemplate),
+                typeof(DataTemplate),
+                typeof(PersianDateTimePicker),
+                new PropertyMetadata(null));
+
+        #endregion
+
         #endregion Data
 
         public static readonly DependencyProperty SelectedDateFormatProperty
@@ -464,6 +497,14 @@ namespace PersianDateTimeWPFTools.Controls
         public override void OnApplyTemplate()
         {
             if (DesignerProperties.GetIsInDesignMode(this)) return;
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DayToolTipsProperty,
+              new Binding(DayToolTipsProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DayToolTipTemplateProperty,
+                new Binding(DayToolTipTemplateProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
             if (_popup != null)
             {
                 _popup.PreviewMouseLeftButtonDown -= PopupPreviewMouseLeftButtonDown;

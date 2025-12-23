@@ -92,6 +92,38 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register(nameof(SelectionMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.SingleDate));
 
 
+        #region Tooltip feature
+        public IDictionary<DateTime, object> DayToolTips
+        {
+            get => (IDictionary<DateTime, object>)GetValue(DayToolTipsProperty);
+            set => SetValue(DayToolTipsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipsProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTips),
+                typeof(IDictionary<DateTime, object>),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+        #endregion
+
+        #region Tooltip template feature
+        public DataTemplate DayToolTipTemplate
+        {
+            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
+            set => SetValue(DayToolTipTemplateProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipTemplateProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTipTemplate),
+                typeof(DataTemplate),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+        #endregion
+
         public DateTime DisplayDate
         {
             get => (DateTime)this.GetValue(PersianCalendarWithClock.DisplayDateProperty);
@@ -393,6 +425,13 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendar.SetBinding(PersianCalendar.ShowTodayButtonProperty,
                 new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+
+            _calendar.SetBinding(PersianCalendar.DayToolTipsProperty,
+                new Binding(DayToolTipsProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendar.SetBinding(PersianCalendar.DayToolTipTemplateProperty,
+                new Binding(DayToolTipTemplateProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             DisplayDate = DateTime.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);

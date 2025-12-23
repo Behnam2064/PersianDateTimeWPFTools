@@ -61,6 +61,38 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty CustomCultureNameProperty = DependencyProperty.Register(nameof(CustomCultureName), typeof(string), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, new PropertyChangedCallback(PersianDatePicker.OnCustomCultureNameChanged)));
         public static readonly DependencyProperty ShowTodayButtonProperty = DependencyProperty.Register(nameof(ShowTodayButton), typeof(bool), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata(false, new PropertyChangedCallback(PersianDatePicker.OnShowTodayButtonChanged)));
 
+        #region Tooltip feature
+        public IDictionary<DateTime, object> DayToolTips
+        {
+            get => (IDictionary<DateTime, object>)GetValue(DayToolTipsProperty);
+            set => SetValue(DayToolTipsProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipsProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTips),
+                typeof(IDictionary<DateTime, object>),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+        #endregion
+
+        #region Tooltip template feature
+        public DataTemplate DayToolTipTemplate
+        {
+            get => (DataTemplate)GetValue(DayToolTipTemplateProperty);
+            set => SetValue(DayToolTipTemplateProperty, value);
+        }
+
+        public static readonly DependencyProperty DayToolTipTemplateProperty =
+            DependencyProperty.Register(
+                nameof(DayToolTipTemplate),
+                typeof(DataTemplate),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null));
+
+        #endregion
+
         #endregion
 
         public event RoutedEventHandler CalendarClosed;
@@ -470,6 +502,10 @@ namespace PersianDateTimeWPFTools.Controls
 
         public override void OnApplyTemplate()
         {
+            this._persianCalendar.SetBinding(PersianCalendar.DayToolTipsProperty, this.GetDatePickerBinding(PersianDatePicker.DayToolTipsProperty));
+            this._persianCalendar.SetBinding(PersianCalendar.DayToolTipTemplateProperty, this.GetDatePickerBinding(PersianDatePicker.DayToolTipTemplateProperty));
+
+
             if (this._popUp != null)
             {
                 this._popUp.RemoveHandler(UIElement.PreviewMouseLeftButtonDownEvent, (Delegate)new MouseButtonEventHandler(this.PopUp_PreviewMouseLeftButtonDown));
@@ -764,6 +800,7 @@ namespace PersianDateTimeWPFTools.Controls
             this._persianCalendar.SetBinding(PersianCalendar.AllowSelectBlackedOutDayProperty, this.GetDatePickerBinding(PersianDatePicker.AllowSelectBlackedOutDayProperty));
             this._persianCalendar.SetBinding(PersianCalendar.CustomCultureProperty, this.GetDatePickerBinding(PersianDatePicker.CustomCultureProperty));
             this._persianCalendar.SetBinding(PersianCalendar.CustomCultureNameProperty, this.GetDatePickerBinding(PersianDatePicker.CustomCultureNameProperty));
+    
         }
 
         private BindingBase GetDatePickerBinding(DependencyProperty property)
