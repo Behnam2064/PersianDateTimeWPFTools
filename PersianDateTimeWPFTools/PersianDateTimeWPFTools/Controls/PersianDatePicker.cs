@@ -44,7 +44,7 @@ namespace PersianDateTimeWPFTools.Controls
         private DateTime? _originalSelectedDate;
         public static readonly RoutedEvent SelectedDateChangedEvent = EventManager.RegisterRoutedEvent("SelectedDateChanged", RoutingStrategy.Direct, typeof(EventHandler<SelectionChangedEventArgs>), typeof(PersianDatePicker));
         public static readonly DependencyProperty CalendarStyleProperty = DependencyProperty.Register(nameof(CalendarStyle), typeof(Style), typeof(PersianDatePicker));
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, (PropertyChangedCallback)null, new CoerceValueCallback(PersianDatePicker.CoerceDisplayDate)));
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged, new CoerceValueCallback(PersianDatePicker.CoerceDisplayDate)));
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnDisplayDateEndChanged), new CoerceValueCallback(PersianDatePicker.CoerceDisplayDateEnd)));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnDisplayDateStartChanged), new CoerceValueCallback(PersianDatePicker.CoerceDisplayDateStart)));
         public static readonly DependencyProperty FirstDayOfWeekProperty = DependencyProperty.Register(nameof(FirstDayOfWeek), typeof(DayOfWeek), typeof(PersianDatePicker), (PropertyMetadata)null, new ValidateValueCallback(PersianCalendar.IsValidFirstDayOfWeek));
@@ -53,6 +53,27 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(nameof(SelectedDate), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateChanged), new CoerceValueCallback(PersianDatePicker.CoerceSelectedDate)));
         public static readonly DependencyProperty SelectedDateFormatProperty = DependencyProperty.Register(nameof(SelectedDateFormat), typeof(PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateFormatChanged)), new ValidateValueCallback(PersianDatePicker.IsValidSelectedDateFormat));
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)string.Empty, new PropertyChangedCallback(PersianDatePicker.OnTextChanged), new CoerceValueCallback(PersianDatePicker.OnCoerceText)));
+
+        public event EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> DisplayDateChanged;
+        private static void OnDisplayDateChanged(
+      DependencyObject d,
+      DependencyPropertyChangedEventArgs e)
+        {
+            var persianCalendar = d as PersianDatePicker;
+            if (persianCalendar != null)
+            {
+                var cal = persianCalendar._persianCalendar._calendar;
+                var v1 = new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(cal).DiscardDayTime((DateTime)e.NewValue);
+                persianCalendar.OnDisplayDateChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(new DateTime?((DateTime)e.OldValue), new DateTime?((DateTime)e.NewValue)));
+            }
+        }
+        protected virtual void OnDisplayDateChanged(PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs e)
+        {
+            EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> displayDateChanged = this.DisplayDateChanged;
+            if (displayDateChanged == null)
+                return;
+            displayDateChanged((object)this, e);
+        }
 
         #region New feature
 
@@ -368,7 +389,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 dp._persianCalendar.Focus();
             });
-            dp.Dispatcher.Invoke(() => dp._persianCalendar.Focus());
+            //dp.Dispatcher.Invoke(() => dp._persianCalendar.Focus());
             //dp.Dispatcher.BeginInvoke(DispatcherPriority.Input, (Delegate)(() => dp._persianCalendar.Focus()));
         }
 
@@ -832,7 +853,7 @@ namespace PersianDateTimeWPFTools.Controls
             this._persianCalendar.SetBinding(PersianCalendar.AllowSelectBlackedOutDayProperty, this.GetDatePickerBinding(PersianDatePicker.AllowSelectBlackedOutDayProperty));
             this._persianCalendar.SetBinding(PersianCalendar.CustomCultureProperty, this.GetDatePickerBinding(PersianDatePicker.CustomCultureProperty));
             this._persianCalendar.SetBinding(PersianCalendar.CustomCultureNameProperty, this.GetDatePickerBinding(PersianDatePicker.CustomCultureNameProperty));
-    
+
         }
 
         private BindingBase GetDatePickerBinding(DependencyProperty property)

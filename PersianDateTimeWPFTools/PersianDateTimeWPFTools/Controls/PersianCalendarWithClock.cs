@@ -34,7 +34,7 @@ namespace PersianDateTimeWPFTools.Controls
 
         private Clock _clock;
 
-        private PersianCalendar _calendar;
+        internal protected PersianCalendar _calendar;
 
         private bool _isLoaded;
 
@@ -84,12 +84,39 @@ namespace PersianDateTimeWPFTools.Controls
 
 
 
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged,null));
+
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(nameof(DisplayMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarMode), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Month, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty FirstDayOfWeekProperty = DependencyProperty.Register(nameof(FirstDayOfWeek), typeof(DayOfWeek), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCurrentDateFormat().FirstDayOfWeek));
         public static readonly DependencyProperty SelectionModeProperty = DependencyProperty.Register(nameof(SelectionMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.SingleDate));
+
+        public event EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> DisplayDateChanged;
+        private static void OnDisplayDateChanged(
+      DependencyObject d,
+      DependencyPropertyChangedEventArgs e)
+        {
+            var persianCalendar = d as PersianCalendarWithClock;
+            if (persianCalendar != null)
+            {
+                var cal = persianCalendar._calendar?._calendar;
+                if (cal != null)
+                {
+                    var v1 = new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(cal).DiscardDayTime((DateTime)e.NewValue);
+                    persianCalendar.OnDisplayDateChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(new DateTime?((DateTime)e.OldValue), new DateTime?((DateTime)e.NewValue)));
+                }
+            }
+        }
+        protected virtual void OnDisplayDateChanged(PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs e)
+        {
+            EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> displayDateChanged = this.DisplayDateChanged;
+            if (displayDateChanged == null)
+                return;
+            displayDateChanged((object)this, e);
+        }
+
 
 
         #region Tooltip feature
