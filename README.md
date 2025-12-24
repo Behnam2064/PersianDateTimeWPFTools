@@ -148,9 +148,9 @@ And in your control
 DayToolTipTemplate="{StaticResource FancyDayToolTipTemplate}"
 ```
 ## ⚙️How to use Day Indicators?
-```
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayIndicator.png)
 
+```
 persianCalendar.DayIndicators = new Dictionary<DateTime, bool>
 {
             [new DateTime(2025, 12, 23)] = true,
