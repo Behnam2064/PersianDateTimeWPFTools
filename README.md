@@ -94,10 +94,10 @@ New Dependency Properties
 | FirstDayOfWeek | First day of the week  |    Sunday |
 | SelectionMode | Type of selection  |    SingleDate |
 | IsTodayHighlighted | Show current day as highlights  |    True |
-| DayToolTips | Show Tooltip for calendar days  |     |
-| DayToolTipTemplate | A template for a tooltip  |     |
-| DayIndicators | Display Indicator for calendar days  |     |
-| DayIndicatorStyle | A style for the Indicator  |     |
+| ✨ DayToolTips | Show Tooltip for calendar days  |     |
+| ✨ DayToolTipTemplate | A template for a tooltip  |     |
+| ✨ DayIndicators | Display Indicator for calendar days  |     |
+| ✨ DayIndicatorStyle | A style for the Indicator  |     |
 
 ## ⚙️How to use Day ToolTips?
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayTooltip.png)
@@ -266,5 +266,3 @@ public partial class App : Application
         }
     }
 ```
-
-The next update will include adding a tooltip to the days button.
