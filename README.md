@@ -1,4 +1,4 @@
-# Persian calendar
+﻿# Persian calendar
 ## WPF calendar with support for Gregorian and solar calendars
 
 - A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
@@ -37,7 +37,7 @@ pcwc1.CustomCulture = CultureInfo.CreateSpecificCulture("en-US");
 ```
 If you do not select Culture, it will be automatically selected based on the software's Culture.
 
-## How to use?
+## ⚙️How to use?
 Step 1: Add the following resources in the App.xaml file
 
 ```
@@ -94,9 +94,109 @@ New Dependency Properties
 | FirstDayOfWeek | First day of the week  |    Sunday |
 | SelectionMode | Type of selection  |    SingleDate |
 | IsTodayHighlighted | Show current day as highlights  |    True |
+| DayToolTips | Show Tooltip for calendar days  |     |
+| DayToolTipTemplate | A template for a tooltip  |     |
+| DayIndicators | Display Indicator for calendar days  |     |
+| DayIndicatorStyle | A style for the Indicator  |     |
 
+## ⚙️How to use Day ToolTips?
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayTooltip.png)
+C#
+```
+persianCalendar.DayToolTips = new Dictionary<DateTime, object>
+{
+            { DateTime.Today,"It is today."},
+            { DateTime.Today.AddDays(1),"It is tomorrow."},
+};
+```
 
-## How to change the theme
+## ✨Tip 1
+The DateTime object should only contain dates.
+
+## ✨Tip 2
+If you want to update Day ToolTips you need to do something like the following
+```
+var preTooltips = persianCalendar.DayToolTips;
+preTooltips.Add(DateTime.Today.AddDays(2), "Important business meeting");
+persianCalendar.DayToolTips = preTooltips;
+```
+## You can also create a Template for Day Tooltip.
+XAML
+```
+<DataTemplate
+    x:Key="FancyDayToolTipTemplate">
+    <Border
+        Background="#222"
+        Padding="8"
+        CornerRadius="6">
+        <StackPanel>
+            <TextBlock
+                Text="{Binding}"
+                Foreground="White"
+                FontWeight="Bold" />
+            <TextBlock
+                Text="More..."
+                Foreground="LightGray"
+                FontSize="11" />
+        </StackPanel>
+    </Border>
+</DataTemplate>
+```
+And in your control
+
+```
+DayToolTipTemplate="{StaticResource FancyDayToolTipTemplate}"
+```
+## ⚙️How to use Day Indicators?
+```
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayIndicator.png)
+
+persianCalendar.DayIndicators = new Dictionary<DateTime, bool>
+{
+            [new DateTime(2025, 12, 23)] = true,
+            [new DateTime(2025, 12, 25)] = true
+};
+```
+
+## ✨Tip 1
+The DateTime object should only contain dates.
+
+## ✨Tip 2
+If you want to update Day Indicators you need to do something like the following
+```
+var preDayIndicators = persianCalendar.DayIndicators;
+preDayIndicators.Add(DateTime.Today.AddDays(2), true);
+persianCalendar.DayIndicators = preDayIndicators;
+```
+## You can also create a Style for Day Indicators.
+```
+<Style
+    x:Key="RedDotIndicatorStyle"
+    TargetType="Ellipse">
+    <Setter
+        Property="HorizontalAlignment"
+        Value="Right" />
+    <Setter
+        Property="VerticalAlignment"
+        Value="Top" />
+    <Setter
+        Property="Width"
+        Value="10" />
+    <Setter
+        Property="Height"
+        Value="10" />
+    <Setter
+        Property="Fill"
+        Value="Red" />
+</Style>
+```
+And in your control
+
+```
+DayIndicatorStyle="{StaticResource RedDotIndicatorStyle}"
+```
+
+## ⚙️How to change the theme
 In the **App.xaml** file, you can select one of the following themes by selecting the **SelectedTheme** property in the InitResources class.
 - Default
 - DarkModern1
@@ -119,7 +219,7 @@ In the **App.xaml** file, you can select one of the following themes by selectin
 </Application>
 ```
 
-## How to change theme in C#
+## ⚙️How to change theme in C#
 You can do the following in the constructor of the App.xaml.cs class:
 ```
 public partial class App : Application
@@ -141,7 +241,7 @@ public partial class App : Application
         }
     }
 ```
-## How to change the control language?
+## ⚙️How to change the control language?
 ```
 public partial class App : Application
     {        
@@ -153,7 +253,7 @@ public partial class App : Application
     }
 ```
 
-## How to change the language of controls with our own resources
+## ⚙️How to change the language of controls with our own resources
 To read the language resources, please visit the link below.
 [Github Link](https://github.com/Behnam2064/PersianDateTimeWPFTools/blob/main/PersianDateTimeWPFTools/PersianDateTimeWPFTools/Resources/Lang/Lang.en.xaml)
 ```
