@@ -39,6 +39,7 @@
     <Style
         x:Key="ClockRadioButtonDarkModern1"
         TargetType="{x:Type RadioButton}">
+        
         <Setter
             Property="Control.BorderThickness"
             Value="1" />
@@ -243,6 +244,9 @@
     <Style
         x:Key="ClockDarkModern1"
         TargetType="{x:Type pdtwt:Clock}">
+        <Setter
+            Property="FlowDirection"
+            Value="LeftToRight" />
         <Setter
             Property="UIElement.Focusable"
             Value="False" />
@@ -720,6 +724,9 @@
     <Style
         x:Key="ClockLightModern1"
         TargetType="{x:Type pdtwt:Clock}">
+        <Setter
+            Property="FlowDirection"
+            Value="LeftToRight" />
         <Setter
             Property="UIElement.Focusable"
             Value="False" />

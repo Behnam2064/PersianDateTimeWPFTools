@@ -118,6 +118,9 @@
         x:Key="ClockBaseStyle"
         TargetType="{x:Type pdtwt:Clock}">
         <Setter
+            Property="FlowDirection"
+            Value="LeftToRight" />
+        <Setter
             Property="Control.BorderThickness"
             Value="0" />
         <Setter
