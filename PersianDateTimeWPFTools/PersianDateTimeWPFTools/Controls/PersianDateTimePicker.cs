@@ -113,7 +113,6 @@ namespace PersianDateTimeWPFTools.Controls
 
         #endregion
 
-
         #region Day Indicators featuer
 
         public IDictionary<DateTime, bool> DayIndicators
@@ -142,6 +141,25 @@ namespace PersianDateTimeWPFTools.Controls
                 typeof(Style),
                 typeof(PersianDateTimePicker),
                 new PropertyMetadata(null));
+
+        #endregion
+
+
+        #region Day Metadata feature
+
+        public IDictionary<DateTime, CalendarDayInfo> DayMetadata
+        {
+            get => (IDictionary<DateTime, CalendarDayInfo>)
+                GetValue(DayMetadataProperty);
+            set => SetValue(DayMetadataProperty, value);
+        }
+
+        public static readonly DependencyProperty DayMetadataProperty =
+            DependencyProperty.Register(
+                nameof(DayMetadata),
+                typeof(IDictionary<DateTime, CalendarDayInfo>),
+                typeof(PersianDateTimePicker),
+                new PropertyMetadata(null, null));
 
         #endregion
 
@@ -350,6 +368,10 @@ namespace PersianDateTimeWPFTools.Controls
             InitResources.SetControlStyle(this);
             DisplayDate = DateTime.Today;
             InitCalendarWithClock();
+            DayMetadata = new Dictionary<DateTime, CalendarDayInfo>();
+            DayIndicators = new Dictionary<DateTime, bool>();
+            DayToolTips = new Dictionary<DateTime, object>();
+
             //CommandBindings.Add(new CommandBinding(ControlCommands.Clear, (s, e) =>
             //{
             //    SetCurrentValue(SelectedDateTimeProperty, null);
@@ -569,6 +591,9 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendarWithClock.SetBinding(PersianCalendarWithClock.DayIndicatorStyleProperty,
                 new Binding(DayIndicatorStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendarWithClock.SetBinding(PersianCalendarWithClock.DayMetadataProperty,
+                new Binding(DayMetadataProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
 
             if (_popup != null)

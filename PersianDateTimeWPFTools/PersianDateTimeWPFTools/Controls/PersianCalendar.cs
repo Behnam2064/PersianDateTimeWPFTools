@@ -145,6 +145,31 @@ namespace PersianDateTimeWPFTools.Controls
         }
         #endregion
 
+        #region Day Metadata feature
+
+        public IDictionary<DateTime, CalendarDayInfo> DayMetadata
+        {
+            get => (IDictionary<DateTime, CalendarDayInfo>)
+                GetValue(DayMetadataProperty);
+            set => SetValue(DayMetadataProperty, value);
+        }
+
+        public static readonly DependencyProperty DayMetadataProperty =
+            DependencyProperty.Register(
+                nameof(DayMetadata),
+                typeof(IDictionary<DateTime, CalendarDayInfo>),
+                typeof(PersianCalendar),
+                new PropertyMetadata(null,new PropertyChangedCallback(DayMetadataChanged)));
+
+        private static void DayMetadataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            PersianCalendar persianCalendar = d as PersianCalendar;
+            persianCalendar.CoerceValue(DayMetadataProperty);
+            persianCalendar.UpdateCellItems();
+        }
+        #endregion
+
+
         public bool ShowConfirmButton
         {
             get { return (bool)GetValue(ShowConfirmButtonProperty); }
@@ -195,9 +220,14 @@ namespace PersianDateTimeWPFTools.Controls
             this._blackoutDates = new PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection(this);
             this._selectedDates = new PersianDateTimeWPFTools.Windows.Controls.SelectedDatesCollection(this);
             this.DisplayDate = DateTime.Today;
+
             #region Tooltip feature
             DayToolTips = new Dictionary<DateTime, object>();
             DayIndicators = new Dictionary<DateTime, bool>();
+            #endregion
+
+            #region Day Metadata feature
+            DayMetadata = new Dictionary<DateTime, CalendarDayInfo>();
             #endregion
         }
 

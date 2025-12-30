@@ -74,6 +74,50 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         #endregion
+
+        #region Day Metadata feature
+
+
+        public static readonly DependencyProperty HasDayMetadataProperty =
+    DependencyProperty.RegisterAttached(
+        "HasDayMetadata",
+        typeof(bool),
+        typeof(CalendarDayButtonExtensions),
+        new FrameworkPropertyMetadata(false));
+
+        public static void SetHasDayMetadata(
+            DependencyObject element, bool value)
+        {
+            element.SetValue(HasDayMetadataProperty, value);
+        }
+
+        public static bool GetHasDayMetadata(
+            DependencyObject element)
+        {
+            return (bool)element.GetValue(HasDayMetadataProperty);
+        }
+
+
+        public static readonly DependencyProperty DayIndicatorStyleProperty =
+DependencyProperty.RegisterAttached(
+"DayIndicatorStyle",
+typeof(Style),
+typeof(CalendarDayButtonExtensions),
+new FrameworkPropertyMetadata(null));
+
+        public static void SetDayIndicatorStyle(
+            DependencyObject element, Style value)
+        {
+            element.SetValue(DayIndicatorStyleProperty, value);
+        }
+
+        public static Style GetDayIndicatorStyle(
+            DependencyObject element)
+        {
+            return (Style)element.GetValue(DayIndicatorStyleProperty);
+        }
+
+        #endregion
     }
 
 }

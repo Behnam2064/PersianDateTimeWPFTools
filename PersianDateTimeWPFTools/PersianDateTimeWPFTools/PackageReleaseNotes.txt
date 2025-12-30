@@ -1,1 +1,13 @@
-﻿- fix: Solving the flow direction problem in Clock control
+﻿✨ New Feature: DayMetadata (Unified Per-Day Customization)
+
+This release introduces a new DayMetadata API that allows full control over individual calendar days using a single, unified model.
+
+Key highlights:
+- New CalendarDayInfo model for describing per-day behavior
+- Centralized configuration for tooltips, indicators, and disabled days
+- Backward-compatible with existing DayToolTips and DayIndicators APIs
+- Tooltips can be displayed even on disabled days to explain restrictions
+- Virtualization-safe implementation ensures correct behavior when navigating between months
+- Fully styleable and MVVM-friendly design
+
+This enhancement makes advanced day-level customization cleaner, more expressive, and easier to maintain.

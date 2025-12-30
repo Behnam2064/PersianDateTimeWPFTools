@@ -818,64 +818,125 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                     child.DataContext = (object)dateTime;
                     child.SetContentInternal(dateTimeHelper.ToDayString(new DateTime?(dateTime), culture));
 
-                    #region Tooltip feature
+                    /*
+                     * Priority:
+                     * 
+                        DayMetadata
+                        ↓
+                        DayToolTips / DayIndicators
+                        ↓
+                        Default behavior
+                    */
 
-                    if (Owner?.DayToolTips != null)
-                    {
-                        var key = dateTime;
-                        if (Owner.DayToolTips.TryGetValue(key, out var tooltip))
-                        {
-                            #region Tooltip feature
-                            CalendarDayButtonExtensions.SetDayToolTip(child, tooltip);
-                            #endregion
-
-                            #region Tooltip template feature
-
-                            CalendarDayButtonExtensions.SetDayToolTipTemplate(
-                                child,
-                                Owner.DayToolTipTemplate); 
-                            #endregion
-                        }
-                        else
-                        {
-                            #region Tooltip feature
-                            CalendarDayButtonExtensions.SetDayToolTip(child, null);
-                            #endregion
-
-                            #region Tooltip template feature
-                            CalendarDayButtonExtensions.SetDayToolTipTemplate(child, null);
-                            #endregion
-                        }
-                    }
-
-                    #endregion
-
-                    #region Day Indicators featuer
-
+                    // --- defaults (VERY IMPORTANT)
+                    object tooltip = null;
+                    DataTemplate tooltipTemplate = null;
                     bool hasIndicator = false;
-
-                    if (Owner?.DayIndicators != null)
+                    Style indicatorStyle = null;
+                    bool isDisabled = false;
+                    bool useMetadata = false;
+                    bool showToolTipWhenDisabled = true;
+                    // --- priority 1: DayMetadata
+                    if (Owner?.DayMetadata != null && Owner.DayMetadata.TryGetValue(dateTime.Date, out var info))
                     {
-                        var key = dateTime.Date;
+                        tooltip = info.ToolTip;
+                        tooltipTemplate = info.ToolTipTemplate;
+                        hasIndicator = info.HasIndicator;
+                        indicatorStyle = info.IndicatorStyle;
+                        isDisabled = info.IsDisabled;
+                        useMetadata = true;
+                        showToolTipWhenDisabled = info.ShowToolTipWhenDisabled;
+                    }
+                    else
+                    {
+                        // --- priority 2: legacy APIs
 
-                        if (Owner.DayIndicators.TryGetValue(key, out hasIndicator))
+                        #region Tooltip feature
+
+                        if (Owner?.DayToolTips != null)
                         {
-                            //CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
+                            var key = dateTime;
+                            if (Owner.DayToolTips.TryGetValue(key, out tooltip))
+                            {
+                                #region Tooltip feature
+                                //CalendarDayButtonExtensions.SetDayToolTip(child, tooltip);
+                                #endregion
+
+                                #region Tooltip template feature
+
+                                //CalendarDayButtonExtensions.SetDayToolTipTemplate(child, Owner.DayToolTipTemplate);
+                                #endregion
+                            }
+                            else
+                            {
+                                #region Tooltip feature
+                                //CalendarDayButtonExtensions.SetDayToolTip(child, null);
+                                #endregion
+
+                                #region Tooltip template feature
+                                //CalendarDayButtonExtensions.SetDayToolTipTemplate(child, null);
+                                #endregion
+                            }
+                        }
+
+                        #endregion
+
+                        #region Day Indicators featuer
+
+                        //bool hasIndicator = false;
+
+                        if (Owner?.DayIndicators != null)
+                        {
+                            var key = dateTime.Date;
+
+                            if (Owner.DayIndicators.TryGetValue(key, out hasIndicator))
+                            {
+                                //CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
+                            }
+                            else
+                            {
+                                //CalendarDayButtonExtensions.SetHasDayIndicator(child, false);
+                                hasIndicator = false;
+                            }
                         }
                         else
                         {
                             //CalendarDayButtonExtensions.SetHasDayIndicator(child, false);
                             hasIndicator = false;
                         }
-                    }
-                    else
-                    {
-                        //CalendarDayButtonExtensions.SetHasDayIndicator(child, false);
-                        hasIndicator = false;
+
+                        CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
+                        #endregion
                     }
 
+                    // --- apply to button (ALWAYS)
+                    CalendarDayButtonExtensions.SetDayToolTip(child, tooltip);
+                    CalendarDayButtonExtensions.SetDayToolTipTemplate(child, tooltipTemplate);
                     CalendarDayButtonExtensions.SetHasDayIndicator(child, hasIndicator);
-                    #endregion
+
+                    // optional: per-day indicator style
+                    CalendarDayButtonExtensions.SetDayIndicatorStyle(child, indicatorStyle);
+
+                    // disabled day
+                    //child.IsEnabled = !isDisabled;
+
+                    if (isDisabled)
+                    {
+                        //Display tooltip on disabled button
+                        /*child.IsEnabled = true;
+                        child.IsHitTestVisible = false;
+                        child.Opacity = 0.5;*/
+
+                        if (showToolTipWhenDisabled)
+                            ToolTipService.SetShowOnDisabled(child, true);
+
+                        child.IsEnabled = !isDisabled;
+                        /*if (!showToolTipWhenDisabled)
+                            CalendarDayButtonExtensions.SetDayToolTip(child, null);*/
+
+                    }
+
+
                 }
                 else
                 {

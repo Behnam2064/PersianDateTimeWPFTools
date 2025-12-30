@@ -94,14 +94,123 @@ New Dependency Properties
 | FirstDayOfWeek | First day of the week  |    Sunday |
 | SelectionMode | Type of selection  |    SingleDate |
 | IsTodayHighlighted | Show current day as highlights  |    True |
+| ✨ DayMetadata | Introduce DayMetadata API for unified per-day customization such as Tooltip, DayIndicators, DayIndicatorStyle, etc.  |     |
 | ✨ DayToolTips | Show Tooltip for calendar days  |     |
 | ✨ DayToolTipTemplate | A template for a tooltip  |     |
 | ✨ DayIndicators | Display Indicator for calendar days  |     |
 | ✨ DayIndicatorStyle | A style for the Indicator  |     |
 
-## ⚙️How to use Day ToolTips?
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayTooltip.png)
+
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayMetadataUse.png)
+
+## ❔ What is DayMetadata?
+introduce DayMetadata API for unified per-day customization
+- Added CalendarDayInfo model to describe per-day metadata
+- Introduced DayMetadata dictionary to centralize day configuration
+- Unified tooltip, indicator, and disabled-day logic under a single API
+- Ensured backward compatibility with existing DayToolTips and DayIndicators
+- Enabled tooltips to be shown on disabled days for better UX
+- Implemented virtualization-safe updates across month navigation
+
+## 📝 A note about the DayMetadata execution priority
+DayMetadata
+
+↓
+
+DayToolTips / DayIndicators
+
+↓
+
+Default behavior
+
+## ⚙️How to use DayMetadata?
+
+First you need to familiarize yourself with the properties of the CalendarDayInfo class.
+
+
+| Name        | Description           | Default  |
+| :------------- |:-------------| :-----|
+| ToolTip      | Show Tooltip for calendar days |  |
+| ToolTipTemplate      | A template for a tooltip. |  |
+| HasIndicator      | Display Indicator for calendar days | False |
+| IndicatorStyle      | A style for the Indicator (You can create a unique style for each day.) |  |
+| IsDisabled      | Disable specific day| False |
+| ShowToolTipWhenDisabled      | Show Tooltip for disabled days | True |
+
 C#
+
+```
+persianCalendar.DayMetadata = new Dictionary<DateTime, CalendarDayInfo>
+{
+    [new DateTime(2025, 12, 29)] = new CalendarDayInfo
+    {
+        ToolTip = "Meeting with the marketing team",
+    },
+    [new DateTime(2025, 12, 31)] = new CalendarDayInfo
+    {
+        ToolTip = "Important meeting with the development team",
+        HasIndicator = true,
+        IndicatorStyle = Resources["DayIndicatorRedStyle"] as Style,
+    },
+    [new DateTime(2025, 12, 21)] = new CalendarDayInfo
+    {
+        ToolTip = "My love's birthday",
+        HasIndicator = true,
+        IsDisabled = true,
+        ShowToolTipWhenDisabled = true,
+        IndicatorStyle = this.Resources["DayIndicatorGreenStyle"] as Style,
+        ToolTipTemplate = Resources["FancyDayToolTipTemplate"] as DataTemplate,
+    }
+};
+
+
+## ✨Tip 1
+The DateTime object should only contain dates.
+
+## ✨Tip 2
+If you want to update DayMetadata you need to do something like the following
+
+```
+var preDayMetadata = persianCalendar.DayMetadata;
+
+preDayMetadata.Add(DateTime.Today.AddDays(2), new CalendarDayInfo() { ToolTip = "Don't forget about renting a house.", HasIndicator = true });
+
+persianCalendar.DayMetadata = preDayMetadata;
+```
+
+```
+💫Creating a Style for the Day Indicator
+
+```
+<Style
+    x:Key="DayIndicatorRedStyle"
+    TargetType="Ellipse">
+    <Setter
+        Property="Width"
+        Value="10" />
+    <Setter
+        Property="Height"
+        Value="10" />
+    <Setter
+        Property="Fill"
+        Value="Red" />
+    <Setter
+        Property="VerticalAlignment"
+        Value="Top" />
+    <Setter
+        Property="HorizontalAlignment"
+        Value="Right" />
+    <Setter
+        Property="Margin"
+        Value="2,2,2,4" />
+</Style>
+```
+## ⚙️How to use Day ToolTips?
+
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayTooltip.png)
+
+C#
+
 ```
 persianCalendar.DayToolTips = new Dictionary<DateTime, object>
 {
@@ -149,6 +258,8 @@ DayToolTipTemplate="{StaticResource FancyDayToolTipTemplate}"
 ```
 ## ⚙️How to use Day Indicators?
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayIndicator.png)
+
+C#
 
 ```
 persianCalendar.DayIndicators = new Dictionary<DateTime, bool>
@@ -266,3 +377,5 @@ public partial class App : Application
         }
     }
 ```
+
+The next feature could be new themes 💫

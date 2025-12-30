@@ -181,6 +181,25 @@ namespace PersianDateTimeWPFTools.Controls
                 new PropertyMetadata(null));
 
         #endregion
+
+
+        #region Day Metadata feature
+
+        public IDictionary<DateTime, CalendarDayInfo> DayMetadata
+        {
+            get => (IDictionary<DateTime, CalendarDayInfo>)
+                GetValue(DayMetadataProperty);
+            set => SetValue(DayMetadataProperty, value);
+        }
+
+        public static readonly DependencyProperty DayMetadataProperty =
+            DependencyProperty.Register(
+                nameof(DayMetadata),
+                typeof(IDictionary<DateTime, CalendarDayInfo>),
+                typeof(PersianCalendarWithClock),
+                new PropertyMetadata(null, null));
+
+        #endregion
         public DateTime DisplayDate
         {
             get => (DateTime)this.GetValue(PersianCalendarWithClock.DisplayDateProperty);
@@ -284,6 +303,9 @@ namespace PersianDateTimeWPFTools.Controls
             InitResources.SetControlStyle(this);
             DisplayDateTime = DateTime.Today;
             DisplayDate = DateTime.Today;
+            DayMetadata = new Dictionary<DateTime, CalendarDayInfo>();
+            DayIndicators = new Dictionary<DateTime, bool>();
+            DayToolTips = new Dictionary<DateTime, object>();
             InitCalendarAndClock();
             Loaded += (s, e) =>
             {
@@ -496,6 +518,9 @@ namespace PersianDateTimeWPFTools.Controls
 
             _calendar.SetBinding(PersianCalendar.DayIndicatorStyleProperty,
                 new Binding(DayIndicatorStyleProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
+
+            _calendar.SetBinding(PersianCalendar.DayMetadataProperty,
+                new Binding(DayMetadataProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
             DisplayDate = DateTime.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);

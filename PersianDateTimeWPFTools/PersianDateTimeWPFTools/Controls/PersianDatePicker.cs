@@ -144,6 +144,28 @@ namespace PersianDateTimeWPFTools.Controls
                 new PropertyMetadata(null));
 
         #endregion
+
+
+        #region Day Metadata feature
+
+        public IDictionary<DateTime, CalendarDayInfo> DayMetadata
+        {
+            get => (IDictionary<DateTime, CalendarDayInfo>)
+                GetValue(DayMetadataProperty);
+            set => SetValue(DayMetadataProperty, value);
+        }
+
+        public static readonly DependencyProperty DayMetadataProperty =
+            DependencyProperty.Register(
+                nameof(DayMetadata),
+                typeof(IDictionary<DateTime, CalendarDayInfo>),
+                typeof(PersianDatePicker),
+                new PropertyMetadata(null, null));
+
+        #endregion
+
+
+
         #endregion
 
         public event RoutedEventHandler CalendarClosed;
@@ -173,6 +195,9 @@ namespace PersianDateTimeWPFTools.Controls
             this._defaultText = string.Empty;
             this.FirstDayOfWeek = PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCurrentDateFormat().FirstDayOfWeek;
             this.DisplayDate = DateTime.Today;
+            DayMetadata = new Dictionary<DateTime,CalendarDayInfo>();
+            DayIndicators = new Dictionary<DateTime,bool>();
+            DayToolTips = new Dictionary<DateTime,object>();
         }
 
         public PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection BlackoutDates
@@ -558,6 +583,7 @@ namespace PersianDateTimeWPFTools.Controls
 
             this._persianCalendar.SetBinding(PersianCalendar.DayIndicatorsProperty, this.GetDatePickerBinding(PersianDatePicker.DayIndicatorsProperty));
             this._persianCalendar.SetBinding(PersianCalendar.DayIndicatorStyleProperty, this.GetDatePickerBinding(PersianDatePicker.DayIndicatorStyleProperty));
+            this._persianCalendar.SetBinding(PersianCalendar.DayMetadataProperty, this.GetDatePickerBinding(PersianDatePicker.DayMetadataProperty));
 
             if (this._popUp != null)
             {

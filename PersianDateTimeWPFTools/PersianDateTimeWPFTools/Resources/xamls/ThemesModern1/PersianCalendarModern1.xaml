@@ -745,23 +745,46 @@
               </UIElement.RenderTransform>
                             </TextBlock>
                             <Ellipse
-                                x:Name="DayIndicator"
+                                x:Name="DayIndicator2"
                                 Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
                                 Visibility="Collapsed" />
 
+                            <Ellipse
+                                x:Name="DayIndicator1"
+                                Style="{Binding RelativeSource={RelativeSource TemplatedParent},
+Path=(pdtwt:CalendarDayButtonExtensions.DayIndicatorStyle),
+FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
+                                Visibility="Collapsed" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-
+                        <!--DayMetadata-->
                         <Trigger
                             Property="pdtwt:CalendarDayButtonExtensions.HasDayIndicator"
                             Value="True">
                             <Setter
-                                TargetName="DayIndicator"
+                                TargetName="DayIndicator1"
+                                Property="Visibility"
+                                Value="Visible" />
+
+                            <Setter
+                                TargetName="DayIndicator2"
                                 Property="Visibility"
                                 Value="Visible" />
                         </Trigger>
 
+                        <!--Use new one-->
+                        <Trigger
+                            Property="pdtwt:CalendarDayButtonExtensions.HasDayMetadata"
+                            Value="True">
+                            <Setter
+                                TargetName="DayIndicator2"
+                                Property="Visibility"
+                                Value="Collapsed" />
+
+                        </Trigger>
+                        <!--DayMetadata-->
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
@@ -1087,7 +1110,7 @@
                             Value="False">
                             <Setter
                                 TargetName="NormalText"
-                                Value="{DynamicResource CalendarViewBlackoutForeground}"
+                                Value="#666F6F6F"
                                 Property="TextBlock.Foreground" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -2042,8 +2065,15 @@
 
                         </Grid>
                         <Ellipse
-                            x:Name="DayIndicator"
+                            x:Name="DayIndicator2"
                             Style="{Binding RelativeSource={RelativeSource AncestorType=pdtwt:PersianCalendar},Path=DayIndicatorStyle, FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
+                            Visibility="Collapsed" />
+
+                        <Ellipse
+                            x:Name="DayIndicator1"
+                            Style="{Binding RelativeSource={RelativeSource TemplatedParent},
+Path=(pdtwt:CalendarDayButtonExtensions.DayIndicatorStyle),
+FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
                             Visibility="Collapsed" />
                     </Grid>
 
@@ -2052,9 +2082,25 @@
                             Property="pdtwt:CalendarDayButtonExtensions.HasDayIndicator"
                             Value="True">
                             <Setter
-                                TargetName="DayIndicator"
+                                TargetName="DayIndicator1"
                                 Property="Visibility"
                                 Value="Visible" />
+
+                            <Setter
+                                TargetName="DayIndicator2"
+                                Property="Visibility"
+                                Value="Visible" />
+                        </Trigger>
+
+                        <!--Use new one-->
+                        <Trigger
+                            Property="pdtwt:CalendarDayButtonExtensions.HasDayMetadata"
+                            Value="True">
+                            <Setter
+                                TargetName="DayIndicator2"
+                                Property="Visibility"
+                                Value="Collapsed" />
+
                         </Trigger>
 
                         <MultiTrigger>
