@@ -164,6 +164,7 @@ persianCalendar.DayMetadata = new Dictionary<DateTime, CalendarDayInfo>
         ToolTipTemplate = Resources["FancyDayToolTipTemplate"] as DataTemplate,
     }
 };
+```
 
 
 ## ✨Tip 1
@@ -180,7 +181,6 @@ preDayMetadata.Add(DateTime.Today.AddDays(2), new CalendarDayInfo() { ToolTip = 
 persianCalendar.DayMetadata = preDayMetadata;
 ```
 
-```
 💫Creating a Style for the Day Indicator
 
 ```
