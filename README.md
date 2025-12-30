@@ -101,9 +101,11 @@ New Dependency Properties
 | ✨ DayIndicatorStyle | A style for the Indicator  |     |
 
 
-![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayMetadataUse.png)
 
 ## ❔ What is DayMetadata?
+
+![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/dayMetadataUse.png)
+
 introduce DayMetadata API for unified per-day customization
 - Added CalendarDayInfo model to describe per-day metadata
 - Introduced DayMetadata dictionary to centralize day configuration
