@@ -65,7 +65,7 @@ namespace PersianDateTimeWPFTools.Controls
         public Clock()
         {
             InitResources.SetControlStyle(this);
-            
+
         }
 
         #endregion Data
@@ -114,7 +114,7 @@ namespace PersianDateTimeWPFTools.Controls
         #endregion Public Properties
 
         #region Public Methods
-
+    
         public override void OnApplyTemplate()
         {
             AppliedTemplate = false;
@@ -214,6 +214,72 @@ namespace PersianDateTimeWPFTools.Controls
 
         private void BorderTitle_OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
+            if (e.OriginalSource is FrameworkElement ui)
+            {
+                if (!string.IsNullOrEmpty(ui.Name) && _radioButtonList != null)
+                {
+                    if (ui.Name == "PART_TimeStrMinute")
+                    {
+                        // Any positive Delta means the wheel is up, negative means the wheel is down.
+                        var value = (int)_rotateTransformClock.Angle;
+                        if (e.Delta < 0)
+                        {
+                            value += 6; // One extra minute
+                        }
+                        else
+                        {
+                            value -= 6; // One minute left.
+                        }
+
+                        if (value < 0)
+                            value += 360;
+                        if (value >= 360)
+                            value -= 360;
+
+                        _rotateTransformClock.Angle = value;
+                        Update();
+                        return;
+                    }
+                    else if (ui.Name == "PART_TimeStrHour")
+                    {
+                        // Current time from selected button
+                        var hValue = (int)_currentButton.Tag;
+
+                        if (e.Delta < 0)
+                        {
+                            hValue++; // One extra minute
+                        }
+                        else
+                        {
+                            hValue--; // One minute left.
+                        }
+
+                        if (hValue > 12) hValue = 1;
+                        if (hValue < 1) hValue = 12;
+
+                        // Select the new button.
+                        var ctl = _radioButtonList[hValue - 1];
+                        ctl.IsChecked = true;
+                        _currentButton = ctl;
+
+                        // Check if AM/PM is enabled.
+                        if (_buttonPm.IsChecked == true)
+                        {
+                            // In PM mode, the hours are 12 to 23.
+                            if (hValue == 12) hValue = 12; // 12 PM
+                        }
+                        else
+                        {
+                            // In AM mode the hours are 0 to 11
+                            if (hValue == 12) hValue = 0; // 12 AM
+                        }
+
+                        Update();
+                        return;
+                    }
+                }
+            }
+
             if (e.Delta < 0)
             {
                 SecValue--;

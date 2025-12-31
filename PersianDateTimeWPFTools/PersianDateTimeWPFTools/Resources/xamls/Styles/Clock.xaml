@@ -111,9 +111,6 @@
         </Style.Triggers>
     </Style>
 
-
- 
-
     <Style
         x:Key="ClockBaseStyle"
         TargetType="{x:Type pdtwt:Clock}">
@@ -180,12 +177,51 @@
                                 Grid.ColumnSpan="3"
                                 CornerRadius="{Binding Path=(tools:BorderElement.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                                 Background="{Binding Path=(tools:TitleElement.Background), RelativeSource={RelativeSource TemplatedParent}}">
-                                <TextBlock
-                                    x:Name="PART_TimeStr"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    FontSize="20"
-                                    Foreground="{DynamicResource TextIconBrush}" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock
+                                        Visibility="Collapsed"
+                                        x:Name="PART_TimeStr"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}" />
+
+                                    <TextBlock
+                                        x:Name="PART_TimeStrHour"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}"
+                                        Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Hour}}" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}"
+                                        Text=":" />
+                                    <TextBlock
+                                        x:Name="PART_TimeStrMinute"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}"
+                                        Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Minute}}" />
+                                    
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}"
+                                        Text=":" />
+                                    
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        Foreground="{DynamicResource TextIconBrush}"
+                                        Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Second}}" />
+
+                                </StackPanel>
                             </Border>
                             <Canvas
                                 Name="PART_Canvas"

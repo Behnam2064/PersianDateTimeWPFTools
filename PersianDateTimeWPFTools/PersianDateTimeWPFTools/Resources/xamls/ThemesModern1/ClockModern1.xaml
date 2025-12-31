@@ -372,6 +372,7 @@
                                             RadiusY="3" />
 
                                         <TextBlock
+                                            x:Name="PART_TimeStrHour"
                                             Grid.Column="0"
                                             Margin="0,0"
                                             VerticalAlignment="Center"
@@ -388,8 +389,8 @@
                                             Text=":"
                                             Foreground="{DynamicResource NormalForegroundDark}" />
 
-
                                         <TextBlock
+                                            x:Name="PART_TimeStrMinute"
                                             Grid.Column="2"
                                             Margin="0,0"
                                             VerticalAlignment="Center"
@@ -765,28 +766,6 @@
             <Setter.Value>
                 <ControlTemplate
                     TargetType="{x:Type pdtwt:Clock}">
-
-                    <!--<primitives:ThemeShadowChrome
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        x:Name="Shdw"
-                        IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"
-                        CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
-                        SnapsToDevicePixels="True"
-                        primitives:OpeningAnimationHelper.Storyboard="{DynamicResource OpeningStoryboard}">
-                        <FrameworkElement.Resources>
-                            <Storyboard
-                                x:Key="OpeningStoryboard">
-                                <DoubleAnimation
-                                    Storyboard.TargetProperty="Opacity"
-                                    From="0"
-                                    To="1"
-                                    Duration="0:0:0.100"
-                                    Storyboard.Target="{Binding ElementName=Shdw}" />
-                            </Storyboard>
-                        </FrameworkElement.Resources>
-
-                    </primitives:ThemeShadowChrome>-->
                     <Grid>
 
                         <Border
@@ -852,6 +831,7 @@
                                             RadiusY="3" />
 
                                         <TextBlock
+                                            x:Name="PART_TimeStrHour"
                                             Grid.Column="0"
                                             Margin="0,0"
                                             VerticalAlignment="Center"
@@ -868,8 +848,8 @@
                                             Text=":"
                                             Foreground="{DynamicResource NormalForegroundLight}" />
 
-
                                         <TextBlock
+                                            x:Name="PART_TimeStrMinute"
                                             Grid.Column="2"
                                             Margin="0,0"
                                             VerticalAlignment="Center"
@@ -964,8 +944,6 @@
                             Text="{Binding Path=Text, ElementName=PART_TimeStr, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Second}}"
                             Foreground="{DynamicResource NormalForegroundLight}" />
                     </Grid>
-
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

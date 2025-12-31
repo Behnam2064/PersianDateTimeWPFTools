@@ -1,13 +1,6 @@
-﻿✨ New Feature: DayMetadata (Unified Per-Day Customization)
+﻿feat(clock-control): add mouse wheel support for hour/minute adjustment
 
-This release introduces a new DayMetadata API that allows full control over individual calendar days using a single, unified model.
-
-Key highlights:
-- New CalendarDayInfo model for describing per-day behavior
-- Centralized configuration for tooltips, indicators, and disabled days
-- Backward-compatible with existing DayToolTips and DayIndicators APIs
-- Tooltips can be displayed even on disabled days to explain restrictions
-- Virtualization-safe implementation ensures correct behavior when navigating between months
-- Fully styleable and MVVM-friendly design
-
-This enhancement makes advanced day-level customization cleaner, more expressive, and easier to maintain.
+- Implemented BorderTitle_OnMouseWheel to handle wheel events
+- Minute adjustment via PART_TimeStrMinute (±1 minute using rotateTransform)
+- Hour adjustment via PART_TimeStrHour (±1 hour using RadioButton list)
+- Integrated AM/PM logic with Update() to ensure correct time display
