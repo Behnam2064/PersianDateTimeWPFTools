@@ -11,7 +11,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
         private DateTime _start;
 
         public CalendarDateRange()
-          : this(DateTime.MinValue, DateTime.MaxValue)
+          : this(PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, PersianDateTimeWPFTools.Time.ClockProvider.Current.MaxValue)
         {
         }
 
@@ -85,7 +85,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
 
         private static DateTime CoerceEnd(DateTime start, DateTime end)
         {
-            return DateTime.Compare(start, end) > 0 ? start : end;
+            return PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(start, end) > 0 ? start : end;
         }
     }
 }

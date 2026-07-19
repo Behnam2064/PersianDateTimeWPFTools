@@ -22,7 +22,7 @@ namespace TestPersianCalendar
         public MainWindow()
         {
             InitializeComponent();
-            pcwc1.BlackoutDates.Add(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(DateTime.Now.AddDays(2), DateTime.Now.AddDays(2 + 2)));
+            pcwc1.BlackoutDates.Add(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now.AddDays(2), PersianDateTimeWPFTools.Time.ClockProvider.Current.Now.AddDays(2 + 2)));
             pc1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pdp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);
             pdtp1.BlackoutDates.Add(pcwc1.BlackoutDates[0]);

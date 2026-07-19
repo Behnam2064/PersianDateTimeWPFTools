@@ -144,7 +144,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         private Button PreviousButton => this._previousButton;
 
-        private DateTime DisplayDate => this.Owner == null ? DateTime.Today : this.Owner.DisplayDate;
+        private DateTime DisplayDate => this.Owner == null ? PersianDateTimeWPFTools.Time.ClockProvider.Current.Today : this.Owner.DisplayDate;
 
         public override void OnApplyTemplate()
         {
@@ -264,7 +264,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             if (Owner.DisplayMode != CalendarMode.Month)
                 Owner.DisplayMode = CalendarMode.Month;
 
-            this.Owner.MoveDisplayTo(new DateTime?(dateTimeHelper.DiscardDayTime(DateTime.Now)));
+            this.Owner.MoveDisplayTo(new DateTime?(dateTimeHelper.DiscardDayTime(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now)));
 
         }
 
@@ -291,7 +291,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
 
         internal void UpdateDecadeMode()
         {
-            DateTime decadeForDecadeMode = this.GetDecadeForDecadeMode(this.Owner == null ? DateTime.Today : this.Owner.DisplayYear);
+            DateTime decadeForDecadeMode = this.GetDecadeForDecadeMode(this.Owner == null ? PersianDateTimeWPFTools.Time.ClockProvider.Current.Today : this.Owner.DisplayYear);
             DateTime decadeEnd = this._calendar.AddYears(decadeForDecadeMode, 9);
             this.SetDecadeModeHeaderButton(decadeForDecadeMode);
             this.SetDecadeModePreviousButton(decadeForDecadeMode);
@@ -444,7 +444,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             this.Owner.CurrentDate = selectedDate;
             if (!this.Owner.HoverStart.HasValue)
                 return;
-            if (ctrl && DateTime.Compare(this.Owner.HoverStart.Value, selectedDate) == 0 && (this.Owner.SelectionMode == PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.SingleDate || this.Owner.SelectionMode == PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.MultipleRange))
+            if (ctrl && PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(this.Owner.HoverStart.Value, selectedDate) == 0 && (this.Owner.SelectionMode == PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.SingleDate || this.Owner.SelectionMode == PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.MultipleRange))
                 this.Owner.SelectedDates.Toggle(selectedDate);
             else
                 this.Owner.SelectedDates.AddRangeInternal(this.Owner.HoverStart.Value, selectedDate);
@@ -964,7 +964,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
                     childButton.IsEnabled = true;
                     childButton.SetValue(CalendarDayButton.IsBlackedOutPropertyKey, (object)this.Owner.BlackoutDates.Contains(dateToAdd.Value));
                     childButton.SetValue(CalendarDayButton.IsInactivePropertyKey, (object)(dateTimeHelper.CompareYearMonth(dateToAdd.Value, this.Owner.DisplayDateInternal) != 0));
-                    if (PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.CompareDays(dateToAdd.Value, DateTime.Today) == 0)
+                    if (PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.CompareDays(dateToAdd.Value, PersianDateTimeWPFTools.Time.ClockProvider.Current.Today) == 0)
                     {
                         childButton.SetValue(CalendarDayButton.IsTodayPropertyKey, (object)true);
                         childButton.ChangeVisualState(true);
@@ -1051,7 +1051,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls.Primitives
             if (this.Owner == null || this._nextButton == null)
                 return;
             DateTime dateTime = dateTimeHelper.DiscardDayTime(this.DisplayDate);
-            if (dateTimeHelper.CompareYearMonth(dateTime, DateTime.MaxValue) == 0)
+            if (dateTimeHelper.CompareYearMonth(dateTime, PersianDateTimeWPFTools.Time.ClockProvider.Current.MaxValue) == 0)
                 this._nextButton.IsEnabled = false;
             else
                 this._nextButton.IsEnabled = PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.CompareDays(this.Owner.DisplayDateEndInternal, this._calendar.AddMonths(dateTime, 1)) > -1;

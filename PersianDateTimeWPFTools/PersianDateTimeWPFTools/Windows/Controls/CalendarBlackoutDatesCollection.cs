@@ -23,7 +23,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
 
         public void AddDatesInPast()
         {
-            this.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1.0)));
+            this.Add(new CalendarDateRange(PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, PersianDateTimeWPFTools.Time.ClockProvider.Current.Today.AddDays(-1.0)));
         }
 
         public bool Contains(DateTime date) => this.GetContainingDateRange(date) != null;
@@ -33,7 +33,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             int count = this.Count;
             DateTime t2_1;
             DateTime t2_2;
-            if (DateTime.Compare(end, start) > -1)
+            if (PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(end, start) > -1)
             {
                 t2_1 = DateTimeHelper.DiscardTime(new DateTime?(start)).Value;
                 t2_2 = DateTimeHelper.DiscardTime(new DateTime?(end)).Value;
@@ -45,7 +45,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             }
             for (int index = 0; index < count; ++index)
             {
-                if (DateTime.Compare(this[index].Start, t2_1) == 0 && DateTime.Compare(this[index].End, t2_2) == 0)
+                if (PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(this[index].Start, t2_1) == 0 && PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(this[index].End, t2_2) == 0)
                     return true;
             }
             return false;

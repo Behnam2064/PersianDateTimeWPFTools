@@ -79,7 +79,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             DateTime t1 = nullable.Value;
             nullable = DateTimeHelper.DiscardTime(new DateTime?(dt2));
             DateTime t2 = nullable.Value;
-            return DateTime.Compare(t1, t2);
+            return PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(t1, t2);
         }
 
         public int CompareYearMonth(DateTime dt1, DateTime dt2)

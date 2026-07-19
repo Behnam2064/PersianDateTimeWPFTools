@@ -49,7 +49,7 @@ namespace PersianDateTimeWPFTools.Controls
         {
             var ctl = (ClockBase)d;
             var v = (DateTime?)e.NewValue;
-            ctl.DisplayTime = v ?? DateTime.Now;
+            ctl.DisplayTime = v ?? PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;
             ctl.OnSelectedTimeChanged(new ClockTimeChangedEventArgs(SelectedTimeChangedEvent, e.OldValue as DateTime?, v));
         }
 
@@ -61,7 +61,7 @@ namespace PersianDateTimeWPFTools.Controls
 
         public static readonly DependencyProperty DisplayTimeProperty = DependencyProperty.Register(
             nameof(DisplayTime), typeof(DateTime), typeof(ClockBase),
-            new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+            new FrameworkPropertyMetadata(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnDisplayTimeChanged));
 
         private static void OnDisplayTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

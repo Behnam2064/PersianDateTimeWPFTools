@@ -85,7 +85,7 @@ namespace PersianDateTimeWPFTools.Controls
 
 
 
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged,null));
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged,null));
 
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -301,8 +301,8 @@ namespace PersianDateTimeWPFTools.Controls
         public PersianCalendarWithClock()
         {
             InitResources.SetControlStyle(this);
-            DisplayDateTime = DateTime.Today;
-            DisplayDate = DateTime.Today;
+            DisplayDateTime = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;
+            DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;
             DayMetadata = new Dictionary<DateTime, CalendarDayInfo>();
             DayIndicators = new Dictionary<DateTime, bool>();
             DayToolTips = new Dictionary<DateTime, object>();
@@ -311,7 +311,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 if (_isLoaded) return;
                 _isLoaded = true;
-                DisplayDateTime = SelectedDateTime ?? DateTime.Now;
+                DisplayDateTime = SelectedDateTime ?? PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;
             };
         }
 
@@ -346,7 +346,7 @@ namespace PersianDateTimeWPFTools.Controls
         }
         [Obsolete]
         public static readonly DependencyProperty DisplayDateTimeProperty = DependencyProperty.Register(
-            "DisplayDateTime", typeof(DateTime), typeof(PersianCalendarWithClock), new FrameworkPropertyMetadata(DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateTimeChanged));
+            "DisplayDateTime", typeof(DateTime), typeof(PersianCalendarWithClock), new FrameworkPropertyMetadata(PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateTimeChanged));
 
         private static void OnDisplayDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -522,7 +522,7 @@ namespace PersianDateTimeWPFTools.Controls
             _calendar.SetBinding(PersianCalendar.DayMetadataProperty,
                 new Binding(DayMetadataProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
-            DisplayDate = DateTime.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
+            DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;//If there is no current code and you select the year or decade button, you will encounter an error.
             TitleElement.SetBackground(_calendar, Brushes.Transparent);
             _calendar.SelectedDatesChanged += Calendar_SelectedDatesChanged;
 

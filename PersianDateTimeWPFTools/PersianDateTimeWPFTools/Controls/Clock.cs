@@ -194,7 +194,7 @@ namespace PersianDateTimeWPFTools.Controls
             }
             else
             {
-                DisplayTime = DateTime.Now;
+                DisplayTime = PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;
                 Update(DisplayTime);
             }
         }
@@ -415,7 +415,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 hValue = 0;
             }
-            var now = DateTime.Now;
+            var now = PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;
             return new DateTime(now.Year, now.Month, now.Day, hValue, (int)Math.Abs(_rotateTransformClock.Angle) % 360 / 6, _secValue);
         }
 

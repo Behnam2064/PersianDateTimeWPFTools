@@ -228,8 +228,8 @@ namespace PersianDateTimeWPFTools.Controls
 
 
 
-        //public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged, null));
+        //public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged, null));
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(nameof(DisplayMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarMode), typeof(PersianDateTimePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Month, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -366,7 +366,7 @@ namespace PersianDateTimeWPFTools.Controls
         public PersianDateTimePicker()
         {
             InitResources.SetControlStyle(this);
-            DisplayDate = DateTime.Today;
+            DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;
             InitCalendarWithClock();
             DayMetadata = new Dictionary<DateTime, CalendarDayInfo>();
             DayIndicators = new Dictionary<DateTime, bool>();
@@ -404,7 +404,7 @@ namespace PersianDateTimeWPFTools.Controls
 
 
         public static readonly DependencyProperty DisplayDateTimeProperty = DependencyProperty.Register(
-            "DisplayDateTime", typeof(DateTime), typeof(PersianDateTimePicker), new FrameworkPropertyMetadata(DateTime.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, null, CoerceDisplayDateTime));
+            "DisplayDateTime", typeof(DateTime), typeof(PersianDateTimePicker), new FrameworkPropertyMetadata(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, null, CoerceDisplayDateTime));
 
         private static object CoerceDisplayDateTime(DependencyObject d, object value)
         {
@@ -645,7 +645,7 @@ namespace PersianDateTimeWPFTools.Controls
             {
                 /*if (selectedDateTime == null)
                 {
-                    _textBox.Text = DateTimeToString(DateTime.Now);
+                    _textBox.Text = DateTimeToString(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now);
                 }*/
 
                 _textBox.SetBinding(SelectionBrushProperty, new Binding(SelectionBrushProperty.Name) { Source = this });
@@ -676,7 +676,7 @@ namespace PersianDateTimeWPFTools.Controls
             if (selectedDateTime is null)
             {
                 if (_originalSelectedDateTime == null)
-                    _originalSelectedDateTime = DateTime.Now;
+                    _originalSelectedDateTime = PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;
                 SetCurrentValue(DisplayDateTimeProperty, _originalSelectedDateTime);
             }
             else
@@ -771,7 +771,7 @@ namespace PersianDateTimeWPFTools.Controls
             _calendarWithClock.SetBinding(PersianCalendarWithClock.ShowTodayButtonProperty,
                 new Binding(ShowTodayButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
-            DisplayDate = DateTime.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
+            DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Now;//If there is no current code and you select the year or decade button, you will encounter an error.
             _calendarWithClock.SelectedDateTimeChanged += CalendarWithClock_SelectedDateTimeChanged;
             _calendarWithClock.ConfirmButtonClicked += CalendarWithClock_Confirmed;
         }

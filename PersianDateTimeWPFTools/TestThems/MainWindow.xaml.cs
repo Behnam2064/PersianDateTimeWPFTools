@@ -27,7 +27,7 @@ namespace TestThems
 
         // Using a DependencyProperty as the backing store for DisplayDateTime.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DisplayDateTimeProperty =
-            DependencyProperty.Register("DisplayDateTime", typeof(DateTime), typeof(MainWindow), new PropertyMetadata(DateTime.Now));
+            DependencyProperty.Register("DisplayDateTime", typeof(DateTime), typeof(MainWindow), new PropertyMetadata(PersianDateTimeWPFTools.Time.ClockProvider.Current.));
 
 
         public MainWindow()

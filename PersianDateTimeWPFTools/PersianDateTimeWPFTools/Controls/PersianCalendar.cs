@@ -47,7 +47,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty CalendarButtonStyleProperty = DependencyProperty.Register(nameof(CalendarButtonStyle), typeof(Style), typeof(PersianCalendar));
         public static readonly DependencyProperty CalendarDayButtonStyleProperty = DependencyProperty.Register(nameof(CalendarDayButtonStyle), typeof(Style), typeof(PersianCalendar));
         public static readonly DependencyProperty CalendarItemStyleProperty = DependencyProperty.Register(nameof(CalendarItemStyle), typeof(Style), typeof(PersianCalendar));
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)DateTime.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianCalendar.OnDisplayDateChanged), new CoerceValueCallback(PersianCalendar.CoerceDisplayDate)));
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.MinValue, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianCalendar.OnDisplayDateChanged), new CoerceValueCallback(PersianCalendar.CoerceDisplayDate)));
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianCalendar.OnDisplayDateEndChanged), new CoerceValueCallback(PersianCalendar.CoerceDisplayDateEnd)));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianCalendar.OnDisplayDateStartChanged), new CoerceValueCallback(PersianCalendar.CoerceDisplayDateStart)));
         public static readonly DependencyProperty DisplayModeProperty = DependencyProperty.Register(nameof(DisplayMode), typeof(PersianDateTimeWPFTools.Windows.Controls.CalendarMode), typeof(PersianCalendar), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Month, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianCalendar.OnDisplayModePropertyChanged)), new ValidateValueCallback(PersianCalendar.IsValidDisplayMode));
@@ -219,7 +219,7 @@ namespace PersianDateTimeWPFTools.Controls
             dateTimeHelper = new DateTimeHelper(_calendar);
             this._blackoutDates = new PersianDateTimeWPFTools.Windows.Controls.CalendarBlackoutDatesCollection(this);
             this._selectedDates = new PersianDateTimeWPFTools.Windows.Controls.SelectedDatesCollection(this);
-            this.DisplayDate = DateTime.Today;
+            this.DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;
 
             #region Tooltip feature
             DayToolTips = new Dictionary<DateTime, object>();
@@ -434,7 +434,7 @@ namespace PersianDateTimeWPFTools.Controls
           DependencyPropertyChangedEventArgs e)
         {
             PersianCalendar persianCalendar = d as PersianCalendar;
-            int num = new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(persianCalendar._calendar).CompareYearMonth(persianCalendar.DisplayDateInternal, DateTime.Today);
+            int num = new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(persianCalendar._calendar).CompareYearMonth(persianCalendar.DisplayDateInternal, PersianDateTimeWPFTools.Time.ClockProvider.Current.Today);
             if (num <= -2 || num >= 2)
                 return;
             persianCalendar.UpdateCellItems();
@@ -509,7 +509,7 @@ namespace PersianDateTimeWPFTools.Controls
                 // Like OnLanguageChanged(...);
                 // Move to current DateTime
                 if (persianCalendar.SelectedDate == null)
-                    persianCalendar.MoveDisplayTo(DateTime.Now);
+                    persianCalendar.MoveDisplayTo(PersianDateTimeWPFTools.Time.ClockProvider.Current.Now);
                 else
                     persianCalendar.MoveDisplayTo((DateTime)persianCalendar.SelectedDate);
 
@@ -651,8 +651,8 @@ namespace PersianDateTimeWPFTools.Controls
             var cc = CustomCulture ?? DateTimeHelper.GetCulture((FrameworkElement)this);
             if (cc != null)
             {
-                DisplayDate = DateTime.Today;
-                OnDayClick(DateTime.Today);
+                DisplayDate = PersianDateTimeWPFTools.Time.ClockProvider.Current.Today;
+                OnDayClick(PersianDateTimeWPFTools.Time.ClockProvider.Current.Today);
             }
         }
 
@@ -936,7 +936,7 @@ namespace PersianDateTimeWPFTools.Controls
         {
             if (value == null)
                 return true;
-            return !cal.BlackoutDates.Contains((DateTime)value) && DateTime.Compare((DateTime)value, cal.DisplayDateStartInternal) >= 0 && DateTime.Compare((DateTime)value, cal.DisplayDateEndInternal) <= 0;
+            return !cal.BlackoutDates.Contains((DateTime)value) && PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare((DateTime)value, cal.DisplayDateStartInternal) >= 0 && PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare((DateTime)value, cal.DisplayDateEndInternal) <= 0;
         }
 
         private static bool IsValidSelectionMode(object value)
@@ -1073,13 +1073,13 @@ namespace PersianDateTimeWPFTools.Controls
                 case PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Month:
                     DateTime displayDate = this.DisplayDate;
                     DateTime? lastSelectedDate = new DateTime?(dateTimeHelper.DiscardDayTime(this.DisplayDateInternal));
-                    if (dateTimeHelper.CompareYearMonth(DateTime.MaxValue, lastSelectedDate.Value) > 0)
+                    if (dateTimeHelper.CompareYearMonth(PersianDateTimeWPFTools.Time.ClockProvider.Current.MaxValue, lastSelectedDate.Value) > 0)
                     {
                         lastSelectedDate = new DateTime?(dateTimeHelper.AddMonths(lastSelectedDate.Value, 1).Value);
                         lastSelectedDate = new DateTime?(new PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper(_monthControl._calendar).AddDays(lastSelectedDate.Value, -1).Value);
                     }
                     else
-                        lastSelectedDate = new DateTime?(DateTime.MaxValue);
+                        lastSelectedDate = new DateTime?(PersianDateTimeWPFTools.Time.ClockProvider.Current.MaxValue);
                     this.ProcessSelection(shift, lastSelectedDate);
                     break;
                 case PersianDateTimeWPFTools.Windows.Controls.CalendarMode.Year:
@@ -1220,7 +1220,7 @@ namespace PersianDateTimeWPFTools.Controls
                         }
                         nullable = this.HoverStart;
                         PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange range;
-                        if (DateTime.Compare(nullable.Value, lastSelectedDate.Value) < 0)
+                        if (PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare(nullable.Value, lastSelectedDate.Value) < 0)
                         {
                             nullable = this.HoverStart;
                             range = new PersianDateTimeWPFTools.Windows.Controls.CalendarDateRange(nullable.Value, lastSelectedDate.Value);
