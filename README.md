@@ -1,4 +1,4 @@
-﻿# Persian calendar
+﻿y# Persian calendar
 ## WPF calendar with support for Gregorian and solar calendars
 
 - A free Persian calendar with the ability to support the Gregorian calendar that can be used in WPF
@@ -380,4 +380,15 @@ public partial class App : Application
     }
 ```
 
-The next feature could be new themes 💫
+### Introduce ISystemClock and static Clock provider to replace direct DateTime usage
+## ⚙️How do I use it?
+At the beginning of the software, you can introduce your class.
+```
+public partial class App : Application
+    {        
+        private void Startup(object sender, StartupEventArgs e)
+        {
+            ClockProvider.Current = new SystemClock();
+        }
+    }
+```
