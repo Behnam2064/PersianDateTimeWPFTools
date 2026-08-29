@@ -1,6 +1,7 @@
-﻿feat(clock-control): add mouse wheel support for hour/minute adjustment
-
-- Implemented BorderTitle_OnMouseWheel to handle wheel events
-- Minute adjustment via PART_TimeStrMinute (±1 minute using rotateTransform)
-- Hour adjustment via PART_TimeStrHour (±1 hour using RadioButton list)
-- Integrated AM/PM logic with Update() to ensure correct time display
+﻿fix:Fixed an issue where blacked-out dates could not be selected during calendar initialization when AllowSelectBlackedOutDay was enabled.
+feat:Refactor time handling by adding ISystemClock and static Clock.Current
+This enables custom time sources, improves testability, and allows users to override “today” in WPF calendar controls.
+Introduced ISystemClock interface
+Added SystemClock default implementation
+Added static Clock.Current for global time control
+Updated calendar components to use Clock instead of DateTime.Now
