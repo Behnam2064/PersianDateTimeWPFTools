@@ -73,7 +73,7 @@ namespace PersianDateTimeWPFTools.Windows.Controls
             var dateTimeHelper = new DateTimeHelper(calendar);
             do
             {
-                
+
                 nonBlackoutDate = dayInterval <= 0 ? dateTimeHelper.AddDays(containingDateRange.Start, dayInterval) : dateTimeHelper.AddDays(containingDateRange.End, dayInterval);
             }
             while (nonBlackoutDate.HasValue && (containingDateRange = this.GetContainingDateRange(nonBlackoutDate.Value)) != null);
@@ -159,11 +159,15 @@ namespace PersianDateTimeWPFTools.Windows.Controls
 
         private bool IsValid(DateTime start, DateTime end)
         {
-            foreach (DateTime selectedDate in (Collection<DateTime>)this._owner.SelectedDates)
+            if (_owner.AllowSelectBlackedOutDay)
+                return true;
+
+            foreach (DateTime selectedDate in this._owner.SelectedDates)
             {
-                if (DateTimeHelper.InRange(((ValueType)selectedDate as DateTime?).Value, start, end))
+                if (DateTimeHelper.InRange(selectedDate, start, end))
                     return false;
             }
+
             return true;
         }
 

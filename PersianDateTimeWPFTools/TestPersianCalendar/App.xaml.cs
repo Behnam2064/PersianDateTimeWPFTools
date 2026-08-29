@@ -10,10 +10,10 @@ namespace TestPersianCalendar
     /// </summary>
     public partial class App : Application
     {
-        private bool IsUsCuture = true;
+        private bool IsUsCulture = true;
         public App()
         {
-            if (IsUsCuture)
+            if (IsUsCulture)
             {
                 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
                 CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
