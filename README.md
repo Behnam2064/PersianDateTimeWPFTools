@@ -77,9 +77,7 @@ Sample:
 ![IMAGE_DESCRIPTION](https://raw.githubusercontent.com/Behnam2064/PersianDateTimeWPFTools/refs/heads/main/Persian-calendar-Custom-Style.png)
 
 
-## Dependency Properties
-New Dependency Properties
-
+## Dependency Properties and Features
 | Name        | Description           | Default  |
 | :------------- |:-------------| :-----|
 | CustomCulture      | Selecting a different culture than the current software culture | Based on the current software culture |
@@ -99,6 +97,7 @@ New Dependency Properties
 | ✨ DayToolTipTemplate | A template for a tooltip  |     |
 | ✨ DayIndicators | Display Indicator for calendar days  |     |
 | ✨ DayIndicatorStyle | A style for the Indicator  |     |
+| ✨ ISystemClock | A static Clock provider to replace direct DateTime usage  |  new SystemClock()  |
 
 
 
@@ -379,8 +378,8 @@ public partial class App : Application
         }
     }
 ```
-
-### Introduce ISystemClock and static Clock provider to replace direct DateTime usage
+## Introduce ISystemClock and static Clock provider to replace direct DateTime usage
+This enables custom time sources, improves testability, and allows users to override “today” in WPF calendar controls.
 ## ⚙️How do I use it?
 At the beginning of the software, you can introduce your class.
 ```
