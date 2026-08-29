@@ -13,7 +13,7 @@
             Value="{DynamicResource CalendarDatePickerTextForegroundSelected}" />
         <Setter
             Property="Control.Background"
-            Value="#FFEFEFEF" />
+            Value="White" />
         <Setter
             Property="ScrollViewer.PanningMode"
             Value="VerticalFirst" />
