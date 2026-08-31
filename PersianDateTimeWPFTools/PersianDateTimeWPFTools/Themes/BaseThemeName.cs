@@ -5,5 +5,7 @@
         Default,
         DarkModern1,
         LightModern1,
+        DarkClassic,
+        LightClassic,
     }
 }

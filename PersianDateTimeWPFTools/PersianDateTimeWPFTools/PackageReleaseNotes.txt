@@ -1,7 +1,6 @@
-﻿fix:Fixed an issue where blacked-out dates could not be selected during calendar initialization when AllowSelectBlackedOutDay was enabled.
-feat:Refactor time handling by adding ISystemClock and static Clock.Current
-This enables custom time sources, improves testability, and allows users to override “today” in WPF calendar controls.
-Introduced ISystemClock interface
-Added SystemClock default implementation
-Added static Clock.Current for global time control
-Updated calendar components to use Clock instead of DateTime.Now
+﻿### What's New
+
+* Added **Classic theme** support for all controls.
+* Added Dark and Light Classic styles for all controls.
+* Improved visual consistency between `PersianCalendar`, `Clock`, `PersianDatePicker`, and `PersianDateTimePicker`.
+* Classic themes reuse the existing Classic Calendar and Calendar-with-Clock styles.

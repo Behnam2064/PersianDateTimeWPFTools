@@ -1,0 +1,1049 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pdtt="https://github.com/Behnam2064/PersianDateTimeWPFTools"
+    xmlns:tools="clr-namespace:PersianDateTimeWPFTools.Tools"
+    xmlns:pdtwt="clr-namespace:PersianDateTimeWPFTools.Controls">
+
+    <!-- Shared -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/PredefiendDictionary.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- ====== Dark Classic Brushes ====== -->
+    <SolidColorBrush
+        x:Key="ClockBackgroundDarkClassic"
+        Color="#FF202020" />
+    <SolidColorBrush
+        x:Key="ClockBorderBrushDarkClassic"
+        Color="#FF1E1E22" />
+    <SolidColorBrush
+        x:Key="ClockBodyBackgroundDarkClassic"
+        Color="#FF202020" />
+    <SolidColorBrush
+        x:Key="ClockBezelBrushDarkClassic"
+        Color="#FF3A3A40" />
+    <SolidColorBrush
+        x:Key="ClockTickMinorDarkClassic"
+        Color="#FF8B8B93" />
+    <SolidColorBrush
+        x:Key="ClockTickMajorDarkClassic"
+        Color="#FFF0F0F3" />
+    <SolidColorBrush
+        x:Key="ClockDigitDarkClassic"
+        Color="#FFF5F5F7" />
+    <SolidColorBrush
+        x:Key="NormalForegroundDarkClassic"
+        Color="#FFCCCCD2" />
+    <SolidColorBrush
+        x:Key="SelectedButtonBackgroundColorDarkClassic"
+        Color="#FFB97A1E" />
+
+    <!-- ====== Light Classic Brushes ====== -->
+    <SolidColorBrush
+        x:Key="ClockBackgroundLightClassic"
+        Color="#FFF4F1EB" />
+    <SolidColorBrush
+        x:Key="ClockBorderBrushLightClassic"
+        Color="#FFECECF0" />
+    <SolidColorBrush
+        x:Key="ClockBodyBackgroundLightClassic"
+        Color="#FFF4F1EB" />
+    <SolidColorBrush
+        x:Key="ClockBezelBrushLightClassic"
+        Color="#FFD9D9E0" />
+    <SolidColorBrush
+        x:Key="ClockTickMinorLightClassic"
+        Color="#FF7A7A80" />
+    <SolidColorBrush
+        x:Key="ClockTickMajorLightClassic"
+        Color="#FF2D2D33" />
+    <SolidColorBrush
+        x:Key="ClockDigitLightClassic"
+        Color="#FF2A2A30" />
+    <SolidColorBrush
+        x:Key="NormalForegroundLightClassic"
+        Color="#FF4A4A50" />
+    <SolidColorBrush
+        x:Key="SelectedButtonBackgroundColorLightClassic"
+        Color="#FFB97A1E" />
+
+    <!-- ====== Radio Buttons (AM/PM + Hour Buttons) Dark Classic ====== -->
+    <Style
+        x:Key="ClockRadioButtonDarkClassic"
+        TargetType="{x:Type RadioButton}">
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource NormalForegroundDarkClassic}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SelectedButtonBackgroundColorDarkClassic}" />
+        <Setter
+            Property="Width"
+            Value="28" />
+        <Setter
+            Property="Height"
+            Value="28" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Focusable"
+            Value="False" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <!-- Classic capsule with subtle bevel -->
+                        <Border
+                            x:Name="Capsule"
+                            CornerRadius="4"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{DynamicResource ClockBezelBrushDarkClassic}"
+                            BorderThickness="1"
+                            SnapsToDevicePixels="True" />
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="IsChecked"
+                            Value="True">
+                            <Setter
+                                TargetName="Capsule"
+                                Property="BorderBrush"
+                                Value="{DynamicResource ClockTickMajorDarkClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="Capsule"
+                                Property="BorderBrush"
+                                Value="{DynamicResource ClockDigitDarkClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsEnabled"
+                            Value="False">
+                            <Setter
+                                Property="Opacity"
+                                Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="ClockHourRadioButtonDarkClassic"
+        TargetType="{x:Type RadioButton}"
+        BasedOn="{StaticResource ClockRadioButtonDarkClassic}">
+        <Setter
+            Property="Width"
+            Value="26" />
+        <Setter
+            Property="Height"
+            Value="26" />
+        <Setter
+            Property="Foreground"
+            Value="White" />
+
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <!-- Round marker for hour selections -->
+                        <!--Fill="{TemplateBinding Background}"-->
+                        <Ellipse
+                            x:Name="Circle"
+                            Fill="{DynamicResource ClockDigitLightClassic}"
+                            Stroke="{DynamicResource ClockBezelBrushDarkClassic}"
+                            StrokeThickness="1" />
+                        <ContentPresenter
+                            
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="IsChecked"
+                            Value="True">
+                            <Setter
+                                TargetName="Circle"
+                                Property="Stroke"
+                                Value="{DynamicResource ClockTickMajorDarkClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="Circle"
+                                Property="Stroke"
+                                Value="{DynamicResource ClockDigitDarkClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsEnabled"
+                            Value="False">
+                            <Setter
+                                Property="Opacity"
+                                Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ====== Radio Buttons Light Classic ====== -->
+    <Style
+        x:Key="ClockRadioButtonLightClassic"
+        TargetType="{x:Type RadioButton}">
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource NormalForegroundLightClassic}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource SelectedButtonBackgroundColorLightClassic}" />
+        <Setter
+            Property="Width"
+            Value="28" />
+        <Setter
+            Property="Height"
+            Value="28" />
+        <Setter
+            Property="HorizontalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter
+            Property="Focusable"
+            Value="False" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <Border
+                            x:Name="Capsule"
+                            CornerRadius="4"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{DynamicResource ClockBezelBrushLightClassic}"
+                            BorderThickness="1"
+                            SnapsToDevicePixels="True" />
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="IsChecked"
+                            Value="True">
+                            <Setter
+                                TargetName="Capsule"
+                                Property="BorderBrush"
+                                Value="{DynamicResource ClockTickMajorLightClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="Capsule"
+                                Property="BorderBrush"
+                                Value="{DynamicResource ClockDigitLightClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsEnabled"
+                            Value="False">
+                            <Setter
+                                Property="Opacity"
+                                Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="ClockHourRadioButtonLightClassic"
+        TargetType="{x:Type RadioButton}"
+        BasedOn="{StaticResource ClockRadioButtonLightClassic}">
+        <Setter
+            Property="Background"
+            Value="Transparent" />
+        <Setter
+            Property="Width"
+            Value="26" />
+        <Setter
+            Property="Height"
+            Value="26" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type RadioButton}">
+                    <Grid>
+                        <Ellipse
+                            x:Name="Circle"
+                            Fill="{DynamicResource ClockBodyBackgroundLightClassic}"
+                            Stroke="{DynamicResource ClockBezelBrushLightClassic}"
+                            StrokeThickness="1" />
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger
+                            Property="IsChecked"
+                            Value="True">
+                            <Setter
+                                TargetName="Circle"
+                                Property="Stroke"
+                                Value="{DynamicResource ClockTickMajorLightClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsMouseOver"
+                            Value="True">
+                            <Setter
+                                TargetName="Circle"
+                                Property="Stroke"
+                                Value="{DynamicResource ClockDigitLightClassic}" />
+                        </Trigger>
+                        <Trigger
+                            Property="IsEnabled"
+                            Value="False">
+                            <Setter
+                                Property="Opacity"
+                                Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ====== Clock Template Dark Classic ====== -->
+    <Style
+        x:Key="ClockDarkClassic"
+        TargetType="{x:Type pdtwt:Clock}">
+        <Setter
+            Property="FlowDirection"
+            Value="LeftToRight" />
+        <Setter
+            Property="Focusable"
+            Value="False" />
+        <Setter
+            Property="BorderBrush"
+            Value="{DynamicResource ClockBorderBrushDarkClassic}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource ClockBackgroundDarkClassic}" />
+        <Setter
+            Property="pdtwt:Clock.ClockRadioButtonStyle"
+            Value="{StaticResource ClockRadioButtonDarkClassic}" />
+        <Setter
+            Property="pdtwt:Clock.ClockRadioButtonHourStyle"
+            Value="{StaticResource ClockHourRadioButtonDarkClassic}" />
+        <Setter
+            Property="BorderThickness"
+            Value="2" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource NormalForegroundDarkClassic}" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Center" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:Clock}">
+                    <Grid>
+                        <!-- Outer container -->
+                        <Border
+                            CornerRadius="6"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" />
+
+                        <!-- Classic bezel + dial -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title row: HH:MM + AM/PM -->
+                            <Border
+                                Name="PART_BorderTitle"
+                                Margin="0,6"
+                                Grid.ColumnSpan="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- HH:MM -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Visibility="Collapsed"
+                                            Margin="10,0"
+                                            x:Name="PART_TimeStr"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            FontSize="20"
+                                            Foreground="{DynamicResource NormalForegroundDarkClassic}" />
+
+                                        <Rectangle
+                                            Height="42"
+                                            Width="42"
+                                            Fill="{DynamicResource ClockBezelBrushDarkClassic}"
+                                            RadiusX="3"
+                                            RadiusY="3" />
+                                        <Rectangle
+                                            Grid.Column="2"
+                                            Height="42"
+                                            Width="42"
+                                            Fill="{DynamicResource ClockBezelBrushDarkClassic}"
+                                            RadiusX="3"
+                                            RadiusY="3" />
+
+                                        <TextBlock
+                                            x:Name="PART_TimeStrHour"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="32"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ClockDigitDarkClassic}"
+                                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Hour}}" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="28"
+                                            Foreground="{DynamicResource ClockDigitDarkClassic}"
+                                            Text=":" />
+                                        <TextBlock
+                                            x:Name="PART_TimeStrMinute"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="32"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ClockDigitDarkClassic}"
+                                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Minute}}" />
+                                    </Grid>
+
+                                    <!-- AM/PM -->
+                                    <DockPanel
+                                        Margin="22,0,0,0"
+                                        LastChildFill="False"
+                                        Grid.Column="1">
+                                        <RadioButton
+                                            x:Name="PART_ButtonAm"
+                                            Width="42"
+                                            Height="42"
+                                            Style="{StaticResource ClockRadioButtonDarkClassic}"
+                                            Content="{DynamicResource AmText}"
+                                            IsChecked="True" />
+                                        <RadioButton
+                                            x:Name="PART_ButtonPm"
+                                            Width="42"
+                                            Height="42"
+                                            Style="{StaticResource ClockRadioButtonDarkClassic}"
+                                            Content="{DynamicResource PmText}" />
+                                    </DockPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Dial -->
+                            <Canvas
+                                Name="PART_Canvas"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Margin="16,35"
+                                VerticalAlignment="Center"
+                                Width="220"
+                                Height="280">
+
+                                <!-- Bezel ring -->
+                                <Grid
+                                    Width="220"
+                                    Height="220">
+                                    <Ellipse
+                                        Stroke="{DynamicResource ClockBezelBrushDarkClassic}"
+                                        StrokeThickness="6"
+                                        Fill="{DynamicResource ClockBodyBackgroundDarkClassic}" />
+                                    <!-- Minor ticks (12: each 5 minutes) -->
+                                    <Canvas>
+                                        <!-- Major ticks at 12 positions -->
+                                        <Line
+                                            X1="110"
+                                            Y1="10"
+                                            X2="110"
+                                            Y2="28"
+                                            Stroke="{DynamicResource ClockTickMajorDarkClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="200"
+                                            Y1="110"
+                                            X2="182"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMajorDarkClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="110"
+                                            Y1="200"
+                                            X2="110"
+                                            Y2="182"
+                                            Stroke="{DynamicResource ClockTickMajorDarkClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="20"
+                                            Y1="110"
+                                            X2="38"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMajorDarkClassic}"
+                                            StrokeThickness="2" />
+                                        <!-- Minor ticks (sampled for visual balance; the control’s ClockPanel will handle numbers) -->
+                                        <Line
+                                            X1="110"
+                                            Y1="14"
+                                            X2="110"
+                                            Y2="24"
+                                            Stroke="{DynamicResource ClockTickMinorDarkClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="196"
+                                            Y1="110"
+                                            X2="186"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMinorDarkClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="110"
+                                            Y1="196"
+                                            X2="110"
+                                            Y2="186"
+                                            Stroke="{DynamicResource ClockTickMinorDarkClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="24"
+                                            Y1="110"
+                                            X2="34"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMinorDarkClassic}"
+                                            StrokeThickness="1" />
+                                    </Canvas>
+                                </Grid>
+
+
+
+
+                                <!-- Numbers via existing ClockPanel -->
+                                <tools:ClockPanel
+                                    Visibility="Visible"
+                                    Diameter="175"
+                                    Opacity="0"
+                                    KeepVertical="True"
+                                    TextBlock.Foreground="{DynamicResource ClockDigitLightClassic}"
+                                    Margin="24,24,0,0"
+                                    OffsetAngle="-90">
+                                    <RadioButton
+                                        Tag="{Binding Source=12, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}"
+                                        >12</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=1,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">1</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=2, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">2</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=3, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">3</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=4, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">4</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=5, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">5</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=6, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">6</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=7, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">7</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=8, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">8</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=9, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">9</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=10,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">10</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=11,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonDarkClassic}">11</RadioButton>
+                                    <tools:ClockPanel.Triggers>
+                                        <EventTrigger
+                                            RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        To="1"
+                                                        Duration="0:0:0.3" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger
+                                            RoutedEvent="MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        BeginTime="0:0:0.7"
+                                                        To="0"
+                                                        From="3"
+                                                        Duration="0:0:0.9" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </tools:ClockPanel.Triggers>
+                                </tools:ClockPanel>
+                                
+                                <tools:ClockPanel
+                                    Visibility="Collapsed"
+                                    x:Name="PART_PanelNum"
+                                    Diameter="176"
+                                    KeepVertical="True"
+                                    Margin="22,22,0,0"
+                                    OffsetAngle="-60"
+                                    TextBlock.Foreground="{DynamicResource ClockDigitDarkClassic}" />
+
+                                <!-- Hour hand -->
+                                <Border
+                                    Name="PART_BorderClock"
+                                    Background="{DynamicResource SelectedButtonBackgroundColorDarkClassic}"
+                                    RenderTransformOrigin="0.5,1"
+                                    Height="72"
+                                    Width="2"
+                                    Canvas.Left="111"
+                                    Canvas.Top="39" />
+
+                                <!-- Hub -->
+                                <Ellipse
+                                    Width="10"
+                                    Height="10"
+                                    Fill="{DynamicResource SelectedButtonBackgroundColorDarkClassic}"
+                                    StrokeThickness="1"
+                                    Stroke="{DynamicResource ClockBezelBrushDarkClassic}"
+                                    Canvas.Top="104"
+                                    Canvas.Left="106" />
+                            </Canvas>
+                        </Grid>
+
+                        <!-- Optional seconds (kept collapsed for parity) -->
+                        <TextBlock
+                            Visibility="Collapsed"
+                            Grid.Column="2"
+                            Margin="0,20"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center"
+                            FontSize="32"
+                            Foreground="{DynamicResource NormalForegroundDarkClassic}"
+                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Second}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ====== Clock Template Light Classic ====== -->
+    <Style
+        x:Key="ClockLightClassic"
+        TargetType="{x:Type pdtwt:Clock}">
+        <Setter
+            Property="FlowDirection"
+            Value="LeftToRight" />
+        <Setter
+            Property="Focusable"
+            Value="False" />
+        <Setter
+            Property="BorderBrush"
+            Value="{DynamicResource ClockBorderBrushLightClassic}" />
+        <Setter
+            Property="Background"
+            Value="{DynamicResource ClockBackgroundLightClassic}" />
+        <Setter
+            Property="pdtwt:Clock.ClockRadioButtonStyle"
+            Value="{StaticResource ClockRadioButtonLightClassic}" />
+        <Setter
+            Property="pdtwt:Clock.ClockRadioButtonHourStyle"
+            Value="{StaticResource ClockHourRadioButtonDarkClassic}" />
+        <Setter
+            Property="BorderThickness"
+            Value="2" />
+        <Setter
+            Property="Foreground"
+            Value="{DynamicResource NormalForegroundLightClassic}" />
+        <Setter
+            Property="VerticalAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalAlignment"
+            Value="Center" />
+        <Setter
+            Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+                    TargetType="{x:Type pdtwt:Clock}">
+                    <Grid>
+                        <Border
+                            CornerRadius="6"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" />
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title row: HH:MM + AM/PM -->
+                            <Border
+                                Name="PART_BorderTitle"
+                                Margin="0,6"
+                                Grid.ColumnSpan="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- HH:MM -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Visibility="Collapsed"
+                                            Margin="10,0"
+                                            x:Name="PART_TimeStr"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            FontSize="20"
+                                            Foreground="{DynamicResource NormalForegroundLightClassic}" />
+
+                                        <Rectangle
+                                            Height="42"
+                                            Width="42"
+                                            Fill="{DynamicResource ClockBezelBrushLightClassic}"
+                                            RadiusX="3"
+                                            RadiusY="3" />
+                                        <Rectangle
+                                            Grid.Column="2"
+                                            Height="42"
+                                            Width="42"
+                                            Fill="{DynamicResource ClockBezelBrushLightClassic}"
+                                            RadiusX="3"
+                                            RadiusY="3" />
+
+                                        <TextBlock
+                                            x:Name="PART_TimeStrHour"
+                                            Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="32"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ClockDigitLightClassic}"
+                                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Hour}}" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="28"
+                                            Foreground="{DynamicResource ClockDigitLightClassic}"
+                                            Text=":" />
+                                        <TextBlock
+                                            x:Name="PART_TimeStrMinute"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            FontSize="32"
+                                            FontWeight="SemiBold"
+                                            Foreground="{DynamicResource ClockDigitLightClassic}"
+                                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Minute}}" />
+                                    </Grid>
+
+                                    <!-- AM/PM -->
+                                    <DockPanel
+                                        Margin="22,0,0,0"
+                                        LastChildFill="False"
+                                        Grid.Column="1">
+                                        <RadioButton
+                                            x:Name="PART_ButtonAm"
+                                            Width="42"
+                                            Height="42"
+                                            Style="{StaticResource ClockRadioButtonLightClassic}"
+                                            Content="{DynamicResource AmText}"
+                                            IsChecked="True" />
+                                        <RadioButton
+                                            x:Name="PART_ButtonPm"
+                                            Width="42"
+                                            Height="42"
+                                            Style="{StaticResource ClockRadioButtonLightClassic}"
+                                            Content="{DynamicResource PmText}" />
+                                    </DockPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Dial -->
+                            <Canvas
+                                Name="PART_Canvas"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                Margin="16,35"
+                                VerticalAlignment="Center"
+                                Width="220"
+                                Height="280">
+                               
+                                <!-- Bezel ring -->
+                                <Grid
+                                    Width="220"
+                                    Height="220">
+                                    <Ellipse
+                                        Stroke="{DynamicResource ClockBezelBrushLightClassic}"
+                                        StrokeThickness="6"
+                                        Fill="{DynamicResource ClockBodyBackgroundLightClassic}" />
+                                    <Canvas>
+                                        <Line
+                                            X1="110"
+                                            Y1="10"
+                                            X2="110"
+                                            Y2="28"
+                                            Stroke="{DynamicResource ClockTickMajorLightClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="200"
+                                            Y1="110"
+                                            X2="182"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMajorLightClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="110"
+                                            Y1="200"
+                                            X2="110"
+                                            Y2="182"
+                                            Stroke="{DynamicResource ClockTickMajorLightClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="20"
+                                            Y1="110"
+                                            X2="38"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMajorLightClassic}"
+                                            StrokeThickness="2" />
+                                        <Line
+                                            X1="110"
+                                            Y1="14"
+                                            X2="110"
+                                            Y2="24"
+                                            Stroke="{DynamicResource ClockTickMinorLightClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="196"
+                                            Y1="110"
+                                            X2="186"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMinorLightClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="110"
+                                            Y1="196"
+                                            X2="110"
+                                            Y2="186"
+                                            Stroke="{DynamicResource ClockTickMinorLightClassic}"
+                                            StrokeThickness="1" />
+                                        <Line
+                                            X1="24"
+                                            Y1="110"
+                                            X2="34"
+                                            Y2="110"
+                                            Stroke="{DynamicResource ClockTickMinorLightClassic}"
+                                            StrokeThickness="1" />
+                                    </Canvas>
+                                </Grid>
+
+                                <!-- Numbers via existing ClockPanel -->
+                                <tools:ClockPanel
+                                    Visibility="Visible"
+                                    Diameter="175"
+                                    Opacity="0"
+                                    KeepVertical="True"
+                                    TextBlock.Foreground="{DynamicResource ClockDigitLightClassic}"
+                                    Margin="24,24,0,0"
+                                    
+                                    OffsetAngle="-90">
+                                    <RadioButton
+                                        Tag="{Binding Source=12, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">12</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=1,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">1</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=2, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">2</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=3, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">3</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=4, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">4</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=5, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">5</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=6, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">6</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=7, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">7</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=8, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">8</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=9, Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">9</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=10,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">10</RadioButton>
+                                    <RadioButton
+                                        Tag="{Binding Source=11,Converter={tools:StringToIntConverter}}"
+                                        Style="{StaticResource ClockHourRadioButtonLightClassic}">11</RadioButton>
+                                    <tools:ClockPanel.Triggers>
+                                        <EventTrigger
+                                            RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        To="1"
+                                                        Duration="0:0:0.3" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger
+                                            RoutedEvent="MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                                        Storyboard.TargetProperty="Opacity"
+                                                        BeginTime="0:0:0.7"
+                                                        To="0"
+                                                        From="3"
+                                                        Duration="0:0:0.9" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </tools:ClockPanel.Triggers>
+                                </tools:ClockPanel>
+
+                                <tools:ClockPanel
+                                    Visibility="Collapsed"
+                                    x:Name="PART_PanelNum"
+                                    Diameter="176"
+                                    Opacity="0"
+                                    KeepVertical="True"
+                                    Margin="22,22,0,0"
+                                    OffsetAngle="-60"
+                                    >
+                                   
+
+
+
+                                </tools:ClockPanel>
+
+
+                                <!-- Hour hand -->
+                                <Border
+                                    Name="PART_BorderClock"
+                                    Background="{DynamicResource SelectedButtonBackgroundColorLightClassic}"
+                                    RenderTransformOrigin="0.5,1"
+                                    Height="72"
+                                    Width="2"
+                                    Canvas.Left="110"
+                                    Canvas.Top="38" />
+
+                                <!-- Hub -->
+                                <Ellipse
+                                    Width="10"
+                                    Height="10"
+                                    Fill="{DynamicResource SelectedButtonBackgroundColorLightClassic}"
+                                    StrokeThickness="1"
+                                    Stroke="{DynamicResource ClockBezelBrushLightClassic}"
+                                    Canvas.Top="104"
+                                    Canvas.Left="106" />
+                            </Canvas>
+                        </Grid>
+
+                        <TextBlock
+                            Visibility="Collapsed"
+                            Grid.Column="2"
+                            Margin="0,20"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center"
+                            FontSize="32"
+                            Foreground="{DynamicResource NormalForegroundLightClassic}"
+                            Text="{Binding Path=Text, ElementName=PART_TimeStr, Converter={tools:TimeStringConverter StringInputType=HH_MM_ss_String, StringOutputType=Second}}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

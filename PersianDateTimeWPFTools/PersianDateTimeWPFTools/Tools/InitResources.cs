@@ -29,6 +29,12 @@ namespace PersianDateTimeWPFTools.Tools
             {
                 switch (value)
                 {
+                    case BaseThemeName.DarkClassic:
+                        _theme = new ThemeDarkClassic();
+                        break;
+                    case BaseThemeName.LightClassic:
+                        _theme = new ThemeLightClassic();
+                        break;
                     case BaseThemeName.DarkModern1:
                         _theme = new ThemeDarkModern1();
                         break;
@@ -80,7 +86,9 @@ namespace PersianDateTimeWPFTools.Tools
         {
             if (Theme.Theme != BaseThemeName.Default)
             {
-                var style = FindStyle(control.GetType().Name, Theme.Theme.ToString());
+                var cn = control.GetType().Name;
+                var tn = Theme.Theme.ToString();
+                var style = FindStyle(cn,tn);
                 if (style != null)
                     control.Style = style;
             }

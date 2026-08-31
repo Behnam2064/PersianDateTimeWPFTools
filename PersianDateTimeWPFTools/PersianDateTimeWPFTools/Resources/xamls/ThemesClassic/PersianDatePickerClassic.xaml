@@ -1,0 +1,503 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:primitives="clr-namespace:PersianDateTimeWPFTools.Windows.Controls.Primitives"
+    xmlns:controls="clr-namespace:PersianDateTimeWPFTools.Controls">
+
+    <Thickness x:Key="CalendarDatePickerTopHeaderMargin">0,0,0,4</Thickness>
+
+
+    <SolidColorBrush x:Key="PersianDatePickerTextBoxBackgroundDarkClassic" Color="#FF202020"/>
+    <SolidColorBrush x:Key="PersianDatePickerTextBoxBorderBrushDarkClassic" Color="#FF555555"/>
+    <SolidColorBrush x:Key="NormalForegroundPersianDatePickerDarkClassic" Color="#FFD0D0D0"/>
+    <SolidColorBrush x:Key="TextBoxSelectedBackgroundDarkClassic" Color="#FF3A3A3A"/>
+    <SolidColorBrush x:Key="PersianDatePickerIconBackgroundDarkClassic" Color="#FFB97A1E"/>
+    <SolidColorBrush x:Key="PersianDatePickerBackgroundDarkClassic" Color="#FF202020"/>
+    <SolidColorBrush x:Key="PersianDatePickerBorderBrushDarkClassic" Color="#FF555555"/>
+    <SolidColorBrush x:Key="PersianDatePickerPointerOverBackgroundDarkClassic" Color="#FF302A22"/>
+    <SolidColorBrush x:Key="PersianDatePickerPressedBackgroundDarkClassic" Color="#FF4A3518"/>
+    <SolidColorBrush x:Key="PersianDatePickerDisabledForegroundDarkClassic" Color="#FF777777"/>
+
+    <Style x:Key="PersianDatePickerDarkClassic" TargetType="{x:Type controls:PersianDatePicker}">
+        <Setter Property="Control.Foreground" Value="{DynamicResource NormalForegroundPersianDatePickerDarkClassic}"/>
+        <Setter Property="controls:PersianDatePicker.IsTodayHighlighted" Value="True"/>
+        <Setter Property="controls:PersianDatePicker.Height" Value="30"/>
+        <Setter Property="controls:PersianDatePicker.SelectedDateFormat" Value="Short"/>
+        <Setter Property="controls:PersianDatePicker.CalendarStyle" Value="{DynamicResource PersianCalendarDarkClassic}"/>
+        <Setter Property="Control.Background" Value="{DynamicResource PersianDatePickerBackgroundDarkClassic}"/>
+        <Setter Property="Control.BorderBrush" Value="{DynamicResource PersianDatePickerBorderBrushDarkClassic}"/>
+        <Setter Property="Control.BorderThickness" Value="2"/>
+        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Control.Padding" Value="1"/>
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="primitives:ControlHelper.CornerRadius" Value="6"/>
+        <Setter Property="controls:PersianDatePickerHelper.IsEnabled" Value="True"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:PersianDatePicker}">
+                    <FrameworkTemplate.Resources>
+                        <StreamGeometry x:Key="Calendar">F1 M 7.5 7.5 L 8.75 7.5 L 8.75 8.75 L 7.5 8.75 Z M 11.25 15 L 12.5 15 L 12.5 16.25 L 11.25 16.25 Z M 15 7.5 L 16.25 7.5 L 16.25 8.75 L 15 8.75 Z M 11.25 7.5 L 12.5 7.5 L 12.5 8.75 L 11.25 8.75 Z M 7.5 10 L 8.75 10 L 8.75 11.25 L 7.5 11.25 Z M 3.75 10 L 5 10 L 5 11.25 L 3.75 11.25 Z M 15 10 L 16.25 10 L 16.25 11.25 L 15 11.25 Z M 11.25 10 L 12.5 10 L 12.5 11.25 L 11.25 11.25 Z M 7.5 12.5 L 8.75 12.5 L 8.75 13.75 L 7.5 13.75 Z M 3.75 12.5 L 5 12.5 L 5 13.75 L 3.75 13.75 Z M 15 12.5 L 16.25 12.5 L 16.25 13.75 L 15 13.75 Z M 11.25 12.5 L 12.5 12.5 L 12.5 13.75 L 11.25 13.75 Z M 7.5 15 L 8.75 15 L 8.75 16.25 L 7.5 16.25 Z M 3.75 15 L 5 15 L 5 16.25 L 3.75 16.25 Z M 20 1.25 L 20 18.75 L 0 18.75 L 0 1.25 L 3.75 1.25 L 3.75 0 L 5 0 L 5 1.25 L 15 1.25 L 15 0 L 16.25 0 L 16.25 1.25 Z M 1.25 2.5 L 1.25 5 L 18.75 5 L 18.75 2.5 L 16.25 2.5 L 16.25 3.75 L 15 3.75 L 15 2.5 L 5 2.5 L 5 3.75 L 3.75 3.75 L 3.75 2.5 Z M 18.75 17.5 L 18.75 6.25 L 1.25 6.25 L 1.25 17.5 Z</StreamGeometry>
+                        <Style TargetType="{x:Type primitives:DatePickerTextBox}">
+                            <Setter Property="Control.Foreground" Value="{DynamicResource NormalForegroundPersianDatePickerDarkClassic}"/>
+                            <Setter Property="Control.Background" Value="{DynamicResource PersianDatePickerTextBoxBackgroundDarkClassic}"/>
+                            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PersianDatePickerTextBoxBorderBrushDarkClassic}"/>
+                            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                            <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="FrameworkElement.ContextMenu" Value="{DynamicResource TextControlContextMenu}"/>
+                            <Setter Property="controls:TextContextMenu.UsingTextContextMenu" Value="True"/>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type primitives:DatePickerTextBox}">
+                                        <Grid SnapsToDevicePixels="True">
+                                            <Border x:Name="BorderElement"
+                                                Background="{TemplateBinding Control.Background}"
+                                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                                CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"/>
+                                            <Border x:Name="ContentElement"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <ContentControl x:Name="PART_Watermark"
+                                                Focusable="False" IsHitTestVisible="False" Opacity="0"
+                                                Foreground="{DynamicResource NormalForegroundPersianDatePickerDarkClassic}"
+                                                Margin="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                                                Style="{DynamicResource TextControlContentHostStyle}"
+                                                Margin="0"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="WatermarkStates">
+                                                    <VisualState x:Name="Unwatermarked"/>
+                                                    <VisualState x:Name="Watermarked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Opacity" To="0" Duration="0"/>
+                                                            <DoubleAnimation Storyboard.TargetName="PART_Watermark" Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="UIElement.IsEnabled" Value="False">
+                                                <Setter TargetName="PART_ContentHost" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"/>
+                                                <Setter TargetName="PART_Watermark" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"/>
+                                            </Trigger>
+                                            <Trigger Property="TextBoxBase.IsSelectionActive" Value="True">
+                                                <Setter TargetName="BorderElement" Property="Border.Background" Value="{DynamicResource TextBoxSelectedBackgroundDarkClassic}"/>
+                                                <Setter TargetName="BorderElement" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerIconBackgroundDarkClassic}"/>
+                                                <Setter TargetName="BorderElement" Property="Border.BorderThickness" Value="2"/>
+                                                <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+                                                <Setter Property="TextBoxBase.CaretBrush" Value="#FFFFFFFF"/>
+                                                <Setter TargetName="PART_Watermark" Property="Control.Foreground" Value="#FFFFFFFF"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </FrameworkTemplate.Resources>
+
+                    <Grid ShowGridLines="False" SnapsToDevicePixels="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <controls:ContentPresenterEx x:Name="HeaderContentPresenter"
+                            Visibility="{TemplateBinding primitives:ControlHelper.HeaderVisibility}"
+                            Content="{TemplateBinding primitives:ControlHelper.Header}"
+                            ContentTemplate="{TemplateBinding primitives:ControlHelper.HeaderTemplate}"
+                            Margin="{StaticResource CalendarDatePickerTopHeaderMargin}"
+                            TextWrapping="Wrap"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+
+                        <Grid x:Name="PART_Root" Grid.Row="1">
+                            <FrameworkElement.Resources>
+                                <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid>
+                                        <Rectangle Fill="{TemplateBinding Control.Background}" Margin="{TemplateBinding Control.Padding}"/>
+                                        <TextBlock x:Name="PART_Icon"
+                                            Foreground="{TemplateBinding Control.Foreground}"
+                                            FontFamily="{DynamicResource SymbolThemeFontFamily}"
+                                            FontSize="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="&#xE787;"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </FrameworkElement.Resources>
+
+                            <Border x:Name="Background"
+                                Background="{TemplateBinding Control.Background}"
+                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
+                                MinHeight="30"/>
+
+                            <primitives:DatePickerTextBox x:Name="PART_TextBox"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                Padding="7,0,34,0"
+                                HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                Focusable="{TemplateBinding UIElement.Focusable}"
+                                primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"/>
+
+                            <Button x:Name="PART_Button"
+                                Focusable="False"
+                                Background="{DynamicResource PersianDatePickerIconBackgroundDarkClassic}"
+                                Foreground="White"
+                                Width="30"
+                                Padding="0,1,1,1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Stretch"
+                                Template="{StaticResource DropDownButtonTemplate}"/>
+
+                            <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False">
+                                <Popup.PlacementRectangle>
+                                    <MultiBinding>
+                                        <MultiBinding.Converter>
+                                            <primitives:PlacementRectangleConverter Margin="0,-4"/>
+                                        </MultiBinding.Converter>
+                                        <Binding ElementName="PART_Root" Path="ActualWidth"/>
+                                        <Binding ElementName="PART_Root" Path="ActualHeight"/>
+                                    </MultiBinding>
+                                </Popup.PlacementRectangle>
+                            </Popup>
+                        </Grid>
+
+                        <ContentPresenter x:Name="DescriptionPresenter"
+                            Grid.Row="2"
+                            Content="{TemplateBinding primitives:ControlHelper.Description}"
+                            Visibility="{TemplateBinding primitives:ControlHelper.DescriptionVisibility}"
+                            TextElement.Foreground="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_Root" Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="Background" Property="Border.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundDarkClassic}"/>
+                            <Setter TargetName="Background" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerIconBackgroundDarkClassic}"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerIconBackgroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPressedBackgroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerIconBackgroundDarkClassic}"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPressedBackgroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                        </MultiTrigger>
+
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter TargetName="Background" Property="Border.Background" Value="{DynamicResource PersianDatePickerBackgroundDarkClassic}"/>
+                            <Setter TargetName="Background" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerBorderBrushDarkClassic}"/>
+                            <Setter TargetName="HeaderContentPresenter" Property="controls:ContentPresenterEx.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"/>
+                            <Setter TargetName="PART_TextBox" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundDarkClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerBorderBrushDarkClassic}"/>
+                        </Trigger>
+
+                        <Trigger SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True">
+                            <Setter TargetName="PART_TextBox" Property="Foreground" Value="#FFFFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <SolidColorBrush x:Key="PersianDatePickerTextBoxBackgroundLightClassic" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="PersianDatePickerTextBoxBorderBrushLightClassic" Color="#FFC8C1B5"/>
+    <SolidColorBrush x:Key="NormalForegroundPersianDatePickerLightClassic" Color="#FF555555"/>
+    <SolidColorBrush x:Key="TextBoxSelectedBackgroundLightClassic" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="PersianDatePickerIconBackgroundLightClassic" Color="#FFB97A1E"/>
+    <SolidColorBrush x:Key="PersianDatePickerBackgroundLightClassic" Color="#FFF4F1EB"/>
+    <SolidColorBrush x:Key="PersianDatePickerBorderBrushLightClassic" Color="#FFC8C1B5"/>
+    <SolidColorBrush x:Key="PersianDatePickerPointerOverBackgroundLightClassic" Color="#FFE9D8BC"/>
+    <SolidColorBrush x:Key="PersianDatePickerPressedBackgroundLightClassic" Color="#FFD8B77F"/>
+    <SolidColorBrush x:Key="PersianDatePickerDisabledForegroundLightClassic" Color="#FFAAAAAA"/>
+
+    <Style x:Key="PersianDatePickerLightClassic" TargetType="{x:Type controls:PersianDatePicker}">
+        <Setter Property="Control.Foreground" Value="{DynamicResource NormalForegroundPersianDatePickerLightClassic}"/>
+        <Setter Property="controls:PersianDatePicker.IsTodayHighlighted" Value="True"/>
+        <Setter Property="controls:PersianDatePicker.Height" Value="30"/>
+        <Setter Property="controls:PersianDatePicker.SelectedDateFormat" Value="Short"/>
+        <Setter Property="controls:PersianDatePicker.CalendarStyle" Value="{DynamicResource PersianCalendarLightClassic}"/>
+        <Setter Property="Control.Background" Value="{DynamicResource PersianDatePickerBackgroundLightClassic}"/>
+        <Setter Property="Control.BorderBrush" Value="{DynamicResource PersianDatePickerBorderBrushLightClassic}"/>
+        <Setter Property="Control.BorderThickness" Value="2"/>
+        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Control.Padding" Value="1"/>
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}"/>
+        <Setter Property="primitives:ControlHelper.CornerRadius" Value="6"/>
+        <Setter Property="controls:PersianDatePickerHelper.IsEnabled" Value="True"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:PersianDatePicker}">
+                    <FrameworkTemplate.Resources>
+                        <StreamGeometry x:Key="Calendar">F1 M 7.5 7.5 L 8.75 7.5 L 8.75 8.75 L 7.5 8.75 Z M 11.25 15 L 12.5 15 L 12.5 16.25 L 11.25 16.25 Z M 15 7.5 L 16.25 7.5 L 16.25 8.75 L 15 8.75 Z M 11.25 7.5 L 12.5 7.5 L 12.5 8.75 L 11.25 8.75 Z M 7.5 10 L 8.75 10 L 8.75 11.25 L 7.5 11.25 Z M 3.75 10 L 5 10 L 5 11.25 L 3.75 11.25 Z M 15 10 L 16.25 10 L 16.25 11.25 L 15 11.25 Z M 11.25 10 L 12.5 10 L 12.5 11.25 L 11.25 11.25 Z M 7.5 12.5 L 8.75 12.5 L 8.75 13.75 L 7.5 13.75 Z M 3.75 12.5 L 5 12.5 L 5 13.75 L 3.75 13.75 Z M 15 12.5 L 16.25 12.5 L 16.25 13.75 L 15 13.75 Z M 11.25 12.5 L 12.5 12.5 L 12.5 13.75 L 11.25 13.75 Z M 7.5 15 L 8.75 15 L 8.75 16.25 L 7.5 16.25 Z M 3.75 15 L 5 15 L 5 16.25 L 3.75 16.25 Z M 20 1.25 L 20 18.75 L 0 18.75 L 0 1.25 L 3.75 1.25 L 3.75 0 L 5 0 L 5 1.25 L 15 1.25 L 15 0 L 16.25 0 L 16.25 1.25 Z M 1.25 2.5 L 1.25 5 L 18.75 5 L 18.75 2.5 L 16.25 2.5 L 16.25 3.75 L 15 3.75 L 15 2.5 L 5 2.5 L 5 3.75 L 3.75 3.75 L 3.75 2.5 Z M 18.75 17.5 L 18.75 6.25 L 1.25 6.25 L 1.25 17.5 Z</StreamGeometry>
+                        <Style TargetType="{x:Type primitives:DatePickerTextBox}">
+                            <Setter Property="Control.Foreground" Value="{DynamicResource NormalForegroundPersianDatePickerLightClassic}"/>
+                            <Setter Property="Control.Background" Value="{DynamicResource PersianDatePickerTextBoxBackgroundLightClassic}"/>
+                            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PersianDatePickerTextBoxBorderBrushLightClassic}"/>
+                            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                            <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
+                            <Setter Property="FrameworkElement.ContextMenu" Value="{DynamicResource TextControlContextMenu}"/>
+                            <Setter Property="controls:TextContextMenu.UsingTextContextMenu" Value="True"/>
+                            <Setter Property="Control.Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type primitives:DatePickerTextBox}">
+                                        <Grid SnapsToDevicePixels="True">
+                                            <Border x:Name="BorderElement"
+                                                Background="{TemplateBinding Control.Background}"
+                                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                                CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"/>
+                                            <Border x:Name="ContentElement"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <ContentControl x:Name="PART_Watermark"
+                                                Focusable="False" IsHitTestVisible="False" Opacity="0"
+                                                Foreground="{DynamicResource NormalForegroundPersianDatePickerLightClassic}"
+                                                Margin="{TemplateBinding Control.Padding}"
+                                                HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <ScrollViewer x:Name="PART_ContentHost"
+                                                Style="{DynamicResource TextControlContentHostStyle}"
+                                                Margin="0"
+                                                Padding="{TemplateBinding Control.Padding}"
+                                                HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                                VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"/>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="WatermarkStates">
+                                                    <VisualState x:Name="Unwatermarked"/>
+                                                    <VisualState x:Name="Watermarked">
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="Opacity" To="0" Duration="0"/>
+                                                            <DoubleAnimation Storyboard.TargetName="PART_Watermark" Storyboard.TargetProperty="Opacity" To="1" Duration="0"/>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="UIElement.IsEnabled" Value="False">
+                                                <Setter TargetName="PART_ContentHost" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"/>
+                                                <Setter TargetName="PART_Watermark" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"/>
+                                            </Trigger>
+                                            <Trigger Property="TextBoxBase.IsSelectionActive" Value="True">
+                                                <Setter TargetName="BorderElement" Property="Border.Background" Value="{DynamicResource TextBoxSelectedBackgroundLightClassic}"/>
+                                                <Setter TargetName="BorderElement" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerIconBackgroundLightClassic}"/>
+                                                <Setter TargetName="BorderElement" Property="Border.BorderThickness" Value="2"/>
+                                                <Setter Property="Control.Foreground" Value="#FFB97A1E"/>
+                                                <Setter Property="TextBoxBase.CaretBrush" Value="#FFB97A1E"/>
+                                                <Setter TargetName="PART_Watermark" Property="Control.Foreground" Value="#FFB97A1E"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </FrameworkTemplate.Resources>
+
+                    <Grid ShowGridLines="False" SnapsToDevicePixels="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <controls:ContentPresenterEx x:Name="HeaderContentPresenter"
+                            Visibility="{TemplateBinding primitives:ControlHelper.HeaderVisibility}"
+                            Content="{TemplateBinding primitives:ControlHelper.Header}"
+                            ContentTemplate="{TemplateBinding primitives:ControlHelper.HeaderTemplate}"
+                            Margin="{StaticResource CalendarDatePickerTopHeaderMargin}"
+                            TextWrapping="Wrap"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+
+                        <Grid x:Name="PART_Root" Grid.Row="1">
+                            <FrameworkElement.Resources>
+                                <ControlTemplate x:Key="DropDownButtonTemplate" TargetType="{x:Type Button}">
+                                    <Grid>
+                                        <Rectangle Fill="{TemplateBinding Control.Background}" Margin="{TemplateBinding Control.Padding}"/>
+                                        <TextBlock x:Name="PART_Icon"
+                                            Foreground="{TemplateBinding Control.Foreground}"
+                                            FontFamily="{DynamicResource SymbolThemeFontFamily}"
+                                            FontSize="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="&#xE787;"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </FrameworkElement.Resources>
+
+                            <Border x:Name="Background"
+                                Background="{TemplateBinding Control.Background}"
+                                BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"
+                                MinHeight="30"/>
+
+                            <primitives:DatePickerTextBox x:Name="PART_TextBox"
+                                BorderThickness="{TemplateBinding Control.BorderThickness}"
+                                Padding="7,0,34,0"
+                                HorizontalContentAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                Focusable="{TemplateBinding UIElement.Focusable}"
+                                primitives:ControlHelper.CornerRadius="{TemplateBinding primitives:ControlHelper.CornerRadius}"/>
+
+                            <Button x:Name="PART_Button"
+                                Focusable="False"
+                                Background="{DynamicResource PersianDatePickerIconBackgroundLightClassic}"
+                                Foreground="White"
+                                Width="30"
+                                Padding="0,1,1,1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Stretch"
+                                Template="{StaticResource DropDownButtonTemplate}"/>
+
+                            <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False">
+                                <Popup.PlacementRectangle>
+                                    <MultiBinding>
+                                        <MultiBinding.Converter>
+                                            <primitives:PlacementRectangleConverter Margin="0,-4"/>
+                                        </MultiBinding.Converter>
+                                        <Binding ElementName="PART_Root" Path="ActualWidth"/>
+                                        <Binding ElementName="PART_Root" Path="ActualHeight"/>
+                                    </MultiBinding>
+                                </Popup.PlacementRectangle>
+                            </Popup>
+                        </Grid>
+
+                        <ContentPresenter x:Name="DescriptionPresenter"
+                            Grid.Row="2"
+                            Content="{TemplateBinding primitives:ControlHelper.Description}"
+                            Visibility="{TemplateBinding primitives:ControlHelper.DescriptionVisibility}"
+                            TextElement.Foreground="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"
+                            SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="PART_Root" Property="UIElement.IsMouseOver" Value="True">
+                            <Setter TargetName="Background" Property="Border.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundLightClassic}"/>
+                            <Setter TargetName="Background" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerIconBackgroundLightClassic}"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerIconBackgroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPressedBackgroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Padding" Value="0,2,2,2"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="UIElement.IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPointerOverBackgroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerIconBackgroundLightClassic}"/>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="False"/>
+                                <Condition SourceName="PART_Button" Property="ButtonBase.IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerPressedBackgroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="White"/>
+                        </MultiTrigger>
+
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter TargetName="Background" Property="Border.Background" Value="{DynamicResource PersianDatePickerBackgroundLightClassic}"/>
+                            <Setter TargetName="Background" Property="Border.BorderBrush" Value="{DynamicResource PersianDatePickerBorderBrushLightClassic}"/>
+                            <Setter TargetName="HeaderContentPresenter" Property="controls:ContentPresenterEx.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"/>
+                            <Setter TargetName="PART_TextBox" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Foreground" Value="{DynamicResource PersianDatePickerDisabledForegroundLightClassic}"/>
+                            <Setter TargetName="PART_Button" Property="Control.Background" Value="{DynamicResource PersianDatePickerBorderBrushLightClassic}"/>
+                        </Trigger>
+
+                        <Trigger SourceName="PART_TextBox" Property="TextBoxBase.IsSelectionActive" Value="True">
+                            <Setter TargetName="PART_TextBox" Property="Foreground" Value="#FFB97A1E"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

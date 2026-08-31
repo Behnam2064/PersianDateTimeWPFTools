@@ -33,5 +33,22 @@
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/PersianCalendarWithClock.xaml" />
         <ResourceDictionary
             Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/Styles/PersianDateTimePicker.xaml" />
+
+
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesClassic/ClockClassic.xaml" />
+
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesClassic/PersianCalendarClassic.xaml" />
+
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesClassic/PersianCalendarWithClockClassic.xaml" />
+
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesClassic/PersianDatePickerClassic.xaml" />
+
+        <ResourceDictionary
+            Source="pack://application:,,,/PersianDateTimeWPFTools;component/Resources/xamls/ThemesClassic/PersianDateTimePickerClassic.xaml" />
+
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
