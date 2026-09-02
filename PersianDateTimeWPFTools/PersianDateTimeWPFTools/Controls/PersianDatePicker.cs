@@ -871,19 +871,26 @@ namespace PersianDateTimeWPFTools.Controls
         }
         private string DateTimeToString(DateTime d)
         {
-            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
-            //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
-            System.Globalization.Calendar persianCalendar = culture.Calendar;
+            var culture = CustomCulture
+                ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+
+            var calendar = culture.Calendar;
+
             switch (this.SelectedDateFormat)
             {
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
-                    return string.Format("{0:0000}/{1:00}/{2:00}", (object)persianCalendar.GetYear(d), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
+                    
+                    return d.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
-                    return string.Format("{0:0000}/{1:00}/{2:00}", (object)(persianCalendar.GetYear(d) /*% 100*/), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
+                    
+                    return d.ToString(culture.DateTimeFormat.ShortDatePattern, culture);
+
                 default:
-                    return (string)null;
+                    return null;
             }
         }
+
 
         private static DateTime DiscardDayTime(DateTime d) => new DateTime(d.Year, d.Month, 1, 0, 0, 0);
 

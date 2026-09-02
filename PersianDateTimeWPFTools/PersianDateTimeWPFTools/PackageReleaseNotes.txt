@@ -1,25 +1,9 @@
 ﻿### Bug Fixes
 
-Fixed duplicate date change events when changing selected date/time values in:
+fix:Fix DateTimeToString formatting logic for Long/Short modes
 
-* `PersianCalendarWithClock`
-* `PersianDatePicker`
-* `PersianDateTimePicker`
-
-Also improved synchronization between the public properties and the internal calendar/clock controls.
-
-
-This release introduces a fully standardized and reliable wheel interaction model for the Clock control:
-
-- **Ctrl** now adjusts the hour
-- **Shift** adjusts the minute
-- **Ctrl + Shift** adjusts the second
-- Removed **Alt** modifier usage due to WPF AccessKey/MenuMode conflicts
-- Improved consistency of wheel behavior when interacting with the Canvas surface
-- Internal refactoring for cleaner logic and easier future extension
-
-These changes provide a more predictable and professional user experience while maintaining backward compatibility with existing applications.
-
-
-Modern1 style fix:  
-Selected holiday dates now display correctly. Visual state handling for holiday/selected cells has been updated for consistent rendering.
+- Replaced manual yyyy/MM/dd formatting with culture‑based patterns
+- Long now uses culture.DateTimeFormat.LongDatePattern
+- Short now uses culture.DateTimeFormat.ShortDatePattern
+- Ensures correct PersianCalendar usage and full WPF‑consistent behavior
+- Removes duplicated formatting logic and fixes identical Long/Short output

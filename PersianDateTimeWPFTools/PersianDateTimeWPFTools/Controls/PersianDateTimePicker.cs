@@ -1039,8 +1039,30 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         //private string DateTimeToString(DateTime d) => d.ToString(DateTimeFormat);
-
         private string DateTimeToString(DateTime d)
+        {
+            var culture = CustomCulture
+                ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+
+            var calendar = culture.Calendar;
+
+            switch (this.SelectedDateFormat)
+            {
+                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
+                    
+                    return d.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+
+                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
+                    
+                    return d.ToString(culture.DateTimeFormat.ShortDatePattern, culture);
+
+                default:
+                    return null;
+            }
+        }
+
+
+        private string DateTimeToString_default(DateTime d)
         {
             var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
             //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
