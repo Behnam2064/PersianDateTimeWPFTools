@@ -337,7 +337,6 @@ namespace PersianDateTimeWPFTools.Controls
             set => this.SetValue(PersianDateTimePicker.CustomCultureProperty, (object)value);
         }
 
-
         #region Public Events
 
         public static readonly RoutedEvent SelectedDateTimeChangedEvent =
@@ -460,26 +459,35 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         public static readonly DependencyProperty SelectedDateTimeProperty = DependencyProperty.Register(
-            "SelectedDateTime", typeof(DateTime?), typeof(PersianDateTimePicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedDateTimeChanged, CoerceSelectedDateTime));
+            "SelectedDateTime", typeof(DateTime?), typeof(PersianDateTimePicker), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedDateTimeChanged));
 
-        private static object CoerceSelectedDateTime(DependencyObject d, object value)
+
+        private static void OnSelectedDateTimeChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
-            var dp = (PersianDateTimePicker)d;
-            dp._calendarWithClock.SelectedDateTime = (DateTime?)value;
-            return dp._calendarWithClock.SelectedDateTime;
-        }
+            if (!(d is PersianDateTimePicker dp))
+                return;
 
-        private static void OnSelectedDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (!(d is PersianDateTimePicker dp)) return;
+            var value = (DateTime?)e.NewValue;
 
-            if (dp.SelectedDateTime.HasValue)
+            if (dp._calendarWithClock != null &&
+                dp._calendarWithClock.SelectedDateTime != value)
             {
-                var time = dp.SelectedDateTime.Value;
-                dp.SetTextInternal(dp.DateTimeToString(time));
+                dp._calendarWithClock.SelectedDateTime = value;
             }
 
-            dp.RaiseEvent(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(SelectedDateTimeChangedEvent, e.OldValue as DateTime?, e.NewValue as DateTime?));
+            if (value.HasValue)
+            {
+                dp.SetTextInternal(
+                    dp.DateTimeToString(value.Value));
+            }
+
+            dp.RaiseEvent(
+                new Windows.Controls.CalendarDateChangedEventArgs(
+                    SelectedDateTimeChangedEvent,
+                    (DateTime?)e.OldValue,
+                    value));
         }
 
         public DateTime? SelectedDateTime
@@ -780,7 +788,10 @@ namespace PersianDateTimeWPFTools.Controls
 
         private void CalendarWithClock_SelectedDateTimeChanged(object sender, PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs e)
         {
-            SelectedDateTime = e.AddedDate;
+            if (SelectedDateTime != e.AddedDate)
+            {
+                SelectedDateTime = e.AddedDate;
+            }
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)

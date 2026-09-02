@@ -185,8 +185,8 @@ namespace PersianDateTimeWPFTools.Controls
 
         public event EventHandler<SelectionChangedEventArgs> SelectedDatesChanged
         {
-            add => this.AddHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
-            remove => this.RemoveHandler(PersianCalendar.SelectedDatesChangedEvent, (Delegate)value);
+            add => this.AddHandler(PersianCalendar.SelectedDatesChangedEvent, value);
+            remove => this.RemoveHandler(PersianCalendar.SelectedDatesChangedEvent, value);
         }
 
 
@@ -530,7 +530,7 @@ namespace PersianDateTimeWPFTools.Controls
         public DateTime? SelectedDate
         {
             get => (DateTime?)this.GetValue(PersianCalendar.SelectedDateProperty);
-            set => this.SetValue(PersianCalendar.SelectedDateProperty, (object)value);
+            set => this.SetValue(PersianCalendar.SelectedDateProperty, value);
         }
 
         private static void OnSelectedDateChanged(
@@ -541,7 +541,7 @@ namespace PersianDateTimeWPFTools.Controls
             if (cal.SelectionMode == PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionMode.None && e.NewValue != null)
                 throw new InvalidOperationException("The SelectedDate property cannot be set when the selection mode is None.");
             DateTime? newValue = (DateTime?)e.NewValue;
-            if (!PersianCalendar.IsValidDateSelection(cal, (object)newValue))
+            if (!PersianCalendar.IsValidDateSelection(cal, newValue))
                 throw new ArgumentOutOfRangeException(nameof(d), "SelectedDate value is not valid.");
             if (!newValue.HasValue)
                 cal.SelectedDates.ClearInternal(true);

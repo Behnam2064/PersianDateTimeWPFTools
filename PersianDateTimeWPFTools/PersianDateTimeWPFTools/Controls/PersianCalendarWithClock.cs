@@ -85,7 +85,7 @@ namespace PersianDateTimeWPFTools.Controls
 
 
 
-        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged,null));
+        public static readonly DependencyProperty DisplayDateProperty = DependencyProperty.Register(nameof(DisplayDate), typeof(DateTime), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Time.ClockProvider.Current.Now, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDisplayDateChanged, null));
 
         public static readonly DependencyProperty DisplayDateEndProperty = DependencyProperty.Register(nameof(DisplayDateEnd), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public static readonly DependencyProperty DisplayDateStartProperty = DependencyProperty.Register(nameof(DisplayDateStart), typeof(DateTime?), typeof(PersianCalendarWithClock), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
@@ -327,16 +327,39 @@ namespace PersianDateTimeWPFTools.Controls
             set => SetValue(DateTimeFormatProperty, value);
         }
 
+
+        private bool _isSynchronizing;
+
         public static readonly DependencyProperty SelectedDateTimeProperty = DependencyProperty.Register(
             "SelectedDateTime", typeof(DateTime?), typeof(PersianCalendarWithClock), new PropertyMetadata(default(DateTime?), OnSelectedDateTimeChanged));
 
-        private static void OnSelectedDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnSelectedDateTimeChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
-            /*            var ctl = (PersianCalendarWithClock)d;
-                        var v = (DateTime?)e.NewValue;
+            var ctl = (PersianCalendarWithClock)d;
 
-                        ctl.OnSelectedDateTimeChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs
-                            (SelectedDateTimeChangedEvent, v, e.OldValue as DateTime?));*/
+            if (ctl._isSynchronizing)
+                return;
+
+            var value = (DateTime?)e.NewValue;
+
+            ctl.SynchronizeChildren(value);
+
+            ctl.RaiseSelectedDateTimeChanged(
+                (DateTime?)e.OldValue,
+                value);
+        }
+
+        private void RaiseSelectedDateTimeChanged(
+    DateTime? oldValue,
+    DateTime? newValue)
+        {
+            RaiseEvent(
+                new Windows.Controls.CalendarDateChangedEventArgs(
+                    SelectedDateTimeChangedEvent,
+                    oldValue,
+                    newValue));
         }
 
         public DateTime? SelectedDateTime
@@ -401,6 +424,24 @@ namespace PersianDateTimeWPFTools.Controls
 
         #region Private Methods
 
+        private void SynchronizeSelectedDateTime(DateTime? value)
+        {
+            if (_isSynchronizing)
+                return;
+
+            try
+            {
+                _isSynchronizing = true;
+
+                _calendar.SelectedDate = value;
+                _clock.SelectedTime = value;
+            }
+            finally
+            {
+                _isSynchronizing = false;
+            }
+        }
+
         private void SetIsHandlerSuspended(DependencyProperty property, bool value)
         {
             if (value)
@@ -431,11 +472,6 @@ namespace PersianDateTimeWPFTools.Controls
             }
         }
 
-        private bool IsHandlerSuspended(DependencyProperty property)
-        {
-            return _isHandlerSuspended != null && _isHandlerSuspended.ContainsKey(property);
-        }
-
         private void CheckNull()
         {
             if (_clockPresenter == null || _calendarPresenter == null) throw new Exception();
@@ -449,7 +485,7 @@ namespace PersianDateTimeWPFTools.Controls
                 BorderThickness = new Thickness(),
                 Background = Brushes.Transparent
             };
-            
+
             _clock.SetBinding(FrameworkElement.StyleProperty, this.GetDatePickerBinding(ClockStyleProperty));
             //this.ClockStyle = (Style)Application.Current.Resources["ClockBaseStyle"];
 
@@ -463,7 +499,7 @@ namespace PersianDateTimeWPFTools.Controls
                 Focusable = false,
             };
 
-            
+
             _calendar.SetBinding(PersianCalendar.ShowConfirmButtonProperty,
                 new Binding(ShowConfirmButtonProperty.Name) { Source = this, Mode = BindingMode.TwoWay });
 
@@ -538,18 +574,29 @@ namespace PersianDateTimeWPFTools.Controls
             };
         }
 
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void Calendar_SelectedDatesChanged(
+            object sender,
+            SelectionChangedEventArgs e)
         {
+            if (_isSynchronizing)
+                return;
+
             Mouse.Capture(null);
-            UpdateDisplayTime();
+
+            UpdateSelectedDateTimeFromChildren();
         }
 
-        private void Clock_DisplayTimeChanged(object sender, PersianDateTimeWPFTools.Windows.Controls.ClockTimeChangedEventArgs e)
+        private void Clock_DisplayTimeChanged(
+            object sender,
+            ClockTimeChangedEventArgs e)
         {
-            UpdateDisplayTime();
+            if (_isSynchronizing)
+                return;
+
+            UpdateSelectedDateTimeFromChildren();
         }
 
-        private void UpdateDisplayTime()
+        private void UpdateDisplayTime_Default()
         {
             if (_calendar.SelectedDate != null)
             {
@@ -565,6 +612,53 @@ namespace PersianDateTimeWPFTools.Controls
 
                 OnDisplayDateTimeChanged(new PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs(null, result));
             }
+        }
+
+        private void UpdateSelectedDateTimeFromChildren()
+        {
+            if (_calendar.SelectedDate == null)
+                return;
+
+            var date = _calendar.SelectedDate.Value;
+            var time = _clock.DisplayTime;
+
+            var result = new DateTime(
+                date.Year,
+                date.Month,
+                date.Day,
+                time.Hour,
+                time.Minute,
+                time.Second);
+
+            SetValueNoCallback(DisplayDateTimeProperty, result);
+
+            if (SelectedDateTime != result)
+            {
+                SelectedDateTime = result;
+            }
+        }
+
+        private void SynchronizeChildren(DateTime? value)
+        {
+            try
+            {
+                _isSynchronizing = true;
+
+                _calendar.SelectedDate = value;
+                _clock.SelectedTime = value;
+            }
+            finally
+            {
+                _isSynchronizing = false;
+            }
+        }
+
+        private void SetSelectedDateTimeFromInternalChange(DateTime value)
+        {
+            if (_isSynchronizing)
+                return;
+
+            SetValue(SelectedDateTimeProperty, value);
         }
 
         #endregion

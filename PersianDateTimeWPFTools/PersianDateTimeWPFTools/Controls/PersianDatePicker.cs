@@ -50,7 +50,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty FirstDayOfWeekProperty = DependencyProperty.Register(nameof(FirstDayOfWeek), typeof(DayOfWeek), typeof(PersianDatePicker), (PropertyMetadata)null, new ValidateValueCallback(PersianCalendar.IsValidFirstDayOfWeek));
         public static readonly DependencyProperty IsDropDownOpenProperty = DependencyProperty.Register(nameof(IsDropDownOpen), typeof(bool), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnIsDropDownOpenChanged), new CoerceValueCallback(PersianDatePicker.OnCoerceIsDropDownOpen)));
         public static readonly DependencyProperty IsTodayHighlightedProperty = DependencyProperty.Register(nameof(IsTodayHighlighted), typeof(bool), typeof(PersianDatePicker));
-        public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(nameof(SelectedDate), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateChanged), new CoerceValueCallback(PersianDatePicker.CoerceSelectedDate)));
+        public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(nameof(SelectedDate), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateChanged)));
         public static readonly DependencyProperty SelectedDateFormatProperty = DependencyProperty.Register(nameof(SelectedDateFormat), typeof(PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateFormatChanged)), new ValidateValueCallback(PersianDatePicker.IsValidSelectedDateFormat));
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)string.Empty, new PropertyChangedCallback(PersianDatePicker.OnTextChanged), new CoerceValueCallback(PersianDatePicker.OnCoerceText)));
 
@@ -451,7 +451,7 @@ namespace PersianDateTimeWPFTools.Controls
             set => this.SetValue(PersianDatePicker.SelectedDateProperty, (object)value);
         }
 
-        private static void OnSelectedDateChanged(
+        private static void OnSelectedDateChanged_default(
           DependencyObject d,
           DependencyPropertyChangedEventArgs e)
         {
@@ -497,11 +497,68 @@ namespace PersianDateTimeWPFTools.Controls
             pickerAutomationPeer.RaiseValuePropertyChangedEvent(oldValue2, newValue2);
         }
 
-        private static object CoerceSelectedDate(DependencyObject d, object value)
+
+
+        private static void OnSelectedDateChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
         {
-            PersianDatePicker persianDatePicker = d as PersianDatePicker;
-            persianDatePicker._persianCalendar.SelectedDate = (DateTime?)value;
-            return (object)persianDatePicker._persianCalendar.SelectedDate;
+            var picker = (PersianDatePicker)d;
+
+            var newValue = (DateTime?)e.NewValue;
+            var oldValue = (DateTime?)e.OldValue;
+
+            // Synchronize internal calendar.
+            if (picker._persianCalendar != null &&
+                picker._persianCalendar.SelectedDate != newValue)
+            {
+                picker._persianCalendar.SelectedDate = newValue;
+            }
+
+            // Update TextBox.
+            if (newValue.HasValue)
+            {
+                picker.SetTextInternal(
+                    picker.DateTimeToString(newValue.Value));
+
+                // منطق فعلی DisplayDate را هم اینجا نگه دار
+                // ...
+
+                int month1 = newValue.Value.Month;
+                DateTime displayDate = picker.DisplayDate;
+                int month2 = displayDate.Month;
+                if (month1 == month2)
+                {
+                    int year1 = newValue.Value.Year;
+                    displayDate = picker.DisplayDate;
+                    int year2 = displayDate.Year;
+                    if (year1 == year2)
+                        goto label_5;
+                }
+                if (!picker._persianCalendar.DatePickerDisplayDateFlag)
+                    picker.DisplayDate = newValue.Value;
+                label_5:
+                picker._persianCalendar.DatePickerDisplayDateFlag = false;
+            }
+            else
+            {
+                picker.SetWaterMarkText();
+            }
+
+            var addedItems = new Collection<DateTime>();
+            var removedItems = new Collection<DateTime>();
+
+            if (newValue.HasValue)
+                addedItems.Add(newValue.Value);
+
+            if (oldValue.HasValue)
+                removedItems.Add(oldValue.Value);
+
+            picker.OnSelectedDateChanged(
+                new PersianDateTimeWPFTools.Windows.Controls.CalendarSelectionChangedEventArgs(
+                    PersianDatePicker.SelectedDateChangedEvent,
+                    removedItems,
+                    addedItems));
         }
 
         public PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat SelectedDateFormat
@@ -796,22 +853,22 @@ namespace PersianDateTimeWPFTools.Controls
             this.SelectedDate = this._originalSelectedDate;
         }
 
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void Calendar_SelectedDatesChanged(
+            object sender,
+            SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count > 0 && this.SelectedDate.HasValue && PersianDateTimeWPFTools.Time.ClockProvider.Current.Compare((DateTime)e.AddedItems[0], this.SelectedDate.Value) != 0)
-                this.SelectedDate = (DateTime?)e.AddedItems[0];
-            else if (e.AddedItems.Count == 0)
+            DateTime? newValue = null;
+
+            if (e.AddedItems.Count > 0)
             {
-                this.SelectedDate = new DateTime?();
+                newValue = (DateTime)e.AddedItems[0];
             }
-            else
+
+            if (SelectedDate != newValue)
             {
-                if (this.SelectedDate.HasValue || e.AddedItems.Count <= 0)
-                    return;
-                this.SelectedDate = (DateTime?)e.AddedItems[0];
+                SelectedDate = newValue;
             }
         }
-
         private string DateTimeToString(DateTime d)
         {
             var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);

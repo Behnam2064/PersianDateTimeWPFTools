@@ -1,6 +1,9 @@
-﻿### What's New
+﻿### Bug Fixes
 
-* Added **Classic theme** support for all controls.
-* Added Dark and Light Classic styles for all controls.
-* Improved visual consistency between `PersianCalendar`, `Clock`, `PersianDatePicker`, and `PersianDateTimePicker`.
-* Classic themes reuse the existing Classic Calendar and Calendar-with-Clock styles.
+Fixed duplicate date change events when changing selected date/time values in:
+
+* `PersianCalendarWithClock`
+* `PersianDatePicker`
+* `PersianDateTimePicker`
+
+Also improved synchronization between the public properties and the internal calendar/clock controls.
