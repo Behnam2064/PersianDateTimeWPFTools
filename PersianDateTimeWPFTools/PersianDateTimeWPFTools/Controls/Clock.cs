@@ -292,26 +292,71 @@ namespace PersianDateTimeWPFTools.Controls
             }
             e.Handled = true;
         }
-
         private void Canvas_OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var value = (int)_rotateTransformClock.Angle;
-            if (e.Delta < 0)
-            {
-                value += 6;
-            }
-            else
-            {
-                value -= 6;
-            }
-            if (value < 0)
-            {
-                value = value + 360;
-            }
-            _rotateTransformClock.Angle = value;
+            var modifiers = Keyboard.Modifiers;
+            bool ctrl = (modifiers & ModifierKeys.Control) == ModifierKeys.Control;
+            bool shift = (modifiers & ModifierKeys.Shift) == ModifierKeys.Shift;
 
-            Update();
-            e.Handled = true;
+            // ثانیه
+            if (ctrl && shift)
+            {
+                SecValue += (e.Delta < 0 ? -1 : 1);
+                Update();
+                e.Handled = true;
+                return;
+            }
+
+            // ساعت
+            if (ctrl)
+            {
+                int hValue = (int)_currentButton.Tag;
+                hValue += (e.Delta < 0 ? 1 : -1);
+
+                if (hValue > 12) hValue = 1;
+                if (hValue < 1) hValue = 12;
+
+                var ctl = _radioButtonList[hValue - 1];
+                ctl.IsChecked = true;
+                _currentButton = ctl;
+
+                if (_buttonPm.IsChecked == true)
+                {
+                    if (hValue == 12) hValue = 12;
+                }
+                else
+                {
+                    if (hValue == 12) hValue = 0;
+                }
+
+                Update();
+                e.Handled = true;
+                return;
+            }
+
+            // دقیقه
+            if (shift)
+            {
+                int value = (int)_rotateTransformClock.Angle;
+                value += (e.Delta < 0 ? 6 : -6);
+                if (value < 0) value += 360;
+
+                _rotateTransformClock.Angle = value;
+                Update();
+                e.Handled = true;
+                return;
+            }
+
+            // حالت معمول → دقیقه
+            {
+                int value = (int)_rotateTransformClock.Angle;
+                value += (e.Delta < 0 ? 6 : -6);
+                if (value < 0) value += 360;
+
+                _rotateTransformClock.Angle = value;
+                Update();
+                e.Handled = true;
+            }
         }
 
         private void Canvas_OnClick(object sender, RoutedEventArgs e)

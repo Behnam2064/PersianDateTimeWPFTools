@@ -391,3 +391,13 @@ public partial class App : Application
         }
     }
 ```
+
+### Mouse Wheel Interaction (Updated)
+The Clock control now follows a standardized modifier-based wheel interaction model:
+
+- **Ctrl** → Change hour  
+- **Shift** → Change minute  
+- **Ctrl + Shift** → Change second  
+- Regular wheel scrolling (no modifiers) continues to adjust minutes.
+
+This update removes the previous Alt-based behavior due to WPF system-level AccessKey/MenuMode limitations and ensures consistent, predictable interaction across all UI elements.

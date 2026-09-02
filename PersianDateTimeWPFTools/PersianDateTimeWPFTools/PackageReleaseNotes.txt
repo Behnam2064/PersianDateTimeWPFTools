@@ -7,3 +7,15 @@ Fixed duplicate date change events when changing selected date/time values in:
 * `PersianDateTimePicker`
 
 Also improved synchronization between the public properties and the internal calendar/clock controls.
+
+
+This release introduces a fully standardized and reliable wheel interaction model for the Clock control:
+
+- **Ctrl** now adjusts the hour
+- **Shift** adjusts the minute
+- **Ctrl + Shift** adjusts the second
+- Removed **Alt** modifier usage due to WPF AccessKey/MenuMode conflicts
+- Improved consistency of wheel behavior when interacting with the Canvas surface
+- Internal refactoring for cleaner logic and easier future extension
+
+These changes provide a more predictable and professional user experience while maintaining backward compatibility with existing applications.
