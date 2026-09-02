@@ -60,11 +60,11 @@
 
     <SolidColorBrush
         x:Key="DayButtonBlackoutSelectedBorderBrushDark"
-        Color="#FFD2004D" />
+        Color="Transparent" />
 
     <SolidColorBrush
         x:Key="DayButtonBlackoutSelectedBackgroundDark"
-        Color="#FFD2004D" />
+        Color="#FFFF97BD" />
 
     <SolidColorBrush
         x:Key="DayButtonInactiveForegroundDark"
@@ -1421,11 +1421,11 @@ FallbackValue={StaticResource DayIndicatorStyleDarkModern1}}"
 
     <SolidColorBrush
         x:Key="DayButtonBlackoutSelectedBorderBrushLight"
-        Color="#FFD2004D" />
+        Color="#FFFF97BD" />
 
     <SolidColorBrush
         x:Key="DayButtonBlackoutSelectedBackgroundLight"
-        Color="#FFD2004D" />
+        Color="#FFFF97BD" />
 
     <SolidColorBrush
         x:Key="DayButtonInactiveForegroundLight"

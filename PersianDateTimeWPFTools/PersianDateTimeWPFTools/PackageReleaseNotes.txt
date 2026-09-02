@@ -19,3 +19,7 @@ This release introduces a fully standardized and reliable wheel interaction mode
 - Internal refactoring for cleaner logic and easier future extension
 
 These changes provide a more predictable and professional user experience while maintaining backward compatibility with existing applications.
+
+
+Modern1 style fix:  
+Selected holiday dates now display correctly. Visual state handling for holiday/selected cells has been updated for consistent rendering.
