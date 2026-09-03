@@ -79,6 +79,14 @@
         x:Key="DayButtonInactiveForeground"
         Color="#FFBBBBBB" />
 
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutInactiveForeground"
+        Color="#FFFBC8C8" />
+    
+    <SolidColorBrush
+        x:Key="DayButtonBlackoutInactiveSelectedForeground"
+        Color="#FFF17979" />
+
 
     <Style
         x:Key="DefaultPersianCalendarItemStyle"
@@ -928,12 +936,6 @@
 
                         <!--End-->
 
-
-
-
-
-
-
                         <!--<Trigger
                             Property="primitives:CalendarDayButton.IsSelected"
                             Value="True">
@@ -980,7 +982,6 @@
                                 Value="{StaticResource DayButtonHighlightBackgroundPressed}"
                                 Property="Border.Background" />
                         </MultiTrigger>
-
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
@@ -1005,8 +1006,6 @@
                                 Value="{DynamicResource DayButtonHighlightBackgroundTodaySelected}"
                                 Property="Border.Background" />
                         </MultiTrigger>
-
-
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
@@ -1031,8 +1030,6 @@
                                 Value="{DynamicResource DayButtonHighlightBackgroundTodaySelected}"
                                 Property="Border.Background" />
                         </MultiTrigger>
-
-
                         <Trigger
                             Property="primitives:CalendarDayButton.IsInactive"
                             Value="True">
@@ -1100,11 +1097,6 @@
                                 Property="TextBlock.Foreground" />
 
                         </MultiTrigger>
-
-
-
-
-
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition
@@ -1119,20 +1111,15 @@
                                 TargetName="NormalText"
                                 Value="{DynamicResource DayButtonBlackoutForeground}"
                                 Property="TextBlock.Foreground" />
-
                             <Setter
                                 TargetName="HighlightBorder"
                                 Value="{DynamicResource DayButtonBlackoutSelectedBorderBrush}"
                                 Property="Border.BorderBrush" />
-
                             <Setter
                                 TargetName="HighlightBorder"
                                 Value="{DynamicResource DayButtonBlackoutSelectedBackground}"
                                 Property="Border.Background" />
-
                         </MultiTrigger>
-
-
                         <Trigger
                             Property="primitives:CalendarDayButton.IsInactive"
                             Value="True">
@@ -1149,6 +1136,46 @@
                                 Value="{DynamicResource CalendarViewBlackoutForeground}"
                                 Property="TextBlock.Foreground" />
                         </Trigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsInactive"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutInactiveForeground}"
+                                Property="TextBlock.Foreground" />
+                        </MultiTrigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsInactive"
+                                    Value="True" />
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsBlackedOut"
+                                    Value="True" />
+
+                                <Condition
+                                    Property="primitives:CalendarDayButton.IsSelected"
+                                    Value="True" />
+
+                            </MultiTrigger.Conditions>
+                            <Setter
+                                TargetName="NormalText"
+                                Value="{DynamicResource DayButtonBlackoutInactiveSelectedForeground}"
+                                Property="TextBlock.Foreground" />
+                        </MultiTrigger>
+
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
