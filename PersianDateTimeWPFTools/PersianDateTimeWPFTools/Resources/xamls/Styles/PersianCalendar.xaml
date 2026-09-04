@@ -430,7 +430,6 @@
                                 BorderThickness="0"
                                 CornerRadius="1">
                                 <Grid
-                                    
                                     VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}">
                                     <Grid.RowDefinitions>
@@ -444,9 +443,8 @@
 
                                     <Rectangle
                                         x:Name="BackgroundLayer"
-                                        Fill="{TemplateBinding Control.BorderBrush}"
-                                         />
-                                    
+                                        Fill="{TemplateBinding Control.BorderBrush}" />
+
                                     <Button
                                         x:Name="PART_PreviousButton"
                                         Grid.Column="0"
@@ -495,7 +493,13 @@
 
                                     </DockPanel>
 
-
+                                    <Border
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        x:Name="WeekBorder"
+                                        BorderThickness="0 2 0 0"
+                                        BorderBrush="{TemplateBinding Control.BorderBrush}"
+                                        Margin="0,38,0,0" />
 
                                     <Grid
                                         x:Name="PART_MonthView"
@@ -545,14 +549,8 @@
                                         </Grid.RowDefinitions>
                                     </Grid>
 
-                                    <Border
-                                        Grid.Row="1"
-                                        Grid.ColumnSpan="2"
-                                        x:Name="WeekBorder"
-                                        BorderThickness="0 2 0 0"
-                                        BorderBrush="{TemplateBinding Control.BorderBrush}"
-                                        Margin="0,38,0,0" />
                                     
+
                                     <Button
                                         Visibility="Collapsed"
                                         Name="PART_ButtonConfirm"
@@ -564,7 +562,6 @@
                                 </Grid>
                             </Border>
                         </Border>
-
                         <Rectangle
                             x:Name="PART_DisabledVisual"
                             Fill="{StaticResource DisabledColor}"

@@ -7,3 +7,5 @@ fix:Fix DateTimeToString formatting logic for Long/Short modes
 - Short now uses culture.DateTimeFormat.ShortDatePattern
 - Ensures correct PersianCalendar usage and full WPF‑consistent behavior
 - Removes duplicated formatting logic and fixes identical Long/Short output
+
+style(PersianCalendar): Calendar Theme Visual Improvements
