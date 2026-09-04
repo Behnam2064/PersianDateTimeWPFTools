@@ -12,6 +12,7 @@ namespace PersianDateTimeWPFTools.Controls
 #endif
     public sealed class CalendarDayInfo
     {
+        public long? Id { get; set; }
 #if NET6_0_OR_GREATER
         public object? ToolTip { get; set; }
 
@@ -30,6 +31,10 @@ namespace PersianDateTimeWPFTools.Controls
 
         public bool ShowToolTipWhenDisabled { get; set; } = true;
 
+#if NET6_0_OR_GREATER
+        public object? Tag { get; set; }
+#elif NET40_OR_GREATER
+        public object Tag { get; set; }
+#endif
     }
-
 }
