@@ -16,9 +16,9 @@ WPF calendar with support for Gregorian and solar calendars
     <Copyright>MIT License</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.5.1.3</AssemblyVersion>
-    <FileVersion>1.5.1.3</FileVersion>
-    <Version>1.5.1.3</Version>
+    <AssemblyVersion>1.5.1.7</AssemblyVersion>
+    <FileVersion>1.5.1.7</FileVersion>
+    <Version>1.5.1.7</Version>
   </PropertyGroup>
   <!-- Only enable nullable feature for the supported frameworks -->
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' Or '$(TargetFramework)' == 'net7.0' Or '$(TargetFramework)' == 'net6.0'">
