@@ -1039,7 +1039,7 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
         //private string DateTimeToString(DateTime d) => d.ToString(DateTimeFormat);
-        private string DateTimeToString(DateTime d)
+ /*       private string DateTimeToString(DateTime d)
         {
             var culture = CustomCulture
                 ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
@@ -1059,7 +1059,31 @@ namespace PersianDateTimeWPFTools.Controls
                 default:
                     return null;
             }
+        }*/
+
+
+        private string DateTimeToString(DateTime d)
+        {
+            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+            //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
+            System.Globalization.Calendar pc = culture.Calendar;
+
+            int year = pc.GetYear(d);
+            int month = pc.GetMonth(d);
+            int day = pc.GetDayOfMonth(d);
+
+            switch (this.SelectedDateFormat)
+            {
+                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
+                    return d.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
+                    return $"{year:0000}/{month:00}/{day:00}";
+
+                default:
+                    return string.Empty;
+            }
         }
+
 
 
         private void SetWaterMarkText()
@@ -1073,15 +1097,15 @@ namespace PersianDateTimeWPFTools.Controls
             switch (this.SelectedDateFormat)
             {
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
-                    this._textBox.Watermark = (object)string.Format((IFormatProvider)CultureInfo.CurrentCulture, "Select a date", new object[1]
+                    this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, "Select a date", new object[1]
                     {
-            (object) dateFormat.LongDatePattern.ToString()
+                        dateFormat.LongDatePattern.ToString()
                     });
                     break;
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
-                    this._textBox.Watermark = (object)string.Format((IFormatProvider)CultureInfo.CurrentCulture, "Select a date", new object[1]
+                    this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, "Select a date", new object[1]
                     {
-            (object) dateFormat.ShortDatePattern.ToString()
+                        dateFormat.ShortDatePattern.ToString()
                     });
                     break;
             }

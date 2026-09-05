@@ -869,25 +869,64 @@ namespace PersianDateTimeWPFTools.Controls
                 SelectedDate = newValue;
             }
         }
+        /*        private string DateTimeToString(DateTime d)
+                {
+                    var culture = CustomCulture
+                        ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+
+                    var calendar = culture.Calendar;
+
+                    switch (this.SelectedDateFormat)
+                    {
+                        case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
+
+                            return d.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+
+                        case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
+
+                            return d.ToString(culture.DateTimeFormat.ShortDatePattern, culture);
+
+                        default:
+                            return null;
+                    }
+                }*/
+
+        /*        private string DateTimeToString(DateTime d)
+                {
+                    var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+                    //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
+                    System.Globalization.Calendar persianCalendar = culture.Calendar;
+                    switch (this.SelectedDateFormat)
+                    {
+                        case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
+                            return string.Format("{0:0000}/{1:00}/{2:00}", (object)persianCalendar.GetYear(d), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
+                        case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
+                            return string.Format("{0:0000}/{1:00}/{2:00}", (object)(persianCalendar.GetYear(d) *//*% 100*//*), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
+                        default:
+                            return (string)null;
+                    }
+                }*/
+
+
         private string DateTimeToString(DateTime d)
         {
-            var culture = CustomCulture
-                ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+            //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
+            System.Globalization.Calendar pc = culture.Calendar;
 
-            var calendar = culture.Calendar;
+            int year = pc.GetYear(d);
+            int month = pc.GetMonth(d);
+            int day = pc.GetDayOfMonth(d);
 
             switch (this.SelectedDateFormat)
             {
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
-                    
                     return d.ToString(culture.DateTimeFormat.LongDatePattern, culture);
-
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
-                    
-                    return d.ToString(culture.DateTimeFormat.ShortDatePattern, culture);
+                    return $"{year:0000}/{month:00}/{day:00}";
 
                 default:
-                    return null;
+                    return string.Empty;
             }
         }
 
@@ -1132,6 +1171,10 @@ namespace PersianDateTimeWPFTools.Controls
                     break;
             }
         }
+
+
+
+
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e) => this.SetSelectedDate();
 
