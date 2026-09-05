@@ -51,7 +51,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty IsDropDownOpenProperty = DependencyProperty.Register(nameof(IsDropDownOpen), typeof(bool), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnIsDropDownOpenChanged), new CoerceValueCallback(PersianDatePicker.OnCoerceIsDropDownOpen)));
         public static readonly DependencyProperty IsTodayHighlightedProperty = DependencyProperty.Register(nameof(IsTodayHighlighted), typeof(bool), typeof(PersianDatePicker));
         public static readonly DependencyProperty SelectedDateProperty = DependencyProperty.Register(nameof(SelectedDate), typeof(DateTime?), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateChanged)));
-        public static readonly DependencyProperty SelectedDateFormatProperty = DependencyProperty.Register(nameof(SelectedDateFormat), typeof(PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateFormatChanged)), new ValidateValueCallback(PersianDatePicker.IsValidSelectedDateFormat));
+        public static readonly DependencyProperty SelectedDateFormatProperty = DependencyProperty.Register(nameof(SelectedDateFormat), typeof(PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short, new PropertyChangedCallback(PersianDatePicker.OnSelectedDateFormatChanged)), new ValidateValueCallback(PersianDatePicker.IsValidSelectedDateFormat));
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(nameof(Text), typeof(string), typeof(PersianDatePicker), (PropertyMetadata)new FrameworkPropertyMetadata((object)string.Empty, new PropertyChangedCallback(PersianDatePicker.OnTextChanged), new CoerceValueCallback(PersianDatePicker.OnCoerceText)));
 
         public event EventHandler<PersianDateTimeWPFTools.Windows.Controls.CalendarDateChangedEventArgs> DisplayDateChanged;
@@ -1112,22 +1112,22 @@ namespace PersianDateTimeWPFTools.Controls
         {
             if (this._textBox == null)
                 return;
-            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
+            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture(this);
             DateTimeFormatInfo dateFormat = PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
             this.SetTextInternal(string.Empty);
             this._defaultText = string.Empty;
             switch (this.SelectedDateFormat)
             {
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
-                    this._textBox.Watermark = (object)string.Format((IFormatProvider)CultureInfo.CurrentCulture, "Select a date", new object[1]
+                    this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, "Select a date", new object[1]
                     {
-            (object) dateFormat.LongDatePattern.ToString()
+                        dateFormat.LongDatePattern.ToString()
                     });
                     break;
                 case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
-                    this._textBox.Watermark = (object)string.Format((IFormatProvider)CultureInfo.CurrentCulture, "Select a date", new object[1]
+                    this._textBox.Watermark = string.Format(CultureInfo.CurrentCulture, "Select a date", new object[1]
                     {
-            (object) dateFormat.ShortDatePattern.ToString()
+                        dateFormat.ShortDatePattern.ToString()
                     });
                     break;
             }

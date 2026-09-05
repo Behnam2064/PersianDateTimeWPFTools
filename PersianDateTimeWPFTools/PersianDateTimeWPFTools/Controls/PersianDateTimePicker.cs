@@ -168,7 +168,7 @@ namespace PersianDateTimeWPFTools.Controls
         public static readonly DependencyProperty SelectedDateFormatProperty
             = DependencyProperty.Register(nameof(SelectedDateFormat), typeof(PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat),
                 typeof(PersianDateTimePicker), (PropertyMetadata)new
-                FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long,
+                FrameworkPropertyMetadata((object)PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short,
                     new PropertyChangedCallback(PersianDateTimePicker.OnSelectedDateFormatChanged)),
                 new ValidateValueCallback(PersianDateTimePicker.IsValidSelectedDateFormat));
         public PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat SelectedDateFormat
@@ -1062,21 +1062,6 @@ namespace PersianDateTimeWPFTools.Controls
         }
 
 
-        private string DateTimeToString_default(DateTime d)
-        {
-            var culture = CustomCulture ?? PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetCulture((FrameworkElement)this);
-            //PersianDateTimeWPFTools.Windows.Controls.DateTimeHelper.GetDateFormat(culture);
-            System.Globalization.Calendar persianCalendar = culture.Calendar;
-            switch (this.SelectedDateFormat)
-            {
-                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Long:
-                    return string.Format("{0:0000}/{1:00}/{2:00}", (object)persianCalendar.GetYear(d), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
-                case PersianDateTimeWPFTools.Windows.Controls.DatePickerFormat.Short:
-                    return string.Format("{0:0000}/{1:00}/{2:00}", (object)(persianCalendar.GetYear(d) /*% 100*/), (object)persianCalendar.GetMonth(d), (object)persianCalendar.GetDayOfMonth(d));
-                default:
-                    return (string)null;
-            }
-        }
         private void SetWaterMarkText()
         {
             if (this._textBox == null)
